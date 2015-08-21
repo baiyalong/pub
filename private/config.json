@@ -1,0 +1,7 @@
+{
+  "getRawData":{
+    "addr":"http://10.10.10.10:8088",
+    "getMonitoringDataPath":"/path",
+    "getForcastDataPath":"/path"
+  }
+}
