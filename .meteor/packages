@@ -16,3 +16,5 @@ meteorhacks:cluster
 sacha:spin
 aldeed:collection2
 momentjs:moment
+twbs:bootstrap
+d3js:d3
