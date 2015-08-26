@@ -1,29 +1,22 @@
 /**
  * Created by bai on 2015/8/25.
  */
-Template.map.helpers({});
-
-Template.map.events({});
-
-Template.map.onCreated(function () {
-
-});
 
 
-Template.map.onRendered(function () {
-    var width = 1000;
-    var height = 1000;
+var map = function () {
+    var width = $('#map').width();
+    var height = $('#map').height();
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#map").append("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g")
         .attr("transform", "translate(0,0)");
 
     var projection = d3.geo.mercator()
-        .center([107, 31])
-        .scale(850)
-        .translate([width / 2, height / 2]);
+        .center([130, 39])
+        .scale(650)
+    // .translate([0, 0]);
 
     var path = d3.geo.path()
         .projection(projection);
@@ -32,7 +25,7 @@ Template.map.onRendered(function () {
     var color = d3.scale.category20();
 
 
-    d3.json("/mapdata/china.json", function (error, root) {
+    d3.json("/mapdata/geometryProvince/15.json", function (error, root) {
 
         if (error)
             return console.error(error);
@@ -58,4 +51,27 @@ Template.map.onRendered(function () {
             });
 
     });
-});
+}
+
+
+var table = function () {
+    $.getJSON('/test/indexTable.json', function (data, status) {
+        if (status == 'success') {
+            var trs = data.reduce(function (p, c) {
+                return p + '<tr>' +
+                    '<td>' + c.city + '</td>' +
+                    '<td>' + c.AQI + '</td>' +
+                    '<td>' + c.class + '</td>' +
+                    '<td>' + c.majorP + '</td>' +
+                    '</tr>'
+            }, '');
+            $(trs).appendTo($('table'));
+        }
+    });
+}
+
+
+$(function () {
+    map();
+    table();
+})
