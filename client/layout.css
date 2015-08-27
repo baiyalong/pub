@@ -1,0 +1,52 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    padding-top: 52px;
+    height: 100%;
+    width: 100%;
+}
+
+.container-fluid, #main.row-fluid {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.mainL, .mainR {
+    height: 100%;
+    border: 1px solid lightgray;
+}
+
+.mainL {
+    padding: 0;
+}
+
+ul.nav li {
+    border: solid lightgray;
+    border-width: 1px 0;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+table {
+    margin-top: 20px;
+}
+
+#dataCorrectionTable input {
+    width: 90px
+}
+#pollutantLimitTable input{
+    width: 90px
+}
+#pollutantLimitTable{
+    width: 300px;
+}

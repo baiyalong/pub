@@ -1,0 +1,51 @@
+<template name="pollutantLimit">
+    <h2>污染物排放发布限值</h2>
+    <hr/>
+    <div class="row-fluid">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover" id="pollutantLimitTable">
+                <thead>
+                <tr>
+                    <th>污染物</th>
+                    <th>限值</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>PM2.5</td>
+                    <td><input class="form-control" type="number" value="500"/></td>
+                </tr>
+                <tr>
+                    <td>PM10</td>
+                    <td><input class="form-control" type="number" value="500"/></td>
+                </tr>
+                <tr>
+                    <td>O3</td>
+                    <td><input class="form-control" type="number" value="500"/></td>
+                </tr>
+                <tr>
+                    <td>SO2</td>
+                    <td><input class="form-control" type="number" value="500"/></td>
+                </tr>
+                <tr>
+                    <td>NO2</td>
+                    <td><input class="form-control" type="number" value="500"/></td>
+                </tr>
+                <tr>
+                    <td>CO</td>
+                    <td><input class="form-control" type="number" value="500"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            <button class="btn btn-default">取消修改</button>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-default">确认修改</button>
+        </div>
+    </div>
+</template>

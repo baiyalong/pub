@@ -1,0 +1,94 @@
+<template name="dataCorrection">
+    <h2>点位数据修正</h2>
+    <hr/>
+    <div class="row-fluid">
+        <div class="col-md-10">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="exampleInputName2">时间</label>
+                    <input type="date" class="form-control" id="exampleInputName2" placeholder="2015/08/03">
+                </div>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail2">城市</label>
+                    <select class="form-control" id="exampleInputEmail2">
+                        <option>呼和浩特市</option>
+                        <option>呼和浩特市</option>
+                        <option>呼和浩特市</option>
+                        <option>呼和浩特市</option>
+                        <option>呼和浩特市</option>
+                    </select>
+                </div>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">监测点</label>
+                    <select class="form-control" id="exampleInputEmail3">
+                        <option>兴松小区</option>
+                        <option>兴松小区</option>
+                        <option>兴松小区</option>
+                        <option>兴松小区</option>
+                        <option>兴松小区</option>
+                    </select>
+                </div>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <button class="btn btn-default">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover" id="dataCorrectionTable">
+                <thead>
+                <tr>
+                    <th>采集时间</th>
+                    <th>唯一编号</th>
+                    <th>站点名称</th>
+                    <th>站点城市</th>
+                    <th>PM2.5</th>
+                    <th>PM10</th>
+                    <th>O3</th>
+                    <th>SO2</th>
+                    <th>NO2</th>
+                    <th>CO</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>2015-08-03<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>16:00</td>
+                    <td>150100052</td>
+                    <td>兴松小区</td>
+                    <td>呼和浩特市</td>
+                    <td><input class="form-control" type="number" value="15"></td>
+                    <td><input class="form-control" type="number" value="23"></td>
+                    <td><input class="form-control" type="number" value="123"></td>
+                    <td><input class="form-control" type="number" value="322"></td>
+                    <td><input class="form-control" type="number" value="12"></td>
+                    <td><input class="form-control" type="number" value="3"></td>
+                </tr>
+                <tr>
+                    <td>2015-08-03<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>17:00</td>
+                    <td>150100052</td>
+                    <td>兴松小区</td>
+                    <td>呼和浩特市</td>
+                    <td><input class="form-control" type="number" value="234"></td>
+                    <td><input class="form-control" type="number" value="34"></td>
+                    <td><input class="form-control" type="number" value="234"></td>
+                    <td><input class="form-control" type="number" value="12"></td>
+                    <td><input class="form-control" type="number" value="324"></td>
+                    <td><input class="form-control" type="number" value="23"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="col-md-9"></div>
+        <div class="col-md-1">
+            <button class="btn btn-default">取消修正</button>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-default">提交修正</button>
+        </div>
+    </div>
+</template>

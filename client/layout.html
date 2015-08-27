@@ -1,6 +1,32 @@
 <!--母版页-->
-
 <template name="layout">
-
-    <div>{{>yield}}</div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">公共信息发布服务系统</a>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div id="main" class="row-fluid">
+            <div class="col-md-2 mainL">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class=""><a href="/user">用户管理</a></li>
+                    <li role="presentation"><a href="/monitorPoint">发布点位管理</a></li>
+                    <li role="presentation"><a href="/dataCorrection">发布内容手动校核</a></li>
+                    <li role="presentation"><a href="/dataSync">手动重新数据同步</a></li>
+                    <li role="presentation"><a href="/pollutantLimit">设定污染物排放限值</a></li>
+                    <li role="presentation"><a href="/emergencyWarning">紧急污染预告推送</a></li>
+                </ul>
+            </div>
+            <div class="col-md-10 mainR">
+                {{> yield}}
+            </div>
+        </div>
+    </div>
 </template>
