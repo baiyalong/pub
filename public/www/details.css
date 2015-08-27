@@ -34,3 +34,36 @@ h1, h2, h3 {
    */
 }
 
+.rd {
+    float: left;
+    margin: 20px;
+}
+
+.rdl {
+    margin-right: 200px;
+}
+
+.rdr {
+    color: green;
+}
+
+.rd #zs {
+    font-size: large;
+}
+
+.rd #num {
+    float: left;
+    font-size: 100px;
+    color: green;
+}
+
+.rd #you {
+    float: left;
+    margin-top: 70px;
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+svg {
+    height: 500px;
+}

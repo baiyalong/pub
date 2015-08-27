@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/nvd3/nv.d3.min.css">
     <link rel="stylesheet" href="/details.css">
 
     <script src="/lib/jquery.min.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="/lib/d3/d3.min.js"></script>
+    <script src="/lib/nvd3/nv.d3.min.js"></script>
     <script src="/details.js"></script>
 </head>
 <body>
@@ -58,7 +60,38 @@
 
                 </div>
                 <div class="panel-body">
-                    实时空气质量指数
+                    <div class="rd rdl">
+                        <p id="zs">实时空气质量指数</p>
+
+
+                        <p id="num">32</p>
+
+                        <p id="you">优</p>
+
+                    </div>
+                    <div class="rd rdm">
+                        <p>户外活动</p>
+
+                        <p>老人与小孩</p>
+
+                        <p>开窗通风</p>
+
+                        <p>口罩</p>
+
+                        <p>空气净化器</p>
+                    </div>
+                    <div class="rd rdr">
+                        <p>适宜</p>
+
+                        <p>适宜外出</p>
+
+                        <p>适宜</p>
+
+                        <p>不必佩戴</p>
+
+                        <p>不必开启</p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -83,8 +116,8 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">最近24小时污染物浓度变化</h3>
                 </div>
-                <div class="panel-body">
-                    折线图
+                <div class="panel-body" id="chartDay">
+                    <svg style="height: 500px"></svg>
                 </div>
             </div>
         </div>
@@ -108,8 +141,8 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">过去30天AQI变化图</h3>
                 </div>
-                <div class="panel-body">
-                    柱状图
+                <div class="panel-body" id="chartMonth">
+                    <svg style="height: 500px"></svg>
                 </div>
             </div>
         </div>
