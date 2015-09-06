@@ -28,9 +28,68 @@ BLL.mobile = {
         }
     },
     areaDetail: function (id) {
+        var code = parseInt(id)
+        var area = Area.findOne({code: {$eq: code}})
+
+
+        return {
+            areaId: area.code,
+            areaName: area.name,
+            weather: '晴',
+            temperature: '30℃',
+            aqi: 32,
+            aqiLevel: 0,
+            pollutantLevel: [
+                {type: 100, name: 'SO₂', value: '21μg/m³'},
+                {type: 103, name: 'CO', value: '21μg/m³'},
+                {type: 101, name: 'NO₂', value: '21μg/m³'},
+                {type: 102, name: 'O₃', value: '21μg/m³'},
+                {type: 104, name: 'PM10', value: '21μg/m³'},
+                {type: 105, name: 'PM2.5', value: '21μg/m³'},
+            ],
+            healthyAdviceList: [
+                '户外运动 合适', '口罩 不用佩戴', '户外运动 合适', '空气净化器 不必开启', '通风 适宜'
+            ],
+            aqPridictionList: [
+                ['8月18日', '晴30-25℃', '优/良', 'PM10'],
+                ['8月19日', '晴30-25℃', '优/良', 'PM10'],
+            ],
+            weatherPridiction: [
+                {date: '今天', status: 0, temperature: '20-30℃'},
+                {date: '明天', status: 0, temperature: '20-30℃'},
+                {date: '周四', status: 0, temperature: '20-30℃'},
+                {date: '周五', status: 0, temperature: '20-30℃'},
+                {date: '周六', status: 0, temperature: '20-30℃'},
+            ]
+        }
 
     },
     cityHistory: function (id, type) {
+        var code = parseInt(id)
+        if (code < 10000) {
+            code *= 100
+        }
 
+        var city = Area.findOne({code: {$eq: code}})
+
+        return {
+            areaId: city.code,
+            aqiType: 100,
+            timeInterval: 0,
+            aqiHistory: [
+                {
+                    date: '2015-07-30',
+                    aqi: ['10@2', '31@37']
+                },
+                {
+                    date: '2015-07-30',
+                    aqi: ['10@2', '31@37']
+                },
+                {
+                    date: '2015-07-30',
+                    aqi: ['10@2', '31@37']
+                }
+            ]
+        }
     }
 }
