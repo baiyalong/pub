@@ -3,13 +3,27 @@
  */
 //ÒÆ¶¯ÖÕ¶Ë½Ó¿Ú
 
-//1,login
 
-//2,logout
+Api.addRoute('cityBasic/:id', {
+    get: function () {
+        var id = this.urlParams.id;
+        return BLL.mobile.cityBasic(id);
+    }
+})
 
-//3,subscribe
 
-//4,getData
+Api.addRoute('areaDetail/:id', {
+    get: function () {
+        var id = this.urlParams.id;
+        return BLL.mobile.areaDetail(id);
+    }
+})
 
 
-//5,pushData
+Api.addRoute('cityHistory/:id/:type', {
+    get: function () {
+        var id = this.urlParams.id;
+        var type = this.urlParams.type;
+        return BLL.mobile.cityHistory(id, type);
+    }
+})
