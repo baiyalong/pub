@@ -1,7 +1,7 @@
 /**
  * Created by bai on 2015/9/1.
  */
-Log = new Mongo.Collection('log');
+
 
 Log.attachSchema(new SimpleSchema({
     userId: {

@@ -1,7 +1,7 @@
 /**
  * Created by bai on 2015/9/1.
  */
-Station = new Mongo.Collection('station');
+
 
 Station.attachSchema(new SimpleSchema({
     "StationId": {type: Number},
@@ -24,12 +24,27 @@ Station.attachSchema(new SimpleSchema({
     "IsContrast": {type: Number},
     enableStatus: {
         type: Boolean, autoValue: function () {
-            return true;
+            if (this.isInsert)
+                return true;
         }
     },
     publishStatus: {
         type: Boolean, autoValue: function () {
-            return true;
+            if (this.isInsert)
+                return true;
         }
     },
 }));
+
+Station.allow({
+    update: function () {
+        return true;
+    }
+})
+
+Meteor.publish('station', function () {
+    return Station.find({}, {
+        sort: {UniqueCode: 1},
+        fields: {UniqueCode: 1, PositionName: 1, Area: 1, enableStatus: 1, publishStatus: 1}
+    });
+});

@@ -7,11 +7,9 @@
                 <div class="form-group">
                     <label for="exampleInputEmail2">发布城市</label>
                     <select class="form-control" id="exampleInputEmail2">
-                        <option>呼和浩特市</option>
-                        <option>呼和浩特市</option>
-                        <option>呼和浩特市</option>
-                        <option>呼和浩特市</option>
-                        <option>呼和浩特市</option>
+                        {{#each cityList}}
+                        <option value="{{code}}">{{name}}</option>
+                        {{/each}}
                     </select>
                 </div>
             </form>
@@ -25,10 +23,10 @@
             <div class="row-fluid" style="margin-top: 10px">
                 <div class="col-md-9"></div>
                 <div class="col-md-1">
-                    <button class="btn btn-default">取消发布</button>
+                    <button class="btn btn-default cancel">取消发布</button>
                 </div>
                 <div class="col-md-1">
-                    <button class="btn btn-default">确认发布</button>
+                    <button class="btn btn-default save">确认发布</button>
                 </div>
             </div>
         </div>
@@ -46,16 +44,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                {{#each warningList}}
                 <tr>
-                    <td>2015-05-30</td>
-                    <td>呼和浩特</td>
-                    <td>空气重污染蓝色预警</td>
+                    <td>{{moment}}</td>
+                    <td>{{cityName}}</td>
+                    <td>{{content}}</td>
                 </tr>
-                <tr>
-                    <td>2015-06-30</td>
-                    <td>呼和浩特</td>
-                    <td>空气重污染蓝色预警</td>
-                </tr>
+                {{/each}}
                 </tbody>
             </table>
         </div>

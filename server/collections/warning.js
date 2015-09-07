@@ -1,7 +1,7 @@
 /**
  * Created by bai on 2015/9/1.
  */
-Warning = new Mongo.Collection('warning');
+
 
 Warning.attachSchema(new SimpleSchema({
     content: {
@@ -20,3 +20,16 @@ Warning.attachSchema(new SimpleSchema({
         type: String
     }
 }));
+
+
+Warning.allow({
+    insert: function () {
+        //TODO roles auth here
+        return true;
+    }
+})
+
+Meteor.publish('warning',function(){
+    //TODO page
+    return Warning.find();
+})

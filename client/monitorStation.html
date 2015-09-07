@@ -7,11 +7,9 @@
                 <div class="form-group">
                     <label for="exampleInputEmail2">选择城市</label>
                     <select class="form-control" id="exampleInputEmail2">
-                        <option>呼和浩特市</option>
-                        <option>呼和浩特市</option>
-                        <option>呼和浩特市</option>
-                        <option>呼和浩特市</option>
-                        <option>呼和浩特市</option>
+                        {{#each cityList}}
+                        <option value="{{code}}">{{name}}</option>
+                        {{/each}}
                     </select>
                 </div>
             </form>
@@ -31,49 +29,31 @@
                 </tr>
                 </thead>
                 <tbody>
+                {{#each stationList}}
                 <tr>
-                    <td>150100051</td>
-                    <td>小召</td>
-                    <td>呼和浩特市</td>
-                    <td><span class="green">已启用</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <button class="btn btn-default">修改启用状态</button>
+                    <td>{{UniqueCode}}</td>
+                    <td>{{PositionName}}</td>
+                    <td>{{Area}}</td>
+                    <td>
+                        {{#if enableStatus}}
+                        <span class="green">已启用</span>
+                        {{else}}
+                        <span class="red">未启用</span>
+                        {{/if}}
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button class="btn btn-default enable">修改启用状态</button>
                     </td>
-                    <td><span class="green">已发布</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <button class="btn btn-default">修改发布状态</button>
+                    <td>
+                        {{#if publishStatus}}
+                        <span class="green">已发布</span>
+                        {{else}}
+                        <span class="red">未发布</span>
+                        {{/if}}
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button class="btn btn-default publish">修改发布状态</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>150100052</td>
-                    <td>兴松小区</td>
-                    <td>呼和浩特市</td>
-                    <td><span class="green">已启用</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <button class="btn btn-default">修改启用状态</button>
-                    </td>
-                    <td><span class="red">未发布</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <button class="btn btn-default">修改发布状态</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
+                {{/each}}
                 </tbody>
             </table>
         </div>

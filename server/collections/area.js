@@ -2,7 +2,7 @@
  * Created by bai on 2015/9/6.
  */
 
-Area = new Mongo.Collection('area');
+
 
 Area.attachSchema(new SimpleSchema({
     code: {
@@ -13,3 +13,8 @@ Area.attachSchema(new SimpleSchema({
     },
 
 }));
+
+
+Meteor.publish('city', function () {
+    return Area.find({$and: [{code: {$mod: [100, 0]}}, {code: {$not: {$mod: [10000, 0]}}}]}, {sort: {code: 1}});
+});

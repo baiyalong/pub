@@ -11,30 +11,16 @@
                 </tr>
                 </thead>
                 <tbody>
+                {{#each limitList}}
                 <tr>
-                    <td>PM2.5</td>
-                    <td><input class="form-control" type="number" value="500"/></td>
+                    <td>{{pollutantName}}</td>
+                    <td>
+                        <input class="form-control" type="number" history="{{limit}}" value="{{limit}}" min="0"
+                               code="{{pollutantCode}}"
+                               id="{{_id}}"/>
+                    </td>
                 </tr>
-                <tr>
-                    <td>PM10</td>
-                    <td><input class="form-control" type="number" value="500"/></td>
-                </tr>
-                <tr>
-                    <td>O3</td>
-                    <td><input class="form-control" type="number" value="500"/></td>
-                </tr>
-                <tr>
-                    <td>SO2</td>
-                    <td><input class="form-control" type="number" value="500"/></td>
-                </tr>
-                <tr>
-                    <td>NO2</td>
-                    <td><input class="form-control" type="number" value="500"/></td>
-                </tr>
-                <tr>
-                    <td>CO</td>
-                    <td><input class="form-control" type="number" value="500"/></td>
-                </tr>
+                {{/each}}
                 </tbody>
             </table>
         </div>
@@ -42,10 +28,10 @@
     <div class="row-fluid">
         <div class="col-md-1"></div>
         <div class="col-md-1">
-            <button class="btn btn-default">取消修改</button>
+            <button class="btn btn-default cancel">取消修改</button>
         </div>
         <div class="col-md-1">
-            <button class="btn btn-default">确认修改</button>
+            <button class="btn btn-default save">确认修改</button>
         </div>
     </div>
 </template>

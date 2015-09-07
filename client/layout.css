@@ -24,6 +24,10 @@ body {
     padding: 0;
 }
 
+.mainR{
+    overflow: scroll;
+}
+
 ul.nav li {
     border: solid lightgray;
     border-width: 1px 0;
