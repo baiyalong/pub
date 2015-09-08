@@ -36,12 +36,21 @@ Template.monitorStation.events({
 });
 
 Template.monitorStation.onRendered(function () {
-
+        var city = parseInt($('select').val())
+        var tr = $('tbody tr').length
+        if (!isNaN(city) && tr != 0) {
+            $('tbody tr').each(function () {
+                var position = parseInt($(this).children().first().text())
+                if (position > city * 1000 && position < (city + 1) * 1000) {
+                    $(this).show()
+                } else {
+                    $(this).hide()
+                }
+            })
+        }
     }
 );
 
 Template.monitorStation.onCreated(function () {
-        this.subscribe('city')
-        this.subscribe('station')
     }
 );

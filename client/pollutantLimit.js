@@ -52,6 +52,6 @@ Template.pollutantLimit.onRendered(function () {
 
 Template.pollutantLimit.onCreated(function () {
         limitArr = [105, 104, 102, 100, 101, 103]
-        this.subscribe('limit')
+
     }
 );

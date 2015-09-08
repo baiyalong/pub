@@ -47,7 +47,6 @@ Template.emergencyWarning.onRendered(function () {
 );
 
 Template.emergencyWarning.onCreated(function () {
-        this.subscribe('city')
-        this.subscribe('warning')
+
     }
 );

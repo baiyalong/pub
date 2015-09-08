@@ -47,9 +47,7 @@ BLL.mobile = {
                 {type: 104, name: 'PM10', value: '21μg/m³'},
                 {type: 105, name: 'PM2.5', value: '21μg/m³'},
             ],
-            healthyAdviceList: [
-                '户外运动 合适', '口罩 不用佩戴', '户外运动 合适', '空气净化器 不必开启', '通风 适宜'
-            ],
+            healthyAdviceList: [1, 1, 0, 1, 0],
             aqPridictionList: [
                 ['8月18日', '晴30-25℃', '优/良', 'PM10'],
                 ['8月19日', '晴30-25℃', '优/良', 'PM10'],

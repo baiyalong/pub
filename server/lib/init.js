@@ -27,5 +27,35 @@ Meteor.startup(function () {
 
 
     //TODO config
+
+
+    //fake
+    if (true) {
+        //monitorDate
+        Station.find({}, {
+            fields: {UniqueCode: 1, PositionName: 1, Area: 1},
+            sort: {UniqueCode: 1}
+        }).forEach(function (e) {
+            var t = new Date('2015-09-01 00:00:00');
+            while (t < new Date()) {
+                var record = MonitorData.findOne({$and: [{timestamp: {$eq: t}}, {stationCode: {$eq: e.UniqueCode}}]});
+                if (record == null) {
+                    MonitorData.insert({
+                        timestamp: t,
+                        cityCode: Math.floor(e.UniqueCode / 1000),
+                        stationCode: e.UniqueCode,
+                        pollutant: (function (arr) {
+                            return arr.map(function (e) {
+                                return {code: e, value: Math.floor(Math.random() * 1000)}
+                            })
+                        })([100, 101, 102, 103, 104, 105]),
+                        type: 'hour'
+                    })
+                }
+
+                t.setHours(t.getHours() + 1)
+            }
+        })
+    }
 })
 
