@@ -3,7 +3,12 @@
  */
 Meteor.startup(function () {
 
+    //admin user
+    if (Meteor.users.find().count() == 0) {
+        Accounts.createUser({username: 'admin', password: '123'})
+    }
 
+    //Area data
     if (Area.find().count() == 0) {
         var data = JSON.parse(Assets.getText("area.json"));
         data.forEach(function (e) {
@@ -11,6 +16,7 @@ Meteor.startup(function () {
         });
     }
 
+    //Pollutant data
     if (Pollutant.find().count() == 0) {
         var data = JSON.parse(Assets.getText("pollutant.json"));
         data.forEach(function (e) {
@@ -18,6 +24,7 @@ Meteor.startup(function () {
         });
     }
 
+    //monitor station data
     if (Station.find().count() == 0) {
         var data = JSON.parse(Assets.getText("station.json"));
         data.forEach(function (e) {
@@ -29,7 +36,7 @@ Meteor.startup(function () {
     //TODO config
 
 
-    //fake
+    //fake  monitor data
     if (false) {
         //monitorDate
         Station.find({}, {
@@ -52,7 +59,6 @@ Meteor.startup(function () {
                         type: 'hour'
                     })
                 }
-
                 t.setHours(t.getHours() + 1)
             }
         })

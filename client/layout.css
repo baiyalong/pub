@@ -54,3 +54,7 @@ table {
 #pollutantLimitTable{
     width: 300px;
 }
+
+.logout{
+    margin-right: 50px;
+}
