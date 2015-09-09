@@ -11,7 +11,7 @@ Template.login.events({
         var username = $('#username').val()
         var password = $('#password').val()
         Meteor.loginWithPassword(username, password, function (err) {
-            if (err)Util.modal('ÓÃ»§µÇÂ¼', err)
+            if (err)Util.modal('ç”¨æˆ·ç™»å½•', err)
             else
                 Router.go('/')
         })
