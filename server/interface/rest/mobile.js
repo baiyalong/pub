@@ -6,24 +6,20 @@
 
 Api.addRoute('cityBasic/:id', {
     get: function () {
-        var id = this.urlParams.id;
-        return BLL.mobile.cityBasic(id);
+        return BLL.mobile.cityBasic(this.urlParams.id);
     }
 })
 
 
 Api.addRoute('areaDetail/:id', {
     get: function () {
-        var id = this.urlParams.id;
-        return BLL.mobile.areaDetail(id);
+        return BLL.mobile.areaDetail(this.urlParams.id);
     }
 })
 
 
-Api.addRoute('cityHistory/:id/:type', {
+Api.addRoute('cityHistory/', {
     get: function () {
-        var id = this.urlParams.id;
-        var type = this.urlParams.type;
-        return BLL.mobile.cityHistory(id, type);
+        return BLL.mobile.cityHistory(this.queryParams);
     }
 })

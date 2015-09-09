@@ -7,7 +7,6 @@ BLL.mobile = {
         if (code < 10000) {
             code *= 100
         }
-
         var city = Area.findOne({code: {$eq: code}})
         var zone = Area.find({
             code: {
@@ -17,8 +16,6 @@ BLL.mobile = {
         }, {fields: {code: 1, _id: 0}}).map(function (e) {
             return e.code
         })
-
-
         return {
             cityId: city.code,
             cityName: city.name,
@@ -30,8 +27,6 @@ BLL.mobile = {
     areaDetail: function (id) {
         var code = parseInt(id)
         var area = Area.findOne({code: {$eq: code}})
-
-
         return {
             areaId: area.code,
             areaName: area.name,
@@ -60,34 +55,43 @@ BLL.mobile = {
                 {date: '周六', status: 0, temperature: '20-30℃'},
             ]
         }
-
     },
-    cityHistory: function (id, type) {
-        var code = parseInt(id)
-        if (code < 10000) {
-            code *= 100
-        }
-
-        var city = Area.findOne({code: {$eq: code}})
-
+    cityHistory: function (param) {
         return {
-            areaId: city.code,
-            aqiType: 100,
-            timeInterval: 0,
-            aqiHistory: [
+            areaId: parseInt(param.areaId),
+            aqiType: parseInt(param.aqiType),
+            timeInterval: parseInt(param.timeInterval),
+            aqiHistory: (function (timeInterval) {
+                var arr = [];
+                if (parseInt(timeInterval) == 0)  //hour
                 {
-                    date: '2015-07-30',
-                    aqi: ['10@2', '31@37']
-                },
-                {
-                    date: '2015-07-30',
-                    aqi: ['10@2', '31@37']
-                },
-                {
-                    date: '2015-07-30',
-                    aqi: ['10@2', '31@37']
+                    var now = new Date();
+                    for (var i = 0; i < 3; i++) {
+                        var date = moment(now).format('YYYY-MM-DD')
+                        var aqi = [];
+                        for (var j = 0; j < 24; j++) {
+                            aqi.push(j + '@' + Math.floor(Math.random() * 1000))
+                        }
+                        arr.push({date: date, aqi: aqi})
+                        now.setDate(now.getDate() - 1)
+                    }
                 }
-            ]
+                else if (parseInt(timeInterval) == 1)  //day
+                {
+                    var now = new Date();
+                    for (var i = 0; i < 3; i++) {
+                        var date = moment(now).format('YYYY-MM')
+                        var aqi = [];
+                        var days = new Date(now.getFullYear(), (now.getMonth() + 1), 0).getDate()
+                        for (var j = 1; j <= days; j++) {
+                            aqi.push(j + '@' + Math.floor(Math.random() * 1000))
+                        }
+                        arr.push({date: date, aqi: aqi})
+                        now.setMonth(now.getMonth() - 1)
+                    }
+                }
+                return arr;
+            })(param.timeInterval)
         }
     }
 }
