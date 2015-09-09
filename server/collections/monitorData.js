@@ -10,6 +10,10 @@ MonitorData.attachSchema(new SimpleSchema({
     cityCode: {
         type: Number
     },
+    countyCode: {
+        type: Number,
+        optional: true
+    },
     stationCode: {
         type: Number
     },

@@ -8,6 +8,9 @@ Template.monitorStation.helpers({
     },
     stationList: function () {
         return Station.find()
+    },
+    getCounty: function (countyName, cityName) {
+        return countyName ? countyName : cityName;
     }
 });
 

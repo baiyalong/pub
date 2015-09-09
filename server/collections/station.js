@@ -34,6 +34,14 @@ Station.attachSchema(new SimpleSchema({
                 return true;
         }
     },
+    countyCode: {
+        type: Number,
+        optional: true
+    },
+    countyName: {
+        type: String,
+        optional: true
+    }
 }));
 
 Station.allow({
@@ -45,6 +53,14 @@ Station.allow({
 Meteor.publish('station', function () {
     return Station.find({}, {
         sort: {UniqueCode: 1},
-        fields: {UniqueCode: 1, PositionName: 1, Area: 1, enableStatus: 1, publishStatus: 1}
+        fields: {
+            UniqueCode: 1,
+            PositionName: 1,
+            Area: 1,
+            enableStatus: 1,
+            publishStatus: 1,
+            countyCode: 1,
+            countyName: 1
+        }
     });
 });

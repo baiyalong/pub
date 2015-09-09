@@ -15,6 +15,7 @@ Template.dataCorrection.helpers({
             e.moment = moment(e.timestamp).format('YYYY-MM-DD HH:mm:ss');
             var station = Station.findOne({UniqueCode: e.stationCode});
             e.cityName = station.Area;
+            e.countyName = station.countyName ? station.countyName : station.Area;
             e.stationName = station.PositionName;
         })
         return m;
