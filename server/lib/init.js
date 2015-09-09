@@ -30,7 +30,7 @@ Meteor.startup(function () {
 
 
     //fake
-    if (true) {
+    if (false) {
         //monitorDate
         Station.find({}, {
             fields: {UniqueCode: 1, PositionName: 1, Area: 1},

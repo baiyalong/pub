@@ -50,6 +50,7 @@ MonitorData.allow({
 
 Meteor.publish('monitorData', function (condition) {
         condition = condition || {
+                type: 'hour',
                 date: new Date(),
                 stationCode: Station.findOne({}, {
                     fields: {UniqueCode: 1},
@@ -62,6 +63,17 @@ Meteor.publish('monitorData', function (condition) {
         d1.setSeconds(0);
         var d2 = new Date(d1);
         d2.setDate(d2.getDate() + 1);
-        return MonitorData.find({$and: [{stationCode: {$eq: condition.stationCode}}, {timestamp: {$gte: d1}}, {timestamp: {$lt: d2}}]}, {sort: {timestamp: 1}});
+        return MonitorData.find({$and: [{type: condition.type}, {stationCode: {$eq: condition.stationCode}}, {timestamp: {$gte: d1}}, {timestamp: {$lt: d2}}]}, {sort: {timestamp: 1}});
     }
 )
+
+Meteor.methods({
+    dataCorrection: function (arr) {
+        arr.forEach(function (e) {
+            MonitorData.update({
+                _id: e.id,
+                'pollutant.code': e.code
+            }, {$set: {'pollutant.$.value': e.value}})
+        })
+    }
+})

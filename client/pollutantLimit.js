@@ -31,11 +31,14 @@ Template.pollutantLimit.events({
             var id = $('input[code="' + e + '"]').attr('id');
             arr.push({id: id, limit: value})
         })
-        Meteor.call('limitUpdate', arr, function () {
-            Util.modal('污染物排放发布限值', '修改成功！')
-            $('input[type="number"]').each(function () {
-                $(this).val($(this).attr('history'))
-            })
+        Meteor.call('limitUpdate', arr, function (err) {
+            if (err)Util.modal('污染物排放发布限值', err)
+            else {
+                Util.modal('污染物排放发布限值', '修改成功！')
+                $('input[type="number"]').each(function () {
+                    $(this).val($(this).attr('history'))
+                })
+            }
         })
     },
     'click .cancel': function () {

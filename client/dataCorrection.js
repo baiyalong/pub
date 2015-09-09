@@ -50,22 +50,32 @@ Template.dataCorrection.events({
             return
         }
         Session.set('condition', {
+            type: 'hour',
             date: new Date(tt),
             stationCode: station
         })
     },
     'click button.save': function () {
+        var arr = [];
         $('input[type=number]').each(function () {
             var value = parseInt($(this).val());
             if (!isNaN(value) && value != $(this).attr('history')) {
-                var id = $(this).parent().attr('id');
-                var code = $(this).attr('code');
-                MonitorData.update({_id:id,'pollutant.code':code}, {}, function (err) {
-                    if (err)Util.modal('点位数据修正', err)
-                    else Util.modal('点位数据修正', '更新成功！')
+                var id = $(this).parent().parent().attr('id');
+                var code = parseInt($(this).attr('code'));
+                arr.push({id: id, code: code, value: value})
+            }
+        })
+        if (arr.length == 0)return;
+        Meteor.call('dataCorrection', arr, function (err) {
+            if (err)Util.modal('点位数据修正', err)
+            else {
+                Util.modal('点位数据修正', '更新成功！')
+                $('input[type=number]').each(function () {
+                    $(this).val($(this).attr('history'))
                 })
             }
         })
+
     },
     'click button.cancel': function () {
         $('input[type=number]').each(function () {
@@ -97,6 +107,7 @@ Template.dataCorrection.onRendered(function () {
 
 Template.dataCorrection.onCreated(function () {
         Session.set('condition', {
+            type: 'hour',
             date: new Date(),
             stationCode: Station.findOne({}, {fields: {UniqueCode: 1}, sort: {UniqueCode: 1}}).UniqueCode
         })
