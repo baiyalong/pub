@@ -6,7 +6,7 @@
             <form class="form-inline">
                 <div class="form-group">
                     <label for="exampleInputEmail2">选择城市</label>
-                    <select class="form-control" id="exampleInputEmail2">
+                    <select class="form-control cityList" id="exampleInputEmail2">
                         {{#each cityList}}
                         <option value="{{code}}">{{name}}</option>
                         {{/each}}
@@ -31,11 +31,17 @@
                 </thead>
                 <tbody>
                 {{#each stationList}}
-                <tr>
+                <tr id="{{_id}}">
                     <td>{{UniqueCode}}</td>
                     <td>{{PositionName}}</td>
                     <td>{{Area}}</td>
-                    <td>{{getCounty countyName Area}}</td>
+                    <td>
+                        <select class="form-control countyList">
+                            {{#each countyList countyCode UniqueCode}}
+                            <option value="{{code}}" selected="{{selected}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
                     <td>
                         {{#if enableStatus}}
                         <span class="green">已启用</span>

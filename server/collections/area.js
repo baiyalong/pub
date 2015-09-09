@@ -18,3 +18,7 @@ Area.attachSchema(new SimpleSchema({
 Meteor.publish('city', function () {
     return Area.find({$and: [{code: {$mod: [100, 0]}}, {code: {$not: {$mod: [10000, 0]}}}]}, {sort: {code: 1}});
 });
+
+Meteor.publish('county', function () {
+    return Area.find({}, {sort: {code: 1}});
+})
