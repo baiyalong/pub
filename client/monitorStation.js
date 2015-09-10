@@ -39,6 +39,8 @@ Template.monitorStation.events({
         var countryName = $('#' + id + ' select').find("option:selected").text();
         Station.update({_id: id}, {$set: {countyCode: countyCode, countyName: countryName}}, function (err) {
             if (err)Util.modal('发布点位管理', err)
+            else
+                Util.modal('发布点位管理', '修改成功！')
         })
     },
     'click .enable': function () {
