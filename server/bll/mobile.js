@@ -19,7 +19,7 @@ BLL.mobile = {
         return {
             cityId: city.code,
             cityName: city.name,
-            weather: '晴',
+            weather: Math.floor(Math.random() * 100) % 26,
             temperature: '30℃',
             zoneIdArray: zone
         }
@@ -30,7 +30,7 @@ BLL.mobile = {
         return {
             areaId: area.code,
             areaName: area.name,
-            weather: '晴',
+            weather: Math.floor(Math.random() * 100) % 26,
             temperature: '30℃',
             aqi: 32,
             aqiLevel: 0,
