@@ -23,3 +23,9 @@ Api.addRoute('cityHistory/', {
         return BLL.mobile.cityHistory(this.queryParams);
     }
 })
+
+Api.addRoute('versionDetection/', {
+    get: function () {
+        return BLL.mobile.versionDetection(this.queryParams);
+    }
+})

@@ -95,5 +95,11 @@ BLL.mobile = {
                 return arr;
             })(param.timeInterval)
         }
+    },
+    versionDetection: function (param) {
+        return {
+            deviceType: param.deviceType,
+            version: param.version
+        }
     }
 }
