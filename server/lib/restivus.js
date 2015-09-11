@@ -4,5 +4,6 @@
 Api = new Restivus({
     apiPath: 'api/',
     useDefaultAuth: true,
-    prettyJson: true
+    prettyJson: true,
+    defaultHeaders: {'Content-Type': 'application/json;charset=utf-8'}
 });

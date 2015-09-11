@@ -96,10 +96,11 @@ BLL.mobile = {
             })(param.timeInterval)
         }
     },
-    versionDetection: function (param) {
+    getLatestVersion: function (deviceType) {
         return {
-            deviceType: param.deviceType,
-            version: param.version
+            deviceType: deviceType,
+            latestVersion: '',
+            downloadUrl: ''
         }
     }
 }
