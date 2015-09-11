@@ -97,10 +97,11 @@ BLL.mobile = {
         }
     },
     getLatestVersion: function (deviceType) {
+        var app = MobileApp.findOne({'metadata.deviceType': deviceType}, {sort: {'metadata.timestamp': -1}})
         return {
-            deviceType: deviceType,
-            latestVersion: '',
-            downloadUrl: ''
+            deviceType: app.metadata.deviceType,
+            latestVersion: app.metadata.version,
+            downloadUrl: app.url()
         }
     }
 }
