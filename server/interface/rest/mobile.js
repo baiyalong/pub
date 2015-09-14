@@ -24,8 +24,16 @@ Api.addRoute('cityHistory/', {
     }
 })
 
+Api.addRoute('stationMonitor/:id', {
+    get: function () {
+        return BLL.mobile.stationMonitor(this.urlParams.id);
+    }
+})
+
 Api.addRoute('getLatestVersion/:deviceType', {
     get: function () {
         return BLL.mobile.getLatestVersion(this.urlParams.deviceType);
     }
 })
+
+

@@ -27,6 +27,9 @@ BLL.mobile = {
     areaDetail: function (id) {
         var code = parseInt(id)
         var area = Area.findOne({code: {$eq: code}})
+        var num = function () {
+            return Math.floor(Math.random() * 500);
+        }
         return {
             areaId: area.code,
             areaName: area.name,
@@ -34,15 +37,15 @@ BLL.mobile = {
             windDirection: 0,
             windPower: 0,
             temperature: '30℃',
-            aqi: 32,
+            aqi: num(),
             aqiLevel: 0,
             pollutantLevel: [
-                {type: 100, name: 'SO₂', value: '21μg/m³'},
-                {type: 103, name: 'CO', value: '21μg/m³'},
-                {type: 101, name: 'NO₂', value: '21μg/m³'},
-                {type: 102, name: 'O₃', value: '21μg/m³'},
-                {type: 104, name: 'PM10', value: '21μg/m³'},
-                {type: 105, name: 'PM2.5', value: '21μg/m³'},
+                {type: 100, name: 'SO₂', value: num() + 'μg/m³'},
+                {type: 103, name: 'CO', value: num() + 'μg/m³'},
+                {type: 101, name: 'NO₂', value: num() + 'μg/m³'},
+                {type: 102, name: 'O₃', value: num() + 'μg/m³'},
+                {type: 104, name: 'PM10', value: num() + 'μg/m³'},
+                {type: 105, name: 'PM2.5', value: num() + 'μg/m³'},
             ],
             healthyAdviceList: [1, 1, 0, 1, 0],
             aqPridictionList: [
@@ -61,7 +64,7 @@ BLL.mobile = {
     cityHistory: function (param) {
         return {
             areaId: parseInt(param.areaId),
-            aqiType: parseInt(param.aqiType),
+            aqiType: parseInt(param.aqiType),//AQI:90
             timeInterval: parseInt(param.timeInterval),
             aqiHistory: (function (timeInterval) {
                 var arr = [];
@@ -94,6 +97,32 @@ BLL.mobile = {
                 }
                 return arr;
             })(param.timeInterval)
+        }
+    },
+    stationMonitor: function (id) {
+        var num = function () {
+            return Math.floor(Math.random() * 500)
+        }
+        return {
+            areaId: parseInt(id),
+            stationMonitor: (function (id) {
+                return Station.find({countyCode: id}, {
+                    sort: {UniqueCode: 1},
+                    fields: {UniqueCode: 1, PositionName: 1}
+                }).map(function (e) {
+                    return {
+                        name: e.PositionName,
+                        topPollution: 'PM2.5',
+                        aqi: num(),
+                        pm25: num(),
+                        pm10: num(),
+                        o3: num(),
+                        so2: num(),
+                        no2: num(),
+                        co: num(),
+                    }
+                })
+            })(parseInt(id))
         }
     },
     getLatestVersion: function (deviceType) {
