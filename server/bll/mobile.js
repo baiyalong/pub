@@ -95,7 +95,7 @@ BLL.mobile = {
                         now.setMonth(now.getMonth() - 1)
                     }
                 }
-                return arr;
+                return arr.reverse();
             })(param.timeInterval)
         }
     },
