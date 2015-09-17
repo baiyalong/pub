@@ -1,20 +1,13 @@
 <template name="layout">
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">公共信息发布服务系统</a>
+        <div>
+            <a class="navbar-brand title" href="/">公共信息发布服务系统</a>
+            <a href="#" class="logout navbar-text navbar-right">注销</a>
+
+            <p class="navbar-text navbar-right username">{{username}}</p>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="logout">注销</a></li>
-            <li></li>
-        </ul>
     </nav>
+
     <div class="container-fluid">
         <div id="main" class="row-fluid">
             <div class="col-md-2 mainL">

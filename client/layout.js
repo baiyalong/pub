@@ -2,7 +2,11 @@
  * Created by bai on 2015/8/20.
  */
 
-Template.layout.helpers({});
+Template.layout.helpers({
+    username: function () {
+        return Meteor.user().username;
+    }
+});
 
 Template.layout.events({
 
