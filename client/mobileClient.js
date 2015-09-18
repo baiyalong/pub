@@ -29,12 +29,14 @@ Template.mobileClient.events({
         $('#app').val('');
         $('#logo').val('');
         $('#conf').val('');
+        $('#description').val('');
         FT = {};
         $('#deviceType').attr('disabled', false)
         $('#version').attr('disabled', false)
         $('#app').attr('disabled', false)
         $('#logo').attr('disabled', false)
         $('#conf').attr('disabled', false)
+        $('#description').attr('disabled', false)
         $('#appModal').modal()
     },
     'click .cancel': function () {
@@ -43,11 +45,13 @@ Template.mobileClient.events({
         $('#app').val('');
         $('#logo').val('');
         $('#conf').val('');
+        $('#description').val('');
         FT = {};
     },
     'click .save': function () {
         var deviceType = $('#deviceType').val();
         var version = $('#version').val().trim();
+        var description = $('#description').val().trim();
         if (version == '') {
             alert('版本号不能为空！');
             return;
@@ -55,7 +59,11 @@ Template.mobileClient.events({
         var id = FT.appId;
         if (!id) {
             //insert
-            MobileApp.insert({deviceType: deviceType, version: version}, function (err, appId) {
+            MobileApp.insert({
+                deviceType: deviceType,
+                version: version,
+                description: description
+            }, function (err, appId) {
                 if (err)Util.modal('移动客户端管理', err)
                 if (FT.app) {
                     FileFS.insert(FT.app, function (err, fileObj) {
@@ -105,7 +113,7 @@ Template.mobileClient.events({
                     MobileApp.update({_id: id}, {$set: {conf: fileObj._id}})
                 })
             }
-
+            MobileApp.update({_id: id}, {$set: {description: description}})
         }
         //Meteor.call('appUpdate', {
         //    id: id, file: FT
@@ -132,11 +140,13 @@ Template.mobileClient.events({
         FT.appId = this._id;
         $('#deviceType').val(this.deviceType);
         $('#version').val(this.version);
+        $('#description').val(this.description);
         $('#deviceType').attr('disabled', true)
         $('#version').attr('disabled', true)
         $('#app').attr('disabled', true)
         $('#logo').attr('disabled', true)
         $('#conf').attr('disabled', false)
+        $('#description').attr('disabled', false)
         $('#appModal').modal()
     }
     ,
