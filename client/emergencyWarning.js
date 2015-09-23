@@ -38,6 +38,17 @@ Template.emergencyWarning.events({
     },
     'click .cancel': function () {
         $('textarea').val('')
+    },
+    'mouseenter tbody>tr': function () {
+        $('#' + this._id).css({
+            'border': '2px solid #186E37',
+            'border-width': '0 0 0 2px'
+        })
+    },
+    'mouseleave tbody>tr': function () {
+        $('#' + this._id).css({
+            'border': '1px dashed #D8D8D8',
+        })
     }
 });
 

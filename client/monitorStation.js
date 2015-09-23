@@ -53,6 +53,17 @@ Template.monitorStation.events({
             if (err)Util.modal('发布点位管理', err)
         })
     },
+    'mouseenter tbody>tr': function () {
+        $('#' + this._id).css({
+            'border': '2px solid #186E37',
+            'border-width': '0 0 0 2px'
+        })
+    },
+    'mouseleave tbody>tr': function () {
+        $('#' + this._id).css({
+            'border': '1px dashed #D8D8D8',
+        })
+    }
 });
 
 Template.monitorStation.onRendered(function () {

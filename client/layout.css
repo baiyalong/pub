@@ -87,12 +87,48 @@ nav .logout {
 }
 
 .mainL ul li {
-    hover: #28b779;
+    height: 50px;
+    margin: 0;
+}
+
+.mainL ul li:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #57D296;
+}
+
+.mainL ul li:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #2CBD7E;
+}
+
+.mainL ul li a {
+    height: 50px;
+    line-height: 30px;
+    padding-left: 79px;
+    color: #FFFFFF;
+}
+
+.mainL ul li a:hover {
+    background: #28b779;
+}
+
+.mainL ul li a:active {
+    background: #28b779;
+}
+
+.mainL ul li a:visited {
+    background: #28b779;
 }
 
 .mainR {
     padding: 0;
-    overflow: scroll;
+    overflow: auto;
     width: 774px;
     height: 100%;
 }

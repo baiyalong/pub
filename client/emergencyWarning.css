@@ -1,0 +1,100 @@
+
+.emergencyWarning .topic {
+    height: auto;
+}
+
+.emergencyWarning .topic p {
+    margin: 27px auto 9px 30px;
+    color: #28B779;
+    font-weight: bolder;
+    font-size: medium;
+}
+
+.emergencyWarning .divider {
+    height: 1px;
+    background: #E7E7E7;
+    margin-bottom: 20px;
+}
+
+.emergencyWarning .divider div {
+    height: 2px;
+    background: #28B779;
+    margin-left: 30px;
+    width: 162px;
+    position: relative;
+    top: -1px;
+}
+
+.emergencyWarning .select > div {
+    padding-left: 30px;
+}
+
+.emergencyWarning .select label {
+    margin-right: 17px;
+}
+
+.emergencyWarning .content > div {
+    padding-left: 30px;
+    margin-top: 10px;
+}
+
+.emergencyWarning .content p {
+    float: left;
+}
+
+.emergencyWarning .content textarea {
+    float: left;
+}
+
+.emergencyWarning .list > div {
+    padding-left: 30px;
+    padding-right: 0;
+}
+
+.emergencyWarning .list table {
+    border: 1px solid #D8D8D8;
+    width: 100%;
+    empty-cells: hide;
+    border-collapse: collapse;
+}
+
+.emergencyWarning .list thead {
+    background: #F1F1F1;
+}
+
+.emergencyWarning .list tbody tr {
+    border: 1px dashed #D8D8D8;
+    /*border-width: 1px 0 0 0;*/
+}
+
+.emergencyWarning .list tbody tr:hover {
+    background: #E1EEE7;
+}
+
+/*.list tbody tr:hover td:first-child::before {*/
+/*content: "";*/
+/*background: #186E37;*/
+/*width: 2px;*/
+/*height: 40px;*/
+/*position: relative;*/
+/*left: -1px;*/
+/*display: inline-block;*/
+/*}*/
+
+.emergencyWarning .list tr {
+    height: 40px;
+    max-height: 40px;
+    overflow: auto;
+}
+
+.emergencyWarning .list th {
+    height: 40px;
+    vertical-align: middle;
+    padding-left: 20px;
+}
+
+.emergencyWarning .list td {
+    height: 40px;
+    vertical-align: middle;
+    padding-left: 20px;
+}
