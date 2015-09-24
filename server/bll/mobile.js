@@ -126,11 +126,15 @@ BLL.mobile = {
         }
     },
     getLatestVersion: function (deviceType) {
-        var app = MobileApp.findOne({'metadata.deviceType': deviceType}, {sort: {'metadata.timestamp': -1}})
+        var app = MobileApp.findOne({deviceType: deviceType}, {sort: {timestamp: -1}})
         return {
-            deviceType: app.metadata.deviceType,
-            latestVersion: app.metadata.version,
-            downloadUrl: app.url()
+            deviceType: app.deviceType,
+            latestVersion: app.version,
+            downloadUrl: (function (app) {
+                var id = deviceType == 'IOS' ? app.conf : app.app;
+                return FileFS.findOne({_id: id}).url();
+            })(app),
+            description: app.description || ''
         }
     }
 }

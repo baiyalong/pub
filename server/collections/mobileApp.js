@@ -20,6 +20,10 @@ MobileApp.attachSchema(new SimpleSchema({
         type: String,
         optional: true
     },
+    description: {
+        type: String,
+        optional: true
+    },
     timestamp: {
         type: Date,
         autoValue: function () {
