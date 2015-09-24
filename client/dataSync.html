@@ -1,24 +1,29 @@
 <template name="dataSync">
-    <h2>数据重新同步</h2>
-    <hr/>
-    <div class="row-fluid">
-        <div class="col-md-10">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="t1"></label>
-                    <input type="date" class="form-control" id="t1" placeholder="2015/08/03">
-                </div>
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span>--</span>
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <div class="dataSync">
+        <div class="topic">
+            <p>数据重新同步</p>
+        </div>
+        <div class="divider">
+            <div></div>
+        </div>
 
-                <div class="form-group">
-                    <label for="t2"></label>
-                    <input type="date" class="form-control" id="t2" placeholder="2015/08/03">
-                </div>
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <button class="btn btn-default sync">同步</button>
-            </form>
+
+        <div class="row-fluid select">
+            <div class="col-md-12">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="date" class="form-control input-sm" id="t1" placeholder="2015/08/03">
+                    </div>
+
+                    <span><b>至</b></span>
+
+                    <div class="form-group">
+                        <input type="date" class="form-control input-sm" id="t2" placeholder="2015/08/03">
+                    </div>
+
+                    <button class="btn btn-default btn-sm sync">同步</button>
+                </form>
+            </div>
         </div>
     </div>
 </template>

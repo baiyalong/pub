@@ -12,7 +12,7 @@ Template.dataCorrection.helpers({
     dataList: function () {
         var m = MonitorData.find().fetch();
         m.forEach(function (e) {
-            e.moment = moment(e.timestamp).format('YYYY-MM-DD HH:mm:ss');
+            e.moment = moment(e.timestamp).format('YYYY-MM-DD HH:mm');
             var station = Station.findOne({UniqueCode: e.stationCode});
             e.cityName = station.Area;
             e.countyName = station.countyName ? station.countyName : station.Area;
@@ -81,6 +81,17 @@ Template.dataCorrection.events({
     'click button.cancel': function () {
         $('input[type=number]').each(function () {
             $(this).val($(this).attr('history'))
+        })
+    },
+    'mouseenter tbody>tr': function () {
+        $('#' + this._id).css({
+            'border': '2px solid #186E37',
+            'border-width': '0 0 0 2px'
+        })
+    },
+    'mouseleave tbody>tr': function () {
+        $('#' + this._id).css({
+            'border': '1px dashed #D8D8D8',
         })
     }
 });

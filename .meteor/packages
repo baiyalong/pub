@@ -19,3 +19,4 @@ d3js:d3
 mrt:moment-timezone
 cfs:standard-packages
 cfs:gridfs
+fourseven:scss

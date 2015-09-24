@@ -22,16 +22,20 @@
         </div>
         <div class="row-fluid content">
             <div class="col-md-12">
-                <p><b>发布内容</b></p>
-                <textarea class="form-control" rows="10"></textarea>
-
                 <div class="row-fluid">
-                    <div class="col-md-9"></div>
                     <div class="col-md-1">
-                        <button class="btn btn-default cancel">取消发布</button>
+                        <p><b>发布内容</b></p>
                     </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-default save">确认发布</button>
+                    <div class="col-md-11">
+                        <textarea class="form-control" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="col-md-2">
+                        <button class="btn btn-success btn-sm cancel">取消发布</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-default btn-sm save">确认发布</button>
                     </div>
                 </div>
             </div>
@@ -39,25 +43,31 @@
 
         <div class="row-fluid list">
             <div class="col-md-12">
-                <p><b>发布历史</b></p>
-                <table class="table table-condensed table-hover">
-                    <thead>
-                    <tr>
-                        <th>时间</th>
-                        <th>发布城市</th>
-                        <th>发布内容</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{#each warningList}}
-                    <tr>
-                        <td>{{moment}}</td>
-                        <td>{{cityName}}</td>
-                        <td>{{content}}</td>
-                    </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
+                <div class="row-fluid">
+                    <div class="col-md-1">
+                        <p><b>发布历史</b></p>
+                    </div>
+                    <div class="col-md-11">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>发布时间</th>
+                                <th>发布城市</th>
+                                <th>发布内容</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each warningList}}
+                            <tr id="{{_id}}">
+                                <td>{{moment}}</td>
+                                <td>{{cityName}}</td>
+                                <td>{{content}}</td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

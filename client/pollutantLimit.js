@@ -45,6 +45,17 @@ Template.pollutantLimit.events({
         $('input[type="number"]').each(function () {
             $(this).val($(this).attr('history'))
         })
+    },
+    'mouseenter tbody>tr': function () {
+        $('tbody>tr').css({
+            'border': '2px solid #186E37',
+            'border-width': '0 0 0 2px'
+        })
+    },
+    'mouseleave tbody>tr': function () {
+        $('tbody>tr').css({
+            'border': '1px dashed #D8D8D8',
+        })
     }
 });
 

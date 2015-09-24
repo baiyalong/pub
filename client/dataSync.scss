@@ -1,0 +1,41 @@
+.dataSync {
+
+  .topic {
+    height: auto;
+  }
+
+  .topic p {
+    margin: 27px auto 9px 30px;
+    color: #28B779;
+    font-weight: bolder;
+    font-size: medium;
+  }
+
+  .divider {
+    height: 1px;
+    background: #E7E7E7;
+    margin-bottom: 20px;
+  }
+  .divider div {
+    height: 2px;
+    background: #28B779;
+    margin-left: 30px;
+    width: 98px;
+    position: relative;
+    top: -1px;
+  }
+
+  .select > div {
+    padding-left: 30px;
+    span {
+      margin-right: 10px;
+    }
+    div.form-group {
+      margin-right: 10px;
+    }
+    button {
+      margin-left: 10px;
+    }
+  }
+
+}
