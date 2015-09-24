@@ -8,8 +8,8 @@
         </div>
 
         <div class="row-fluid list">
-            <div class="col-md-10">
-                <table id="pollutantLimitTable">
+            <div>
+                <table id="pollutantLimitTable" style="width: 100%">
                     <thead>
                     <tr>
                         <th>名称</th>
@@ -23,7 +23,7 @@
                         <th>限值</th>
                         {{#each limitList}}
                         <td>
-                            <input class="form-control" type="text" history="{{limit}}" value="{{limit}}" min="0"
+                            <input class="form-control input-sm" type="text" history="{{limit}}" value="{{limit}}" min="0"
                                    code="{{pollutantCode}}"
                                    id="{{_id}}"/>
                         </td>

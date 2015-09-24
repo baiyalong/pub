@@ -4,7 +4,9 @@
 
 Template.layout.helpers({
     username: function () {
-        return Meteor.user().username;
+        var user = Meteor.user();
+        if (user)
+            return user.username;
     }
 });
 
@@ -12,7 +14,7 @@ Template.layout.events({
 
     'click .logout': function (e) {
         Meteor.logout(function (err) {
-            if (err)Util.modal('ÓÃ»§×¢Ïú', err)
+            if (err)Util.modal('ç”¨æˆ·æ³¨é”€', err)
             else
                 Router.go('/')
         })

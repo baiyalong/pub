@@ -45,6 +45,17 @@ Template.ipTrustList.events({
             else
                 Util.modal('IP地址信任列表', '删除成功！');
         });
+    },
+    'mouseenter tbody>tr': function () {
+        $('#' + this._id).css({
+            'border': '2px solid #186E37',
+            'border-width': '0 0 0 2px'
+        })
+    },
+    'mouseleave tbody>tr': function () {
+        $('#' + this._id).css({
+            'border': '1px dashed #D8D8D8',
+        })
     }
 });
 

@@ -1,4 +1,4 @@
-.pollutantLimit {
+.ipTrustList {
 
   .topic {
     height: auto;
@@ -18,7 +18,7 @@
       height: 2px;
       background: #28B779;
       margin-left: 30px;
-      width: 149px;
+      width: 115px;
       position: relative;
       top: -1px;
     }
@@ -64,12 +64,8 @@
     }
   }
 
-  .button {
-    .col-md-1 {
-      margin: 20px 20px 20px 290px;
-    }
-    .col-md-2 {
-      margin: 20px 0;
-    }
+  button.add {
+    margin: 0 auto 20px 30px;
   }
+
 }
