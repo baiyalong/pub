@@ -131,8 +131,13 @@ BLL.mobile = {
             deviceType: app.deviceType,
             latestVersion: app.version,
             downloadUrl: (function (app) {
-                var id = deviceType == 'IOS' ? app.conf : app.app;
-                return FileFS.findOne({_id: id}).url();
+                if (deviceType == 'IOS') {
+                    return app.conf;
+                } else {
+                    return FileFS.findOne({_id: app.app}).url();
+                }
+                //var id = deviceType == 'IOS' ? app.conf : app.app;
+                //return FileFS.findOne({_id: id}).url();
             })(app),
             description: app.description || ''
         }

@@ -46,11 +46,11 @@
                         <td colspan="2">{{getPath logo}}</td>
                     </tr>
                     {{/if}}
-                    {{#if getPath conf}}
+                    {{#if conf}}
                     <tr>
                         <td></td>
                         <td>配置文件</td>
-                        <td colspan="2">{{getPath conf}}</td>
+                        <td colspan="2">{{conf}}</td>
                     </tr>
                     {{/if}}
                     {{/each}}
@@ -90,7 +90,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="conf">配置文件</label>
-                                <input type="file" class="form-control" id="conf" required="required"/>
+                                <input type="text" class="form-control" id="conf" required="required"/>
                             </div>
                             <div class="form-group">
                                 <label for="description">描述</label>

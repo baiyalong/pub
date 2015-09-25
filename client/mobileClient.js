@@ -51,6 +51,7 @@ Template.mobileClient.events({
     'click .save': function () {
         var deviceType = $('#deviceType').val();
         var version = $('#version').val().trim();
+        var conf = $('#conf').val().trim();
         var description = $('#description').val().trim();
         if (version == '') {
             alert('版本号不能为空！');
@@ -62,6 +63,7 @@ Template.mobileClient.events({
             MobileApp.insert({
                 deviceType: deviceType,
                 version: version,
+                conf: conf,
                 description: description
             }, function (err, appId) {
                 if (err)Util.modal('移动客户端管理', err)
@@ -75,11 +77,11 @@ Template.mobileClient.events({
                         MobileApp.update({_id: appId}, {$set: {logo: fileObj._id}})
                     })
                 }
-                if (FT.conf) {
-                    FileFS.insert(FT.conf, function (err, fileObj) {
-                        MobileApp.update({_id: appId}, {$set: {conf: fileObj._id}})
-                    })
-                }
+                //if (FT.conf) {
+                //    FileFS.insert(FT.conf, function (err, fileObj) {
+                //        MobileApp.update({_id: appId}, {$set: {conf: fileObj._id}})
+                //    })
+                //}
             })
         }
         //Meteor.call('appInsert', {deviceType: deviceType, version: version}, function (err, res) {
@@ -104,16 +106,16 @@ Template.mobileClient.events({
         //});
         else {
             //update
-            if (FT.conf) {
-                var app = MobileApp.findOne({_id: id});
-                if (app.conf) {
-                    FileFS.remove({_id: app.conf})
-                }
-                FileFS.insert(FT.conf, function (err, fileObj) {
-                    MobileApp.update({_id: id}, {$set: {conf: fileObj._id}})
-                })
-            }
-            MobileApp.update({_id: id}, {$set: {description: description}})
+            //if (FT.conf) {
+            //    var app = MobileApp.findOne({_id: id});
+            //    if (app.conf) {
+            //        FileFS.remove({_id: app.conf})
+            //    }
+            //    FileFS.insert(FT.conf, function (err, fileObj) {
+            //        MobileApp.update({_id: id}, {$set: {conf: fileObj._id}})
+            //    })
+            //}
+            MobileApp.update({_id: id}, {$set: {conf: conf, description: description}})
         }
         //Meteor.call('appUpdate', {
         //    id: id, file: FT
@@ -140,6 +142,7 @@ Template.mobileClient.events({
         FT.appId = this._id;
         $('#deviceType').val(this.deviceType);
         $('#version').val(this.version);
+        $('#conf').val(this.conf);
         $('#description').val(this.description);
         $('#deviceType').attr('disabled', true)
         $('#version').attr('disabled', true)
@@ -158,7 +161,7 @@ Template.mobileClient.events({
         if (app) {
             if (app.app)FileFS.remove({_id: app.app})
             if (app.logo)FileFS.remove({_id: app.logo})
-            if (app.conf)FileFS.remove({_id: app.conf})
+            //if (app.conf)FileFS.remove({_id: app.conf})
         }
         MobileApp.remove({_id: this._id})
     },
