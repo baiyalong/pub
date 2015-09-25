@@ -110,8 +110,22 @@ nav .logout {
 .mainL ul li a {
     height: 50px;
     line-height: 30px;
-    padding-left: 79px;
+    padding-left: 45px;
     color: #FFFFFF;
+}
+
+.mainL ul li a .layout {
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+nav .layout {
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
 }
 
 .mainL ul li a:hover {
