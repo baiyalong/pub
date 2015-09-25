@@ -50,3 +50,19 @@
     background-position: -10px -274px;
 }
 
+.app_ {
+    background: url("app.png") top left no-repeat;
+}
+
+.app_ios {
+    width: 798px;
+    height: 150px;
+    background-position: 0 0;
+}
+
+.app_android {
+    width: 798px;
+    height: 148px;
+    background-position: 0 -150px;
+}
+

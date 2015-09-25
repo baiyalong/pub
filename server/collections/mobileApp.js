@@ -102,3 +102,19 @@ FileFS.allow({
         return true;
     }
 })
+
+
+Meteor.methods({
+    'downloadApp': function (deviceType) {
+        var config = JSON.parse(Assets.getText("config.json"));
+        var app = MobileApp.findOne({deviceType: deviceType}, {sort: {timestamp: -1}})
+        var res = '';
+        var id = '';
+        if (deviceType == 'IOS') {
+            res = 'itms-services:///?action=download-manifest&url=' + 'https://' + config.IP + FileFS.findOne({_id: app.conf}).url()
+        } else {
+            res = 'http://' + config.IP + ':' + config.PORT + FileFS.findOne({_id: app.app}).url()
+        }
+        return res;
+    }
+})
