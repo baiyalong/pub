@@ -56,7 +56,7 @@ BLL.www = {
             while (time < new Date()) {
                 p.push({
                     time: moment(time).format('YYYY-MM-DD HH:mm'),
-                    value: Math.floor(Math.random() * 100)
+                    value: Math.floor(Math.random() * 500)
                 })
                 time.setHours(time.getHours() + 1)
             }
@@ -82,6 +82,13 @@ BLL.www = {
                     primaryPollutant: 'PM2.5'
                 }
             ],
+            pollutantLimit: {
+                AQI: 500,
+                'PM2.5': 500,
+                PM10: 500,
+                O3: 500,
+                NO2: 500,
+            },
             pollutantConcentration: {
                 AQI: pollutant(),
                 'PM2.5': pollutant(),
@@ -108,7 +115,7 @@ BLL.www = {
                 while (date < new Date()) {
                     aqi.push({
                         date: moment(date).format('YYYY-MM-DD'),
-                        value: Math.floor(Math.random() * 100)
+                        value: Math.floor(Math.random() * 500)
                     })
                     date.setDate(date.getDate() + 1)
                 }
