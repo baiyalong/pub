@@ -7,7 +7,12 @@ Template.layout.helpers({
         var user = Meteor.user();
         if (user)
             return user.username;
+    },
+    authentication: function (role) {
+        if (Roles.userIsInRole(Meteor.userId(), role))
+            return true;
     }
+
 });
 
 Template.layout.events({

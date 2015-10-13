@@ -5,7 +5,12 @@ Meteor.startup(function () {
 
     //admin user
     if (Meteor.users.find().count() == 0) {
-        Accounts.createUser({username: 'admin', password: '123'})
+        var uid = Accounts.createUser({username: 'admin', password: '123'});
+        Roles.addUsersToRoles(uid, 'admin')
+
+        uid = Accounts.createUser({username: 'admin1', password: '123'})
+        Roles.addUsersToRoles(uid, 'subAdmin')
+
     }
 
     //Area data
