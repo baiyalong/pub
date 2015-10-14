@@ -6,47 +6,31 @@
  */
 
 Template.airQualityReview.helpers({
-    ipList: function () {
-        return IPTrustList.find({}, {sort: {'timestamp': -1}});
+    airQualityList: function () {
+        return AirQuality.find({}, {sort: {'timestamp': -1}});
     }
 });
 
 Template.airQualityReview.events({
-    'click .cancel': function () {
-        $('#ipAddr').val('');
-        $('#description').val('');
+    'click .pass': function () {
+        AirQuality.update({_id: this._id}, {$set: {statusCode: 1, statusName: '审核通过'}}, function (err) {
+            if (err)Util.modal('空气质量预报审核', err);
+            else
+                Util.modal('空气质量预报审核', '审核成功！');
+        });
     },
-    'click .save': function () {
-        var ipAddr = $('#ipAddr').val().trim();
-        var description = $('#description').val().trim();
-        if (ipAddr == '') {
-            alert('IP地址不能为空！');
-            return;
-        }
-        var exp = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
-        var reg = ipAddr.match(exp);
-        if (reg == null) {
-            alert('IP地址格式不正确！');
-            return;
-        }
-        if (description == null) {
-            alert('描述不能为空！');
-            return;
-        }
-        Meteor.call('addNewIP', ipAddr, description, function (err) {
-            if (err)Util.modal('IP地址信任列表', err);
-            else {
-                Util.modal('IP地址信任列表', '添加成功！');
-                $('#ipAddr').val('');
-                $('#description').val('');
-            }
-        })
+    'click .back': function () {
+        AirQuality.update({_id: this._id}, {$set: {statusCode: -1, statusName: '退回修改'}}, function (err) {
+            if (err)Util.modal('空气质量预报审核', err);
+            else
+                Util.modal('空气质量预报审核', '审核成功！');
+        });
     },
     'click .remove': function () {
-        IPTrustList.remove({_id: this._id}, function (err) {
-            if (err)Util.modal('IP地址信任列表', err);
+        AirQuality.remove({_id: this._id}, function (err) {
+            if (err)Util.modal('空气质量预报审核', err);
             else
-                Util.modal('IP地址信任列表', '删除成功！');
+                Util.modal('空气质量预报审核', '删除成功！');
         });
     },
     'mouseenter tbody>tr': function () {

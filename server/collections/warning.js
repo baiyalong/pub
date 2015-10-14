@@ -26,10 +26,12 @@ Warning.allow({
     insert: function () {
         //TODO roles auth here
         return true;
+    }, remove: function () {
+        return true;
     }
 })
 
-Meteor.publish('warning',function(){
+Meteor.publish('warning', function () {
     //TODO page
     return Warning.find();
 })

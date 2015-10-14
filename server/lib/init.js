@@ -10,6 +10,8 @@ Meteor.startup(function () {
 
         uid = Accounts.createUser({username: 'admin1', password: '123'})
         Roles.addUsersToRoles(uid, 'subAdmin')
+        uid = Accounts.createUser({username: 'admin2', password: '123'})
+        Roles.addUsersToRoles(uid, 'subAdmin')
 
     }
 

@@ -9,13 +9,16 @@ Template.airQualityPublish.helpers({
     countyList: function () {
         return Area.find();
     },
-    warningList: function () {
-        var w = Warning.find({}, {sort: {timestamp: -1}}).fetch()
+    airQualityList: function () {
+        var w = AirQuality.find({userId: Meteor.userId()}, {sort: {timestamp: -1}}).fetch()
         w.forEach(function (e) {
-            e.moment = moment(e.timestamp).format('YYYY-MM-DD')
+            e.moment = moment(e.date).format('YYYY-MM-DD')
         })
         return w;
-    }
+    },
+    operation: function (statusCode) {
+        return statusCode;
+    },
 });
 
 Template.airQualityPublish.events({
@@ -38,25 +41,119 @@ Template.airQualityPublish.events({
     'click .save': function () {
         var content = $('textarea').val();
         if (content.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
-            Util.modal('紧急污染告警信息发布', '发布内容为空！')
+            Util.modal('空气质量预报发布', '发布内容为空！')
             return;
         }
-        Warning.insert({
+        var airQuality = {
+            date: (function (d) {
+                if (d == '')return new Date(); else return new Date(d)
+            })($('#date').val()),
+            cityCode: parseInt($('#city').val()),
+            cityName: $('#city').find("option:selected").text(),
+            countyCode: parseInt($('#county').val()),
+            countyName: $('#county').find("option:selected").text(),
             content: content,
-            cityCode: parseInt($('select').val()),
-            cityName: $('select').find("option:selected").text()
-        }, function (err, id) {
-            if (err)
-                Util.modal('紧急污染告警信息发布', err)
-            else {
-                $('textarea').val('')
-                Util.modal('紧急污染告警信息发布', '发布成功！')
-            }
-
-        });
+            statusCode: 0,
+            statusName: '未审核',
+            userId: Meteor.userId(),
+            userName: Meteor.user().username
+        }
+        var _id = Session.get('_id');
+        if (_id == '') { //new
+            AirQuality.insert(airQuality, function (err, id) {
+                if (err)
+                    Util.modal('空气质量预报发布', err)
+                else {
+                    Util.modal('空气质量预报发布', '提交成功！')
+                    $('textarea').val('')
+                    Session.set('_id', '')
+                    $('#date').val(moment(new Date()).format('YYYY-MM-DD'));
+                    var city = parseInt($('#city').val())
+                    var county = parseInt($('#county').val())
+                    if (!isNaN(city) && !isNaN(county)) {
+                        var select = false;
+                        $('#county option').each(function () {
+                            var county = parseInt($(this).attr('value'))
+                            if (county > city && county < (city + 100)) {
+                                $(this).show()
+                                if (!select) {
+                                    select = true;
+                                    $('#county').val(county)
+                                }
+                            } else {
+                                $(this).hide()
+                            }
+                        })
+                    }
+                }
+            });
+        } else { //edit
+            AirQuality.update({_id: _id}, {$set: airQuality}, function (err) {
+                if (err)
+                    Util.modal('空气质量预报发布', err)
+                else {
+                    Util.modal('空气质量预报发布', '更新成功！')
+                    $('textarea').val('')
+                    Session.set('_id', '')
+                    $('#date').val(moment(new Date()).format('YYYY-MM-DD'));
+                    var city = parseInt($('#city').val())
+                    var county = parseInt($('#county').val())
+                    if (!isNaN(city) && !isNaN(county)) {
+                        var select = false;
+                        $('#county option').each(function () {
+                            var county = parseInt($(this).attr('value'))
+                            if (county > city && county < (city + 100)) {
+                                $(this).show()
+                                if (!select) {
+                                    select = true;
+                                    $('#county').val(county)
+                                }
+                            } else {
+                                $(this).hide()
+                            }
+                        })
+                    }
+                }
+            })
+        }
     },
     'click .cancel': function () {
         $('textarea').val('')
+        Session.set('_id', '')
+        $('#date').val(moment(new Date()).format('YYYY-MM-DD'));
+        var city = parseInt($('#city').val())
+        var county = parseInt($('#county').val())
+        if (!isNaN(city) && !isNaN(county)) {
+            var select = false;
+            $('#county option').each(function () {
+                var county = parseInt($(this).attr('value'))
+                if (county > city && county < (city + 100)) {
+                    $(this).show()
+                    if (!select) {
+                        select = true;
+                        $('#county').val(county)
+                    }
+                } else {
+                    $(this).hide()
+                }
+            })
+        }
+    },
+    'click .edit': function () {
+        $('#date').val(moment(this.date).format('YYYY-MM-DD'));
+        $('#city').val(this.cityCode);
+        $('#county').val(this.countyCode);
+        $('textarea').val(this.content);
+        Session.set('_id', this._id)
+    },
+    'click .remove': function () {
+        AirQuality.remove({_id: this._id}, function (err) {
+            if (err)
+                Util.modal('空气质量预报发布', err)
+            else {
+                Util.modal('空气质量预报发布', '删除成功！')
+            }
+        })
     },
     'mouseenter tbody>tr': function () {
         $('#' + this._id).css({
@@ -72,6 +169,8 @@ Template.airQualityPublish.events({
 });
 
 Template.airQualityPublish.onRendered(function () {
+        Session.set('_id', '')
+        $('#date').val(moment(new Date()).format('YYYY-MM-DD'));
         var city = parseInt($('#city').val())
         var county = parseInt($('#county').val())
         if (!isNaN(city) && !isNaN(county)) {

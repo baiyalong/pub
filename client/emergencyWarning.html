@@ -54,6 +54,7 @@
                                 <th>发布时间</th>
                                 <th>发布城市</th>
                                 <th>发布内容</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -62,6 +63,9 @@
                                 <td>{{moment}}</td>
                                 <td>{{cityName}}</td>
                                 <td>{{content}}</td>
+                                <td>
+                                    <a class="remove btn btn-default btn-sm">删除</a>
+                                </td>
                             </tr>
                             {{/each}}
                             </tbody>

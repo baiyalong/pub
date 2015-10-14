@@ -39,6 +39,15 @@ Template.emergencyWarning.events({
     'click .cancel': function () {
         $('textarea').val('')
     },
+    'click .remove': function () {
+        Warning.remove({_id: this._id}, function (err) {
+            if (err)
+                Util.modal('紧急污染告警信息发布', err)
+            else {
+                Util.modal('紧急污染告警信息发布', '删除成功！')
+            }
+        });
+    },
     'mouseenter tbody>tr': function () {
         $('#' + this._id).css({
             'border': '2px solid #186E37',

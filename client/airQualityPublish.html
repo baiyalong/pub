@@ -44,10 +44,10 @@
                 </div>
                 <div class="row-fluid">
                     <div class="col-md-2">
-                        <button class="btn btn-success btn-sm cancel">取消发布</button>
+                        <button class="btn btn-success btn-sm cancel">取消编辑</button>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-default btn-sm save">确认发布</button>
+                        <button class="btn btn-default btn-sm save">提交审核</button>
                     </div>
                 </div>
             </div>
@@ -64,16 +64,25 @@
                             <thead>
                             <tr>
                                 <th>发布时间</th>
-                                <th>发布城市</th>
-                                <th>发布内容</th>
+                                <th>城市</th>
+                                <th>旗县</th>
+                                <th>内容</th>
+                                <th>状态</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            {{#each warningList}}
+                            {{#each airQualityList}}
                             <tr id="{{_id}}">
                                 <td>{{moment}}</td>
                                 <td>{{cityName}}</td>
+                                <td>{{countyName}}</td>
                                 <td>{{content}}</td>
+                                <td>{{statusName}}</td>
+                                <td>
+                                    <a class="edit btn btn-default btn-sm">编辑</a>
+                                    <a class="remove btn btn-default btn-sm">删除</a>
+                                </td>
                             </tr>
                             {{/each}}
                             </tbody>
