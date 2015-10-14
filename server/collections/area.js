@@ -11,7 +11,12 @@ Area.attachSchema(new SimpleSchema({
     name: {
         type: String
     },
-
+    longitude: {
+        type: Number, decimal: true
+    },
+    latitude: {
+        type: Number, decimal: true
+    }
 }));
 
 

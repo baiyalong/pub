@@ -1,498 +1,686 @@
 [
   {
     "code": 150000,
-    "name": "内蒙古自治区"
+    "name": "内蒙古自治区",
+    "latitude": 40.8209419,
+    "longitude": 111.6632996
   },
   {
     "code": 150100,
-    "name": "呼和浩特市"
-  },
-  {
-    "code": 150101,
-    "name": "市辖区"
+    "name": "呼和浩特市",
+    "latitude": 40.8672334,
+    "longitude": 111.8145561
   },
   {
     "code": 150102,
-    "name": "新城区"
+    "name": "新城区",
+    "latitude": 40.8582918,
+    "longitude": 111.6655433
   },
   {
     "code": 150103,
-    "name": "回民区"
+    "name": "回民区",
+    "latitude": 40.8082793,
+    "longitude": 111.6240227
   },
   {
     "code": 150104,
-    "name": "玉泉区"
+    "name": "玉泉区",
+    "latitude": 40.8005561,
+    "longitude": 111.6660261
   },
   {
     "code": 150105,
-    "name": "赛罕区"
+    "name": "赛罕区",
+    "latitude": 40.792101,
+    "longitude": 111.7018604
   },
   {
     "code": 150121,
-    "name": "土默特左旗"
+    "name": "土默特左旗",
+    "latitude": 40.6753655,
+    "longitude": 111.2985206
   },
   {
     "code": 150122,
-    "name": "托克托县"
+    "name": "托克托县",
+    "latitude": 40.3379496,
+    "longitude": 111.2948942
   },
   {
     "code": 150123,
-    "name": "和林格尔县"
+    "name": "和林格尔县",
+    "latitude": 40.3853242,
+    "longitude": 111.8784249
   },
   {
     "code": 150124,
-    "name": "清水河县"
+    "name": "清水河县",
+    "latitude": 39.9246714,
+    "longitude": 111.681937
   },
   {
     "code": 150125,
-    "name": "武川县"
+    "name": "武川县",
+    "latitude": 41.0830793,
+    "longitude": 111.1985493
   },
   {
     "code": 150200,
-    "name": "包头市"
-  },
-  {
-    "code": 150201,
-    "name": "市辖区"
+    "name": "包头市",
+    "latitude": 40.6428669,
+    "longitude": 109.9300361
   },
   {
     "code": 150202,
-    "name": "东河区"
+    "name": "东河区",
+    "latitude": 40.5836892,
+    "longitude": 110.0293851
   },
   {
     "code": 150203,
-    "name": "昆都仑区"
+    "name": "昆都仑区",
+    "latitude": 40.6407991,
+    "longitude": 109.837532
   },
   {
     "code": 150204,
-    "name": "青山区"
+    "name": "青山区",
+    "latitude": 40.6650471,
+    "longitude": 109.8865306
   },
   {
     "code": 150205,
-    "name": "石拐区"
+    "name": "石拐区",
+    "latitude": 40.6719235,
+    "longitude": 110.2720177
   },
   {
     "code": 150206,
-    "name": "白云鄂博矿区"
+    "name": "白云鄂博矿区",
+    "latitude": 41.7748323,
+    "longitude": 109.9761164
   },
   {
     "code": 150207,
-    "name": "九原区"
+    "name": "九原区",
+    "latitude": 40.6055469,
+    "longitude": 109.9649584
   },
   {
     "code": 150221,
-    "name": "土默特右旗"
+    "name": "土默特右旗",
+    "latitude": 40.5509421,
+    "longitude": 110.6896913
   },
   {
     "code": 150222,
-    "name": "固阳县"
+    "name": "固阳县",
+    "latitude": 41.0184896,
+    "longitude": 110.0636959
   },
   {
     "code": 150223,
-    "name": "达尔罕茂明安联合旗"
+    "name": "达尔罕茂明安联合旗",
+    "latitude": 41.975596,
+    "longitude": 110.4747069
   },
   {
     "code": 150300,
-    "name": "乌海市"
-  },
-  {
-    "code": 150301,
-    "name": "市辖区"
+    "name": "乌海市",
+    "latitude": 39.6905118,
+    "longitude": 106.8226969
   },
   {
     "code": 150302,
-    "name": "海勃湾区"
+    "name": "海勃湾区",
+    "latitude": 39.6695551,
+    "longitude": 106.8222141
   },
   {
     "code": 150303,
-    "name": "海南区"
+    "name": "海南区",
+    "latitude": 39.4414546,
+    "longitude": 106.8914258
   },
   {
     "code": 150304,
-    "name": "乌达区"
+    "name": "乌达区",
+    "latitude": 39.5057212,
+    "longitude": 106.7176294
   },
   {
     "code": 150400,
-    "name": "赤峰市"
-  },
-  {
-    "code": 150401,
-    "name": "市辖区"
+    "name": "赤峰市",
+    "latitude": 42.2903817,
+    "longitude": 118.9847445
   },
   {
     "code": 150402,
-    "name": "红山区"
+    "name": "红山区",
+    "latitude": 42.2652018,
+    "longitude": 118.9593172
   },
   {
     "code": 150403,
-    "name": "元宝山区"
+    "name": "元宝山区",
+    "latitude": 42.0389747,
+    "longitude": 119.2888212
   },
   {
     "code": 150404,
-    "name": "松山区"
+    "name": "松山区",
+    "latitude": 42.2861355,
+    "longitude": 118.9325702
   },
   {
     "code": 150421,
-    "name": "阿鲁科尔沁旗"
+    "name": "阿鲁科尔沁旗",
+    "latitude": 43.8723439,
+    "longitude": 120.0656962
   },
   {
     "code": 150422,
-    "name": "巴林左旗"
+    "name": "巴林左旗",
+    "latitude": 43.9713683,
+    "longitude": 119.3792868
   },
   {
     "code": 150423,
-    "name": "巴林右旗"
+    "name": "巴林右旗",
+    "latitude": 43.5308003,
+    "longitude": 118.6806035
   },
   {
     "code": 150424,
-    "name": "林西县"
+    "name": "林西县",
+    "latitude": 43.6189279,
+    "longitude": 118.0619788
   },
   {
     "code": 150425,
-    "name": "克什克腾旗"
+    "name": "克什克腾旗",
+    "latitude": 43.265136,
+    "longitude": 117.5458038
   },
   {
     "code": 150426,
-    "name": "翁牛特旗"
+    "name": "翁牛特旗",
+    "latitude": 42.9316205,
+    "longitude": 119.0302455
   },
   {
     "code": 150428,
-    "name": "喀喇沁旗"
+    "name": "喀喇沁旗",
+    "latitude": 41.927362,
+    "longitude": 118.7019324
   },
   {
     "code": 150429,
-    "name": "宁城县"
+    "name": "宁城县",
+    "latitude": 41.5939503,
+    "longitude": 119.3427444
   },
   {
     "code": 150430,
-    "name": "敖汉旗"
+    "name": "敖汉旗",
+    "latitude": 42.2914769,
+    "longitude": 119.9217904
   },
   {
     "code": 150500,
-    "name": "通辽市"
-  },
-  {
-    "code": 150501,
-    "name": "市辖区"
+    "name": "通辽市",
+    "latitude": 46.0871771,
+    "longitude": 122.1346986
   },
   {
     "code": 150502,
-    "name": "科尔沁区"
+    "name": "科尔沁区",
+    "latitude": 43.6421646,
+    "longitude": 122.3937514
   },
   {
     "code": 150521,
-    "name": "科尔沁左翼中旗"
+    "name": "科尔沁左翼中旗",
+    "latitude": 44.1138488,
+    "longitude": 122.437582
   },
   {
     "code": 150522,
-    "name": "科尔沁左翼后旗"
+    "name": "科尔沁左翼后旗",
+    "latitude": 43.306888,
+    "longitude": 122.6716983
   },
   {
     "code": 150523,
-    "name": "开鲁县"
+    "name": "开鲁县",
+    "latitude": 43.7630282,
+    "longitude": 121.3443482
   },
   {
     "code": 150524,
-    "name": "库伦旗"
+    "name": "库伦旗",
+    "latitude": 42.8928345,
+    "longitude": 121.5733337
   },
   {
     "code": 150525,
-    "name": "奈曼旗"
+    "name": "奈曼旗",
+    "latitude": 43.0158548,
+    "longitude": 120.8123208
   },
   {
     "code": 150526,
-    "name": "扎鲁特旗"
+    "name": "扎鲁特旗",
+    "latitude": 44.6397349,
+    "longitude": 120.8580959
   },
   {
     "code": 150581,
-    "name": "霍林郭勒市"
+    "name": "霍林郭勒市",
+    "latitude": 45.4972253,
+    "longitude": 119.6080876
   },
   {
     "code": 150600,
-    "name": "鄂尔多斯市"
-  },
-  {
-    "code": 150601,
-    "name": "市辖区"
+    "name": "鄂尔多斯市",
+    "latitude": 39.8137117,
+    "longitude": 109.9744213
   },
   {
     "code": 150602,
-    "name": "东胜区"
+    "name": "东胜区",
+    "latitude": 39.8222984,
+    "longitude": 109.9631453
   },
   {
     "code": 150621,
-    "name": "达拉特旗"
+    "name": "达拉特旗",
+    "latitude": 40.2869152,
+    "longitude": 110.1402594
   },
   {
     "code": 150622,
-    "name": "准格尔旗"
+    "name": "准格尔旗",
+    "latitude": 39.8641784,
+    "longitude": 111.2400377
   },
   {
     "code": 150623,
-    "name": "鄂托克前旗"
+    "name": "鄂托克前旗",
+    "latitude": 38.4318536,
+    "longitude": 107.8583868
   },
   {
     "code": 150624,
-    "name": "鄂托克旗"
+    "name": "鄂托克旗",
+    "latitude": 39.0877358,
+    "longitude": 107.9785573
   },
   {
     "code": 150625,
-    "name": "杭锦旗"
+    "name": "杭锦旗",
+    "latitude": 39.8333063,
+    "longitude": 108.7362063
   },
   {
     "code": 150626,
-    "name": "乌审旗"
+    "name": "乌审旗",
+    "latitude": 38.590879,
+    "longitude": 108.8460374
   },
   {
     "code": 150627,
-    "name": "伊金霍洛旗"
+    "name": "伊金霍洛旗",
+    "latitude": 39.5649495,
+    "longitude": 109.7475493
   },
   {
     "code": 150700,
-    "name": "呼伦贝尔市"
-  },
-  {
-    "code": 150701,
-    "name": "市辖区"
+    "name": "呼伦贝尔市",
+    "latitude": 49.2119414,
+    "longitude": 119.7657716
   },
   {
     "code": 150702,
-    "name": "海拉尔区"
-  },
-  {
-    "code": 150703,
-    "name": "扎赉诺尔区"
+    "name": "海拉尔区",
+    "latitude": 49.2115288,
+    "longitude": 119.7305603
   },
   {
     "code": 150721,
-    "name": "阿荣旗"
+    "name": "阿荣旗",
+    "latitude": 48.1258251,
+    "longitude": 123.4596133
   },
   {
     "code": 150722,
-    "name": "莫力达瓦达斡尔族自治旗"
+    "name": "莫力达瓦达斡尔族自治旗",
+    "latitude": 48.474415,
+    "longitude": 124.5048916
   },
   {
     "code": 150723,
-    "name": "鄂伦春自治旗"
+    "name": "鄂伦春自治旗",
+    "latitude": 50.5918603,
+    "longitude": 123.7261927
   },
   {
     "code": 150724,
-    "name": "鄂温克族自治旗"
+    "name": "鄂温克族自治旗",
+    "latitude": 49.1447098,
+    "longitude": 119.7531545
   },
   {
     "code": 150725,
-    "name": "陈巴尔虎旗"
+    "name": "陈巴尔虎旗",
+    "latitude": 49.3264646,
+    "longitude": 119.4247448
   },
   {
     "code": 150726,
-    "name": "新巴尔虎左旗"
+    "name": "新巴尔虎左旗",
+    "latitude": 48.2180749,
+    "longitude": 118.2702041
   },
   {
     "code": 150727,
-    "name": "新巴尔虎右旗"
+    "name": "新巴尔虎右旗",
+    "latitude": 48.6721179,
+    "longitude": 116.8236673
   },
   {
     "code": 150781,
-    "name": "满洲里市"
+    "name": "满洲里市",
+    "latitude": 49.5876654,
+    "longitude": 117.4803364
   },
   {
     "code": 150782,
-    "name": "牙克石市"
+    "name": "牙克石市",
+    "latitude": 49.2858984,
+    "longitude": 120.7117438
   },
   {
     "code": 150783,
-    "name": "扎兰屯市"
+    "name": "扎兰屯市",
+    "latitude": 48.0137335,
+    "longitude": 122.7374661
   },
   {
     "code": 150784,
-    "name": "额尔古纳市"
+    "name": "额尔古纳市",
+    "latitude": 50.2424432,
+    "longitude": 120.1799154
   },
   {
     "code": 150785,
-    "name": "根河市"
+    "name": "根河市",
+    "latitude": 50.7803397,
+    "longitude": 121.5200973
   },
   {
     "code": 150800,
-    "name": "巴彦淖尔市"
-  },
-  {
-    "code": 150801,
-    "name": "市辖区"
+    "name": "巴彦淖尔市",
+    "latitude": 40.7659084,
+    "longitude": 107.3868191
   },
   {
     "code": 150802,
-    "name": "临河区"
+    "name": "临河区",
+    "latitude": 40.7623405,
+    "longitude": 107.3945694
   },
   {
     "code": 150821,
-    "name": "五原县"
+    "name": "五原县",
+    "latitude": 41.0953622,
+    "longitude": 108.2698667
   },
   {
     "code": 150822,
-    "name": "磴口县"
+    "name": "磴口县",
+    "latitude": 40.329534,
+    "longitude": 106.9978559
   },
   {
     "code": 150823,
-    "name": "乌拉特前旗"
+    "name": "乌拉特前旗",
+    "latitude": 40.7282913,
+    "longitude": 108.6554396
   },
   {
     "code": 150824,
-    "name": "乌拉特中旗"
+    "name": "乌拉特中旗",
+    "latitude": 41.5682852,
+    "longitude": 108.526361
   },
   {
     "code": 150825,
-    "name": "乌拉特后旗"
+    "name": "乌拉特后旗",
+    "latitude": 41.0911334,
+    "longitude": 107.0763481
   },
   {
     "code": 150826,
-    "name": "杭锦后旗"
+    "name": "杭锦后旗",
+    "latitude": 40.8876518,
+    "longitude": 107.1467185
   },
   {
     "code": 150900,
-    "name": "乌兰察布市"
-  },
-  {
-    "code": 150901,
-    "name": "市辖区"
+    "name": "乌兰察布市",
+    "latitude": 41.0317072,
+    "longitude": 113.1210923
   },
   {
     "code": 150902,
-    "name": "集宁区"
+    "name": "集宁区",
+    "latitude": 41.0353086,
+    "longitude": 113.1145263
   },
   {
     "code": 150921,
-    "name": "卓资县"
+    "name": "卓资县",
+    "latitude": 40.8885684,
+    "longitude": 112.5782132
   },
   {
     "code": 150922,
-    "name": "化德县"
+    "name": "化德县",
+    "latitude": 41.9045608,
+    "longitude": 114.0104377
   },
   {
     "code": 150923,
-    "name": "商都县"
+    "name": "商都县",
+    "latitude": 41.5619918,
+    "longitude": 113.5777545
   },
   {
     "code": 150924,
-    "name": "兴和县"
+    "name": "兴和县",
+    "latitude": 40.8614321,
+    "longitude": 113.8449991
   },
   {
     "code": 150925,
-    "name": "凉城县"
+    "name": "凉城县",
+    "latitude": 40.5315782,
+    "longitude": 112.5038195
   },
   {
     "code": 150926,
-    "name": "察哈尔右翼前旗"
+    "name": "察哈尔右翼前旗",
+    "latitude": 40.7857325,
+    "longitude": 113.2121587
   },
   {
     "code": 150927,
-    "name": "察哈尔右翼中旗"
+    "name": "察哈尔右翼中旗",
+    "latitude": 41.2775404,
+    "longitude": 112.6353657
   },
   {
     "code": 150928,
-    "name": "察哈尔右翼后旗"
+    "name": "察哈尔右翼后旗",
+    "latitude": 41.4363564,
+    "longitude": 113.1913126
   },
   {
     "code": 150929,
-    "name": "四子王旗"
+    "name": "四子王旗",
+    "latitude": 41.533463,
+    "longitude": 111.7066133
   },
   {
     "code": 150981,
-    "name": "丰镇市"
+    "name": "丰镇市",
+    "latitude": 40.4409131,
+    "longitude": 113.1701446
   },
   {
     "code": 152200,
-    "name": "兴安盟"
+    "name": "兴安盟",
+    "latitude": 46.0871771,
+    "longitude": 122.1346986
   },
   {
     "code": 152201,
-    "name": "乌兰浩特市"
+    "name": "乌兰浩特市",
+    "latitude": 46.0682259,
+    "longitude": 122.0684586
   },
   {
     "code": 152202,
-    "name": "阿尔山市"
+    "name": "阿尔山市",
+    "latitude": 47.177659,
+    "longitude": 119.9435055
   },
   {
     "code": 152221,
-    "name": "科尔沁右翼前旗"
+    "name": "科尔沁右翼前旗",
+    "latitude": 46.079088,
+    "longitude": 121.9531775
   },
   {
     "code": 152222,
-    "name": "科尔沁右翼中旗"
+    "name": "科尔沁右翼中旗",
+    "latitude": 45.0608358,
+    "longitude": 121.4765275
   },
   {
     "code": 152223,
-    "name": "扎赉特旗"
+    "name": "扎赉特旗",
+    "latitude": 46.7246974,
+    "longitude": 122.9071856
   },
   {
     "code": 152224,
-    "name": "突泉县"
+    "name": "突泉县",
+    "latitude": 45.3789123,
+    "longitude": 121.566124
   },
   {
     "code": 152500,
-    "name": "锡林郭勒盟"
+    "name": "锡林郭勒盟",
+    "latitude": 43.9454883,
+    "longitude": 116.0993743
   },
   {
     "code": 152501,
-    "name": "二连浩特市"
+    "name": "二连浩特市",
+    "latitude": 43.6531709,
+    "longitude": 111.9779456
   },
   {
     "code": 152502,
-    "name": "锡林浩特市"
+    "name": "锡林浩特市",
+    "latitude": 43.9442902,
+    "longitude": 116.0662689
   },
   {
     "code": 152522,
-    "name": "阿巴嘎旗"
+    "name": "阿巴嘎旗",
+    "latitude": 44.0217368,
+    "longitude": 114.968791
   },
   {
     "code": 152523,
-    "name": "苏尼特左旗"
+    "name": "苏尼特左旗",
+    "latitude": 43.8568965,
+    "longitude": 113.6507642
   },
   {
     "code": 152524,
-    "name": "苏尼特右旗"
+    "name": "苏尼特右旗",
+    "latitude": 42.7470437,
+    "longitude": 112.6575422
   },
   {
     "code": 152525,
-    "name": "东乌珠穆沁旗"
+    "name": "东乌珠穆沁旗",
+    "latitude": 45.5098958,
+    "longitude": 116.9718862
   },
   {
     "code": 152526,
-    "name": "西乌珠穆沁旗"
+    "name": "西乌珠穆沁旗",
+    "latitude": 44.5878846,
+    "longitude": 117.6089108
   },
   {
     "code": 152527,
-    "name": "太仆寺旗"
+    "name": "太仆寺旗",
+    "latitude": 41.8772621,
+    "longitude": 115.2829957
   },
   {
     "code": 152528,
-    "name": "镶黄旗"
+    "name": "镶黄旗",
+    "latitude": 42.2323703,
+    "longitude": 113.8472843
   },
   {
     "code": 152529,
-    "name": "正镶白旗"
+    "name": "正镶白旗",
+    "latitude": 42.3086015,
+    "longitude": 114.997555
   },
   {
     "code": 152530,
-    "name": "正蓝旗"
+    "name": "正蓝旗",
+    "latitude": 42.2523698,
+    "longitude": 116.0036194
   },
   {
     "code": 152531,
-    "name": "多伦县"
+    "name": "多伦县",
+    "latitude": 42.2035909,
+    "longitude": 116.4855587
   },
   {
     "code": 152900,
-    "name": "阿拉善盟"
+    "name": "阿拉善盟",
+    "latitude": 38.8463676,
+    "longitude": 105.6860733
   },
   {
     "code": 152921,
-    "name": "阿拉善左旗"
+    "name": "阿拉善左旗",
+    "latitude": 38.837301,
+    "longitude": 105.664787
   },
   {
     "code": 152922,
-    "name": "阿拉善右旗"
+    "name": "阿拉善右旗",
+    "latitude": 39.2152729,
+    "longitude": 101.6708815
   },
   {
     "code": 152923,
-    "name": "额济纳旗"
+    "name": "额济纳旗",
+    "latitude": 41.9585407,
+    "longitude": 101.0689294
   }
 ]

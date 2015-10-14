@@ -44,13 +44,13 @@ BLL.mobile = {
                 {type: 103, name: 'CO', value: num() + 'μg/m³'},
                 {type: 101, name: 'NO₂', value: num() + 'μg/m³'},
                 {type: 102, name: 'O₃', value: num() + 'μg/m³'},
-                {type: 104, name: 'PM10', value: num() + 'μg/m³'},
-                {type: 105, name: 'PM2.5', value: num() + 'μg/m³'},
+                {type: 104, name: 'PM₁₀', value: num() + 'μg/m³'},
+                {type: 105, name: 'PM₂.₅', value: num() + 'μg/m³'},
             ],
-            healthyAdviceList: [1, 1, 0, 1, 0],
+            healthyAdviceList: [1, 1, 0, 0],
             aqPridictionList: [
-                ['8月18日', '晴30-25℃', '优/良', 'PM10'],
-                ['8月19日', '晴30-25℃', '优/良', 'PM10'],
+                ['8月18日', '晴30-25℃', '优/良', 'PM₂.₅', ''],
+                ['8月19日', '晴30-25℃', '优/良', 'PM₁₀', '天气闷热'],
             ],
             weatherPridiction: [
                 {date: '今天', status: 0, temperature: '20-30℃'},
@@ -112,7 +112,7 @@ BLL.mobile = {
                 }).map(function (e) {
                     return {
                         name: e.PositionName,
-                        topPollution: 'PM2.5',
+                        topPollution: 'PM₁₀',
                         aqi: num(),
                         pm25: num(),
                         pm10: num(),
@@ -141,5 +141,52 @@ BLL.mobile = {
             })(app),
             description: app.description || ''
         }
+    },
+    map: function (level) {
+        var res = [];
+        var rand = function () {
+            return Math.floor(Math.random() * 500)
+        }
+        switch (parseInt(level)) {
+            case 0:
+            {
+                res = Area.find({$and: [{code: {$mod: [100, 0]}}, {code: {$not: {$mod: [10000, 0]}}}]}, {sort: {code: 1}}).map(function (e) {
+                    return {
+                        code: e.code,
+                        value: rand(),
+                        longitude: e.longitude,
+                        latitude: e.latitude
+                    }
+                })
+                break;
+            }
+            case 1:
+            {
+                res = Area.find({code: {$not: {$mod: [100, 0]}}}, {sort: {code: 1}}).map(function (e) {
+                    return {
+                        code: e.code,
+                        value: rand(),
+                        longitude: e.longitude,
+                        latitude: e.latitude
+                    }
+                })
+                break;
+            }
+            case 2:
+            {
+                res = Station.find().map(function (e) {
+                    return {
+                        code: e.UniqueCode,
+                        value: rand(),
+                        longitude: e.Longitude,
+                        latitude: e.Latitude
+                    }
+                })
+            }
+            default:
+            {
+            }
+        }
+        return res;
     }
 }
