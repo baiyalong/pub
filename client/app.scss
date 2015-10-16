@@ -2,15 +2,28 @@
 
   height: 100%;
   width: 100%;
-  max-width: 768px;
+  //max-width: 768px;
   //position: relative;
   //top: -65px;
 
   background: url("app.jpg") no-repeat top center;
   background-size: cover;
-  .block {
+  .logo {
+    padding: 15px;
+    margin: 50px auto;
     display: block;
-    height: 70%;
+    height: 80px;
+    width: 80px;
+    vertical-align: middle;
+  }
+  .title {
+    display: block;
+    height: 30%;
+    p {
+      color: white;
+      font-weight: bolder;
+      font-size: 25px;
+    }
   }
   .btns {
     max-width: 330px;
