@@ -13,6 +13,7 @@ Template.airQualityPublish.helpers({
         var w = AirQuality.find({userId: Meteor.userId()}, {sort: {timestamp: -1}}).fetch()
         w.forEach(function (e) {
             e.moment = moment(e.date).format('YYYY-MM-DD')
+            e.statusColor = e.statusCode == 1 ? 'green' : e.statusCode == -1 ? 'red' : '';
         })
         return w;
     },

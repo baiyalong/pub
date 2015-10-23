@@ -7,7 +7,12 @@
 
 Template.airQualityReview.helpers({
     airQualityList: function () {
-        return AirQuality.find({}, {sort: {'timestamp': -1}});
+        var w = AirQuality.find({}, {sort: {timestamp: -1}}).fetch()
+        w.forEach(function (e) {
+            e.moment = moment(e.date).format('YYYY-MM-DD')
+            e.statusColor = e.statusCode == 1 ? 'green' : e.statusCode == -1 ? 'red' : '';
+        })
+        return w;
     }
 });
 
