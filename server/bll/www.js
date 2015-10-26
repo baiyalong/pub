@@ -4,11 +4,14 @@
 
 BLL.www = {
     cityAreaQuality: function () {
+        var rand = function () {
+            return Math.floor(Math.random() * 500);
+        }
         return {
             currentCity: {
                 code: 150100,
                 name: '呼和浩特市',
-                aqi: 23,
+                aqi: rand(),
                 level: '优'
             },
             cityList: (function () {
@@ -19,10 +22,10 @@ BLL.www = {
                     return {
                         code: e.code,
                         name: e.name,
-                        AQI: 23,
-                        'PM2.5': 23,
-                        PM10: 23,
-                        O3: 23,
+                        AQI: rand(),
+                        'PM2.5': rand(),
+                        PM10: rand(),
+                        O3: rand(),
                         level: '优',
                         primaryPollutant: 'PM2.5'
                     }
@@ -31,6 +34,9 @@ BLL.www = {
         }
     },
     cityMonitorStation: function () {
+        var rand = function () {
+            return Math.floor(Math.random() * 500);
+        }
         return Station.find({}, {
             sort: {UniqueCode: 1},
             fields: {UniqueCode: 1, PositionName: 1, Longitude: 1, Latitude: 1}
@@ -40,11 +46,14 @@ BLL.www = {
                 name: e.PositionName,
                 longitude: e.Longitude,
                 latitude: e.Latitude,
-                AQI: 23,
+                AQI: rand(),
             }
         })
     },
     cityDetail: function (id) {
+        var rand = function () {
+            return Math.floor(Math.random() * 500);
+        }
         id = parseInt(id)
         var city = Area.findOne({code: id})
         var pollutant = function () {
@@ -67,7 +76,7 @@ BLL.www = {
             cityName: city.name,
             airQualityRealTime: {
                 time: '2015年11月18日  14时',
-                aqi: 32,
+                aqi: rand(),
                 level: '优',
                 list: [1, 0, 1, 0, 0]
             },
@@ -104,7 +113,7 @@ BLL.www = {
                     return {
                         code: e.UniqueCode,
                         name: e.PositionName,
-                        AQI: 23, 'PM2.5': 23, PM10: 23, O3: 23, NO2: 23
+                        AQI: rand(), 'PM2.5': rand(), PM10: rand(), O3: rand(), NO2: rand()
                     }
                 })
             })(),

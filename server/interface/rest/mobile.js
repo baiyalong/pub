@@ -42,3 +42,8 @@ Api.addRoute('map/:level', {
     }
 })
 
+Api.addRoute('pollutantLimit/', {
+    get: function () {
+        return BLL.mobile.pollutantLimit();
+    }
+})

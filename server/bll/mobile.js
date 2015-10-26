@@ -188,5 +188,14 @@ BLL.mobile = {
             }
         }
         return res;
+    },
+    pollutantLimit: function () {
+        return {
+            AQI: 500,
+            'PM2.5': 500,
+            PM10: 500,
+            O3: 500,
+            NO2: 500,
+        }
     }
 }
