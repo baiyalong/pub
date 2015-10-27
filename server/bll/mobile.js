@@ -49,9 +49,10 @@ BLL.mobile = {
             ],
             healthyAdviceList: [1, 1, 0, 0],
             aqPridictionList: [
-                ['8月18日', '晴30-25℃', '优/良', 'PM₂.₅', ''],
-                ['8月19日', '晴30-25℃', '优/良', 'PM₁₀', '天气闷热'],
+                ['8月18日', '晴30-25℃', '优/良', 'PM₂.₅'],
+                ['8月19日', '晴30-25℃', '优/良', 'PM₁₀'],
             ],
+            airQualityPridiction: '天气闷热天气闷热天气闷热天气闷热天气闷热天气闷热天气闷热天气闷热天气闷热天气闷热天气闷热天气闷热',
             weatherPridiction: [
                 {date: '今天', status: 0, temperature: '20-30℃'},
                 {date: '明天', status: 0, temperature: '20-30℃'},
@@ -190,14 +191,20 @@ BLL.mobile = {
         return res;
     },
     pollutantLimit: function () {
+        var arr = Pollutant.find({$and: [{pollutantCode: {$gte: 90}}, {pollutantCode: {$lte: 105}}]}, {sort: {pollutantCode: 1}}).fetch();
+        var fun = function (code) {
+            return arr.filter(function (e) {
+                return e.pollutantCode == code
+            })[0].limit;
+        }
         return {
             AQI: 500,
-            'PM2.5': 500,
-            PM10: 500,
-            O3: 500,
-            SO2:500,
-            NO2: 500,
-            CO:500
+            'PM2.5': fun(105),
+            PM10: fun(104),
+            O3: fun(102),
+            SO2: fun(100),
+            NO2: fun(101),
+            CO: fun(103)
         }
     }
 }
