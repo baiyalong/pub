@@ -230,13 +230,22 @@ BLL.mobile = {
         }
     },
     rank: function () {
+        var rand = function () {
+            return Math.floor(Math.random() * 500)
+        }
         return Area.find({code: {$not: {$mod: [100, 0]}}}).fetch().map(function (e) {
             return {
                 cityCode: e.code,
                 cityName: Area.findOne({code: Math.floor(e.code / 100) * 100}).name,
                 countyCode: Math.floor(e.code / 100) * 100,
                 countyName: e.name,
-                aqi: Math.floor(Math.random() * 500)
+                aqi: rand(),
+                PM25: rand(),
+                PM10: rand(),
+                O3: rand(),
+                SO2: rand(),
+                NO2: rand(),
+                CO: rand(),
             }
         }).sort(function (a, b) {
             return a.aqi - b.aqi;
