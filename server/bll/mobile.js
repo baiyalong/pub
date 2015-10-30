@@ -154,9 +154,16 @@ BLL.mobile = {
                 res = Area.find({$and: [{code: {$mod: [100, 0]}}, {code: {$not: {$mod: [10000, 0]}}}]}, {sort: {code: 1}}).map(function (e) {
                     return {
                         code: e.code,
-                        value: rand(),
+                        name: e.name,
                         longitude: e.longitude,
-                        latitude: e.latitude
+                        latitude: e.latitude,
+                        aqi: rand(),
+                        'PM2.5': rand(),
+                        PM10: rand(),
+                        O3: rand(),
+                        SO2: rand(),
+                        NO2: rand(),
+                        CO: rand(),
                     }
                 })
                 break;
@@ -166,9 +173,16 @@ BLL.mobile = {
                 res = Area.find({code: {$not: {$mod: [100, 0]}}}, {sort: {code: 1}}).map(function (e) {
                     return {
                         code: e.code,
-                        value: rand(),
+                        name: e.name,
                         longitude: e.longitude,
-                        latitude: e.latitude
+                        latitude: e.latitude,
+                        aqi: rand(),
+                        'PM2.5': rand(),
+                        PM10: rand(),
+                        O3: rand(),
+                        SO2: rand(),
+                        NO2: rand(),
+                        CO: rand(),
                     }
                 })
                 break;
@@ -176,13 +190,21 @@ BLL.mobile = {
             case 2:
             {
                 res = Station.find().map(function (e) {
-                    return {
-                        code: e.UniqueCode,
-                        value: rand(),
-                        longitude: e.Longitude,
-                        latitude: e.Latitude
+                        return {
+                            code: e.UniqueCode,
+                            name: e.PositionName,
+                            longitude: e.Longitude,
+                            latitude: e.Latitude,
+                            aqi: rand(),
+                            'PM2.5': rand(),
+                            PM10: rand(),
+                            O3: rand(),
+                            SO2: rand(),
+                            NO2: rand(),
+                            CO: rand(),
+                        }
                     }
-                })
+                )
             }
             default:
             {
