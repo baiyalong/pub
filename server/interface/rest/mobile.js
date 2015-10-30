@@ -47,3 +47,9 @@ Api.addRoute('pollutantLimit/', {
         return BLL.mobile.pollutantLimit();
     }
 })
+
+Api.addRoute('rank/', {
+    get: function () {
+        return BLL.mobile.rank();
+    }
+})

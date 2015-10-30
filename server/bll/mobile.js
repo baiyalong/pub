@@ -158,7 +158,7 @@ BLL.mobile = {
                         longitude: e.longitude,
                         latitude: e.latitude,
                         aqi: rand(),
-                        'PM2.5': rand(),
+                        PM25: rand(),
                         PM10: rand(),
                         O3: rand(),
                         SO2: rand(),
@@ -177,7 +177,7 @@ BLL.mobile = {
                         longitude: e.longitude,
                         latitude: e.latitude,
                         aqi: rand(),
-                        'PM2.5': rand(),
+                        PM25: rand(),
                         PM10: rand(),
                         O3: rand(),
                         SO2: rand(),
@@ -196,7 +196,7 @@ BLL.mobile = {
                             longitude: e.Longitude,
                             latitude: e.Latitude,
                             aqi: rand(),
-                            'PM2.5': rand(),
+                            PM25: rand(),
                             PM10: rand(),
                             O3: rand(),
                             SO2: rand(),
@@ -228,5 +228,18 @@ BLL.mobile = {
             NO2: fun(101),
             CO: fun(103)
         }
+    },
+    rank: function () {
+        return Area.find({code: {$not: {$mod: [100, 0]}}}).fetch().map(function (e) {
+            return {
+                cityCode: e.code,
+                cityName: Area.findOne({code: Math.floor(e.code / 100) * 100}).name,
+                countyCode: Math.floor(e.code / 100) * 100,
+                countyName: e.name,
+                aqi: Math.floor(Math.random() * 500)
+            }
+        }).sort(function (a, b) {
+            return a.aqi - b.aqi;
+        })
     }
 }
