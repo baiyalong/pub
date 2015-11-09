@@ -20,7 +20,7 @@ Template.app.onRendered(function () {
                 else {
                     //Session.set(e, res)
                     if (e == 'Android') {
-                        res = window.location.host + res.substring(res.indexOf('/cfs/'))
+                        res = window.location.origin + res.substring(res.indexOf('/cfs/'))
                     }
                     $('a.' + e).attr('href', res)
                 }
