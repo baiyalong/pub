@@ -235,9 +235,9 @@ BLL.mobile = {
         }
         return Area.find({code: {$not: {$mod: [100, 0]}}}).fetch().map(function (e) {
             return {
-                cityCode: e.code,
+                cityCode: Math.floor(e.code / 100) * 100,
                 cityName: Area.findOne({code: Math.floor(e.code / 100) * 100}).name,
-                countyCode: Math.floor(e.code / 100) * 100,
+                countyCode: e.code,
                 countyName: e.name,
                 aqi: rand(),
                 PM25: rand(),
