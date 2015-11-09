@@ -59,7 +59,7 @@ BLL.www = {
         var pollutant = function () {
             var p = [];
             var time = new Date()
-            time.setHours(time.getHours() - 24)
+            time.setHours(time.getHours() - 23)
             time.setMinutes(0)
             time.setSeconds(0)
             while (time < new Date()) {
@@ -120,7 +120,7 @@ BLL.www = {
             AQI: (function () {
                 var aqi = [];
                 var date = new Date();
-                date.setDate(date.getDate() - 30)
+                date.setDate(date.getDate() - 29)
                 while (date < new Date()) {
                     aqi.push({
                         date: moment(date).format('YYYY-MM-DD'),
