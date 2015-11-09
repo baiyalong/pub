@@ -9,9 +9,7 @@ Template.app.helpers({
     //}
 });
 
-Template.app.events({
-
-});
+Template.app.events({});
 
 Template.app.onRendered(function () {
         var deviceType = ['IOS', 'Android'];
@@ -19,9 +17,12 @@ Template.app.onRendered(function () {
             Meteor.call('downloadApp', e, function (err, res) {
                 //console.log('callback',e)
                 if (err)console.log(err);
-                else{
+                else {
                     //Session.set(e, res)
-                    $('a.'+e).attr('href',res)
+                    if (e == 'Android') {
+                        res = window.location.host + res.substring(res.indexOf('/cfs/'))
+                    }
+                    $('a.' + e).attr('href', res)
                 }
             })
         })
