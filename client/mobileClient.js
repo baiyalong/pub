@@ -10,7 +10,11 @@ Template.mobileClient.helpers({
     getPath: function (id) {
         if (id) {
             var url = FileFS.findOne({_id: id}).url()
-            return url ? url.substring(0, url.indexOf('?')) : null;
+            url = url ? url.substring(0, url.indexOf('?')) : null;
+            if (url) {
+                url = window.location.href + url;
+            }
+            return url;
         }
     },
     getTime: function (timestamp) {
