@@ -12,7 +12,7 @@ Template.mobileClient.helpers({
             var url = FileFS.findOne({_id: id}).url()
             url = url ? url.substring(0, url.indexOf('?')) : null;
             if (url) {
-                url = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + url;
+                url = window.location.origin + url;
             }
             return url;
         }
