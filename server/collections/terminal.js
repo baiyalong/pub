@@ -3,19 +3,30 @@
  */
 
 Terminal.attachSchema(new SimpleSchema({
-    IMEI: {
+    ID: {
         type: String
     },
     OS: {
         type: String
     },
     online: {
-        type: Boolean
+        type: Boolean, optional: true
+    },
+    uninstall: {
+        type: Boolean, optional: true
     },
     positionCode: {
-        type: Number
+        type: Number, optional: true
     },
-    //book array
+    longitude: {
+        type: Number, decimal: true, optional: true
+    },
+    latitude: {
+        type: Number, decimal: true, optional: true
+    },
+    subscription: {
+        type: [Number], optional: true
+    },
     timestamp: {
         type: Date,
         autoValue: function () {

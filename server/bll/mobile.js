@@ -251,7 +251,8 @@ BLL.mobile = {
             return a.aqi - b.aqi;
         })
     },
-    terminalStatus:function(){
+    terminalStatus: function (req) {
 
+        return Terminal.upsert({ID: req.ID}, {$set: req});
     }
 }
