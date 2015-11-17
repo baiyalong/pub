@@ -1,7 +1,7 @@
 /**
  * Created by bai on 2015/8/21.
  */
-//�ƶ��ն˽ӿ�
+//�ƶ��ն˽ӿ�
 
 
 Api.addRoute('cityBasic/:id', {
@@ -51,5 +51,11 @@ Api.addRoute('pollutantLimit/', {
 Api.addRoute('rank/', {
     get: function () {
         return BLL.mobile.rank();
+    }
+})
+
+Api.addRoute('terminalStatus/', {
+    post: function () {
+        return BLL.mobile.terminalStatus();
     }
 })

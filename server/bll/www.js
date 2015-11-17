@@ -34,9 +34,6 @@ BLL.www = {
         }
     },
     cityMonitorStation: function () {
-        var rand = function () {
-            return Math.floor(Math.random() * 500);
-        }
         return Station.find({}, {
             sort: {UniqueCode: 1},
             fields: {UniqueCode: 1, PositionName: 1, Longitude: 1, Latitude: 1}
@@ -46,37 +43,20 @@ BLL.www = {
                 name: e.PositionName,
                 longitude: e.Longitude,
                 latitude: e.Latitude,
-                AQI: rand(),
+                AQI: Math.floor(Math.random() * 500)
             }
         })
     },
     cityDetail: function (id) {
-        var rand = function () {
-            return Math.floor(Math.random() * 500);
-        }
         id = parseInt(id)
         var city = Area.findOne({code: id})
-        var pollutant = function () {
-            var p = [];
-            var time = new Date()
-            time.setHours(time.getHours() - 24)
-            time.setMinutes(0)
-            time.setSeconds(0)
-            while (time < new Date()) {
-                p.push({
-                    time: moment(time).format('YYYY-MM-DD HH:mm'),
-                    value: Math.floor(Math.random() * 500)
-                })
-                time.setHours(time.getHours() + 1)
-            }
-            return p;
-        }
+        var pollutant = ['AQI', 'PM2.5', 'PM10', 'O3', 'CO', 'SO2', 'NO2'];
         return {
             cityCode: city.code,
             cityName: city.name,
             airQualityRealTime: {
                 time: '2015年11月18日  14时',
-                aqi: rand(),
+                aqi: Math.floor(Math.random() * 500),
                 level: '优',
                 list: [1, 0, 1, 0, 0]
             },
@@ -91,48 +71,71 @@ BLL.www = {
                     primaryPollutant: 'PM2.5'
                 }
             ],
-            pollutantLimit: {
-                AQI: 500,
-                'PM2.5': 500,
-                PM10: 500,
-                O3: 500,
-                NO2: 500,
-            },
-            pollutantConcentration: {
-                AQI: pollutant(),
-                'PM2.5': pollutant(),
-                PM10: pollutant(),
-                O3: pollutant(),
-                NO2: pollutant(),
-            },
-            monitorStationList: (function () {
+            pollutantLimit: (function (arr) {
+                var res = {};
+                arr.forEach(function (e) {
+                    res[e] = 500;
+                })
+                return res;
+            })(pollutant)
+            ,
+            pollutant24hour: (function (arr) {
+                var res = {};
+                arr.forEach(function (e) {
+                    res[e] = function () {
+                        var p = [];
+                        var time = new Date()
+                        time.setHours(time.getHours() - 24)
+                        time.setMinutes(0)
+                        time.setSeconds(0)
+                        while (time < new Date()) {
+                            p.push({
+                                time: moment(time).format('YYYY-MM-DD HH:mm'),
+                                value: Math.floor(Math.random() * 500)
+                            })
+                            time.setHours(time.getHours() + 1)
+                        }
+                        return p;
+                    }
+                })
+                return res;
+            })(pollutant),
+            pollutant30day: (function (arr) {
+                var res = {};
+                arr.forEach(function (e) {
+                    res[e] = function () {
+                        var aqi = [];
+                        var date = new Date();
+                        date.setDate(date.getDate() - 30)
+                        while (date < new Date()) {
+                            aqi.push({
+                                date: moment(date).format('YYYY-MM-DD'),
+                                value: Math.floor(Math.random() * 500)
+                            })
+                            date.setDate(date.getDate() + 1)
+                        }
+                        if (aqi.length == 31) {
+                            aqi.pop();
+                        }
+                        return aqi;
+                    }
+                })
+                return res;
+            })(pollutant),
+            monitorStationList: (function (arr) {
                 return Station.find({$and: [{UniqueCode: {$gt: id * 1000}}, {UniqueCode: {$lt: (id + 1) * 1000}}]}, {
                     sort: {UniqueCode: 1},
                     fields: {UniqueCode: 1, PositionName: 1}
                 }).map(function (e) {
-                    return {
-                        code: e.UniqueCode,
-                        name: e.PositionName,
-                        AQI: rand(), 'PM2.5': rand(), PM10: rand(), O3: rand(), NO2: rand()
-                    }
-                })
-            })(),
-            AQI: (function () {
-                var aqi = [];
-                var date = new Date();
-                date.setDate(date.getDate() - 30)
-                while (date < new Date()) {
-                    aqi.push({
-                        date: moment(date).format('YYYY-MM-DD'),
-                        value: Math.floor(Math.random() * 500)
+                    var res = {};
+                    arr.forEach(function (e) {
+                        res[e] = Math.floor(Math.random() * 500);
                     })
-                    date.setDate(date.getDate() + 1)
-                }
-                if (aqi.length == 31) {
-                    aqi.pop();
-                }
-                return aqi;
-            })()
+                    res.code = e.UniqueCode;
+                    res.name = e.PositionName;
+                    return res;
+                })
+            })(pollutant)
         }
     }
 }

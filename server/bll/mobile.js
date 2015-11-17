@@ -250,5 +250,8 @@ BLL.mobile = {
         }).sort(function (a, b) {
             return a.aqi - b.aqi;
         })
+    },
+    terminalStatus:function(){
+
     }
 }
