@@ -7,3 +7,13 @@
 
 
 //android
+
+Push.Android.send = function (key, msg) {
+    HTTP.call(Push.Android.method, Push.Android.path, {
+        headers: Push.Android.headers,
+        content: "target=tokudu/" + key + "&message=" + msg
+    }, function (err, res) {
+        console.log(err, res)
+    })
+
+}
