@@ -15,6 +15,7 @@ Terminal.attachSchema(new SimpleSchema({
     positionCode: {
         type: Number
     },
+    //book array
     timestamp: {
         type: Date,
         autoValue: function () {
