@@ -82,7 +82,7 @@ BLL.www = {
             pollutant24hour: (function (arr) {
                 var res = {};
                 arr.forEach(function (e) {
-                    res[e] = function () {
+                    res[e] = (function () {
                         var p = [];
                         var time = new Date()
                         time.setHours(time.getHours() - 24)
@@ -96,14 +96,14 @@ BLL.www = {
                             time.setHours(time.getHours() + 1)
                         }
                         return p;
-                    }
+                    })()
                 })
                 return res;
             })(pollutant),
             pollutant30day: (function (arr) {
                 var res = {};
                 arr.forEach(function (e) {
-                    res[e] = function () {
+                    res[e] = (function () {
                         var aqi = [];
                         var date = new Date();
                         date.setDate(date.getDate() - 30)
@@ -118,7 +118,7 @@ BLL.www = {
                             aqi.pop();
                         }
                         return aqi;
-                    }
+                    })()
                 })
                 return res;
             })(pollutant),

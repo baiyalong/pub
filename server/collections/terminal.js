@@ -37,7 +37,7 @@ Terminal.allow({
     }
 })
 
-Terminal.publish('terminal', function () {
+Meteor.publish('terminal', function () {
     //TODO page
     return Terminal.find();
 })
