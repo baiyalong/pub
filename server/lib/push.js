@@ -5,13 +5,21 @@
 Push = {}
 
 Push.Android = {
-    path: "http://127.0.0.1:8989/MQTT/send_mqtt.php",
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-
+    path: "http://127.0.0.1:8989/MQTT/send_mqtt.php"
 }
 
 
-Push.IOS = {}
+Push.IOS = {
+    options: {
+
+    },
+    apnConnection: function () {
+        var instance;
+        return function () {
+            if (!instance)
+                instance = new apn.Connection(Push.IOS.options);
+            return instance;
+        }()
+    }
+}
+

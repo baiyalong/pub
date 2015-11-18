@@ -32,6 +32,9 @@ Template.emergencyWarning.events({
             else {
                 $('textarea').val('')
                 Util.modal('紧急污染告警信息发布', '发布成功！')
+                Meteor.call('push', function (err, res) {
+                    console.log(err, res)
+                })
             }
 
         });
