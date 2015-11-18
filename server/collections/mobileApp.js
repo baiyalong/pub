@@ -113,7 +113,7 @@ Meteor.methods({
         if (deviceType == 'IOS') {
             res = 'itms-services://?action=download-manifest&url=' + app.conf
         } else {
-            res = 'http://' + config.IP + ':' + config.PORT + FileFS.findOne({_id: app.app}).url()
+            res = FileFS.findOne({_id: app.app}).url()
         }
         return res;
     }

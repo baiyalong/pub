@@ -20,6 +20,6 @@ Meteor.methods({
     }
 });
 
-Push.IOS.feedback(function(item){
-    console.log(item)
-})
+//Push.IOS.feedback(function(item){
+//    console.log(item)
+//})
