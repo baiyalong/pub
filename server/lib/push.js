@@ -10,9 +10,7 @@ Push.Android = {
 
 
 Push.IOS = {
-    options: {
-
-    },
+    options: {},
     apnConnection: function () {
         var instance;
         return function () {
@@ -20,6 +18,20 @@ Push.IOS = {
                 instance = new apn.Connection(Push.IOS.options);
             return instance;
         }()
+    },
+    feedback: function (fn) {
+        var options = {
+            "batchFeedback": true,
+            "interval": 300
+        };
+
+        var feedback = new apn.Feedback(options);
+        feedback.on("feedback", function (devices) {
+            devices.forEach(function (item) {
+                // Do something with item.device and item.time;
+                fn(item);
+            });
+        });
     }
 }
 

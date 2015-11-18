@@ -17,20 +17,7 @@ Push.IOS.send = function (token, msg) {
     this.apnConnection().pushNotification(note, myDevice);
 }
 
-Push.IOS.feedback = function (fn) {
-    var options = {
-        "batchFeedback": true,
-        "interval": 300
-    };
 
-    var feedback = new apn.Feedback(options);
-    feedback.on("feedback", function (devices) {
-        devices.forEach(function (item) {
-            // Do something with item.device and item.time;
-            fn(item);
-        });
-    });
-}
 
 //android
 
