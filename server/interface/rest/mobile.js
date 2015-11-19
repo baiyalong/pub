@@ -56,6 +56,7 @@ Api.addRoute('rank/', {
 
 Api.addRoute('terminalStatus/', {
     post: function () {
+        console.log(this.bodyParams)
         return BLL.mobile.terminalStatus(this.bodyParams);
     }
 })

@@ -252,7 +252,7 @@ BLL.mobile = {
         })
     },
     terminalStatus: function (req) {
-
+        //console.log(req)
         return Terminal.upsert({ID: req.ID}, {$set: req});
     }
 }

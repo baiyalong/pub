@@ -1,7 +1,7 @@
 <template name="mobileClient">
     <div class="mobileClient">
         <div class="topic">
-            <p>移动客户端管理</p>
+            <p>移动客户端版本管理</p>
         </div>
         <div class="divider">
             <div></div>
@@ -23,7 +23,7 @@
                     </thead>
                     <tbody>
                     {{#each appList}}
-                    <tr>
+                    <tr  id="{{_id}}">
                         <td>{{deviceType}}</td>
                         <td>{{version}}</td>
                         <td>{{description}}</td>
@@ -36,14 +36,14 @@
                     <tr>
                         <td></td>
                         <td>安装包</td>
-                        <td colspan="2"><a href="{{getPath app}}">{{getPath app}}</a></td>
+                        <td colspan="2"><a href="{{getPath app}}" target="_blank">{{getPath app}}</a></td>
                     </tr>
                     {{/if}}
                     {{#if getPath logo}}
                     <tr>
                         <td></td>
                         <td>Logo</td>
-                        <td colspan="2"><a href="{{getPath logo}}">{{getPath logo}}</a></td>
+                        <td colspan="2"><a href="{{getPath logo}}" target="_blank">{{getPath logo}}</a></td>
                     </tr>
                     {{/if}}
                     {{#if conf}}
