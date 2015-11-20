@@ -13,11 +13,7 @@
                     <thead>
                     <tr>
                         <th>终端ID</th>
-                        <th>操作系统</th>
-                        <th>在线</th>
-                        <th>卸载</th>
                         <th>更新时间</th>
-                        <th>订阅列表</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -25,11 +21,7 @@
                     {{#each terminalList}}
                     <tr  id="{{_id}}">
                         <td>{{ID}}</td>
-                        <td>{{OS}}</td>
-                        <td>{{online}}</td>
-                        <td>{{uninstall}}</td>
                         <td>{{getTime timestamp}}</td>
-                        <td>{{subscription}}</td>
                         <td>
                             <a class="remove btn btn-default btn-sm">删除</a>
                         </td>

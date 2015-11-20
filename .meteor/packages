@@ -38,3 +38,5 @@ raix:push
 
 npm-container
 http
+meteorhacks:npm
+ostrio:meteor-root

@@ -8,15 +8,22 @@ Meteor.methods({
         var warning = Warning.findOne({}, {sort: {timestamp: -1}});
         if (!warning)
             return;
-        var ts = Terminal.find({$and: [{subscription: {$elemMatch: {$eq: warning.cityCode}}}, {uninstall: {$not: {$eq: true}}}]}).fetch();
-        ts.forEach(function (e) {
-            if (e.OS == 'IOS') {
-                Push2IOS.send(e.ID, warning.content);
-            } else if (e.OS == 'Android') {
-                if (e.online)
-                    Push2Android.send(e.ID, warning.content);
-            }
-        })
+        var ts = Terminal.find({$and: [{online: {$not: {$eq: false}}}, {uninstall: {$not: {$eq: true}}}]}).fetch();
+
+        function filter(OS) {
+            return ts.filter(function (e) {
+                if (e.subscription && e.subscription.length != 0 && e.OS == OS) {
+                    var subscript = false;
+                    e.subscription.forEach(function (s) {
+                        if (Math.floor(s / 100) * 100 == warning.cityCode)subscript = true;
+                    })
+                    return subscript;
+                }
+            });
+        }
+
+        Push2IOS.send(filter('IOS'), warning.content);
+        Push2Android.send(filter('Android'), warning.content);
     }
 });
 
