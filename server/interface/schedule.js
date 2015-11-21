@@ -3,15 +3,13 @@
  */
 //��ʱ����
 
-SyncedCron.add({
-    name: 'Crunch some important numbers for the marketing department',
-    schedule: function (parser) {
-        // parser is a later.parse object
-        return parser.text('every 5 seconds');
-    },
-    job: function () {
-        console.log(new Date());
-    }
-});
+
+for(var s in scheduleJobs){
+  SyncedCron.add({
+      name: s,
+      schedule: scheduleJobs[s].shcedule,
+      job: scheduleJobs[s].job
+  });
+}
 
 //SyncedCron.start();
