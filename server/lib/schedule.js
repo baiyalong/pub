@@ -5,6 +5,7 @@
 
 
 scheduleJobs = {
+  syncMysql:{},
   syncPollutantInfo:{},
   syncMonitorInfo:{},
   syncCityPollutantDaily:{},

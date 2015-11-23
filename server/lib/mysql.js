@@ -3,20 +3,51 @@
  */
 
 
-//var liveDb = new LiveMysql({
-//    host: 'localhost',
-//    port: 3306,
-//    user: 'root',
-//    password: '',
-//    database: 'leaderboard'
-//});
-//
-//var closeAndExit = function() {
-//    liveDb.end();
-//    process.exit();
-//};
-//
-//// Close connections on hot code push
-//process.on('SIGTERM', closeAndExit);
-//// Close connections on exit (ctrl + c)
-//process.on('SIGINT', closeAndExit);
+my_connectionName = "my_connection"; // Name your connection as you wish
+
+CreateMySQLConnection(my_connectionName, {
+    host: "localhost", // MySQL host address or IP
+    database: "NMHBSource",   // MySQL database name
+    user: "root",      // MySQL username
+    password: ""  // MySQL password
+});
+
+syncMysql = function () {
+    OpenMySQLConnection(my_connectionName, function (e) {
+        if (e) {
+            console.log("Error: " + e.code + " " + e.reason);
+            return;
+        }
+
+        console.log('OpenMySQLConnection  ', "Connected. Initializing shadow...");
+
+        CreateMySQLShadow(my_connectionName, {}, function (e) {
+            if (e) {
+                console.log("Error: " + e.code + " " + e.reason);
+                return;
+            }
+
+            console.log('CreateMySQLShadow', "Shadow initialized. Copying data to mongo...");
+
+            MySQLShadowSyncAll(my_connectionName, {}, function (e) {
+                if (e) {
+                    console.log("Error: " + e.code + " " + e.reason);
+                    return;
+                }
+
+                // If you want changes to your collections to be automatically replicated back to MySQL do something like this:
+                // MySQLShadowCollection(SomeCollection, connectionName, {});
+
+                console.log('MySQLShadowSyncAll', "Success.");
+                CloseMySQLConnection(my_connectionName, function (e) {
+                    if (e) {
+                        console.log("Error: " + e.code + " " + e.reason);
+                        return;
+                    }
+                    console.log('MySQLShadowSyncAll', "Success.");
+                })
+            });
+        });
+    });
+
+}

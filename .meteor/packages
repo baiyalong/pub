@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-percolate:synced-cron
 nimble:restivus
 accounts-password
 alanning:roles
@@ -32,7 +31,6 @@ random
 ejson
 spacebars
 check
-numtel:mysql
 raix:push
 
 
@@ -40,3 +38,5 @@ npm-container
 http
 meteorhacks:npm
 ostrio:meteor-root
+percolate:synced-cron
+perak:mysql-shadow

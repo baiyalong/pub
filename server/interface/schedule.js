@@ -7,9 +7,19 @@
 for(var s in scheduleJobs){
   SyncedCron.add({
       name: s,
-      schedule: scheduleJobs[s].shcedule,
+      schedule: scheduleJobs[s].schedule,
       job: scheduleJobs[s].job
   });
 }
 
-//SyncedCron.start();
+SyncedCron.add({
+    name: 'test',
+    schedule: function (parser) {
+        return parser.text('every 5 s');
+    },
+    job: function () {
+        console.log('test' + new Date().toLocaleTimeString())
+    }
+})
+
+SyncedCron.start();
