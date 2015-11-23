@@ -1,53 +1,20 @@
-/**
- * Created by bai on 2015/11/16.
- */
+//mysql connect
 
-
-my_connectionName = "my_connection"; // Name your connection as you wish
-
-CreateMySQLConnection(my_connectionName, {
-    host: "localhost", // MySQL host address or IP
-    database: "NMHBSource",   // MySQL database name
-    user: "root",      // MySQL username
-    password: ""  // MySQL password
+mysql = Mysql.connect({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'NMHBSource'
 });
 
-syncMysql = function () {
-    OpenMySQLConnection(my_connectionName, function (e) {
-        if (e) {
-            console.log("Error: " + e.code + " " + e.reason);
-            return;
-        }
 
-        console.log('OpenMySQLConnection  ', "Connected. Initializing shadow...");
+//mysql tables
 
-        CreateMySQLShadow(my_connectionName, {}, function (e) {
-            if (e) {
-                console.log("Error: " + e.code + " " + e.reason);
-                return;
-            }
+PollutantInfo = mysql.meteorCollection("POLLUTANT", "PollutantInfo");
+MonitorStationInfo = mysql.meteorCollection("T_ENV_AUTOMONI_AIRSTATIONINFO", "MonitorStationInfo");
 
-            console.log('CreateMySQLShadow', "Shadow initialized. Copying data to mongo...");
+CityDailyRaw = mysql.meteorCollection("AIR_CITYDAY_AQI_SRC", "CityDailyRaw");
+CityDailyAudit = mysql.meteorCollection("AIR_CITYDAY_AQI_APP", "CityDailyAudit");
 
-            MySQLShadowSyncAll(my_connectionName, {}, function (e) {
-                if (e) {
-                    console.log("Error: " + e.code + " " + e.reason);
-                    return;
-                }
-
-                // If you want changes to your collections to be automatically replicated back to MySQL do something like this:
-                // MySQLShadowCollection(SomeCollection, connectionName, {});
-
-                console.log('MySQLShadowSyncAll', "Success.");
-                CloseMySQLConnection(my_connectionName, function (e) {
-                    if (e) {
-                        console.log("Error: " + e.code + " " + e.reason);
-                        return;
-                    }
-                    console.log('MySQLShadowSyncAll', "Success.");
-                })
-            });
-        });
-    });
-
-}
+StationHourlyRaw = mysql.meteorCollection("T_ENV_AUTOMONI_AIRDATA_HOUR_S", "StationHourlyRaw");
+StationHourlyAudit = mysql.meteorCollection("T_ENV_AUTOMONI_AIRDATA_HOUR", "StationHourlyAudit");

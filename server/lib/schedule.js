@@ -3,11 +3,10 @@
  */
 //��ʱ����
 
-
-scheduleJobs = {
-  syncMysql:{},
-  syncPollutantInfo:{},
-  syncMonitorInfo:{},
-  syncCityPollutantDaily:{},
-  syncMonitorPoillutantHourly:{}
-}
+//
+//scheduleJobs = {
+//  syncPollutantInfo:{},
+//  syncMonitorInfo:{},
+//  syncCityPollutantDaily:{},
+//  syncMonitorPollutantHourly:{}
+//}

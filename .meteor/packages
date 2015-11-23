@@ -38,5 +38,4 @@ npm-container
 http
 meteorhacks:npm
 ostrio:meteor-root
-percolate:synced-cron
-perak:mysql-shadow
+nodets:mysql
