@@ -27,14 +27,12 @@
 
   .select > div {
     padding-left: 30px;
-    span {
-      margin-right: 10px;
-    }
-    div.form-group {
-      margin-right: 10px;
+
+    .form-group{
+        padding-right: 10px;
     }
     button {
-      margin-left: 10px;
+      margin-left: 20px;
     }
   }
 

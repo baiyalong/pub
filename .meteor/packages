@@ -39,3 +39,5 @@ http
 meteorhacks:npm
 ostrio:meteor-root
 nodets:mysql
+rajit:bootstrap3-datepicker
+rajit:bootstrap3-datepicker-zh-cn

@@ -12,16 +12,18 @@
             <div class="col-md-12">
                 <form class="form-inline">
                     <div class="form-group">
-                        <input type="date" class="form-control input-sm" id="t1" placeholder="2015/08/03">
+                        <label for="daterange">时间范围</label>
                     </div>
-
-                    <span><b>至</b></span>
-
                     <div class="form-group">
-                        <input type="date" class="form-control input-sm" id="t2" placeholder="2015/08/03">
+                        <div class="input-daterange input-group" id="daterange">
+                            <input type="text" class="input-sm form-control date" id="dateFrom"/>
+                            <span class="input-group-addon">至</span>
+                            <input type="text" class="input-sm form-control date" id="dateTo"/>
+                        </div>
                     </div>
-
-                    <button class="btn btn-default btn-sm sync">同步</button>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-sm sync">同步</button>
+                    </div>
                 </form>
             </div>
         </div>

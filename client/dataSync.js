@@ -7,13 +7,10 @@ Template.dataSync.helpers({});
 Template.dataSync.events({
     'click .sync': function (e, t) {
         e.preventDefault()
-        var t1 = $('#t1').val()
-        var t2 = $('#t2').val()
-        if (t1.trim() == '' || t2.trim() == '') {
-            Util.modal('数据重新同步', '输入参数为空！')
-            return;
-        }
-        Meteor.call('dataSync', t1, t2, function () {
+        var dateFrom = $('#dateFrom').datepicker('getDate')
+        var dateTo = $('#dateTo').datepicker('getDate')
+
+        Meteor.call('dataSync', dateFrom, dateTo, function () {
             Util.modal('数据重新同步', '同步成功！')
         });
     },
@@ -21,6 +18,25 @@ Template.dataSync.events({
 });
 
 Template.dataSync.onRendered(function () {
+
+        $('#daterange').datepicker({
+            language: "zh-CN"
+        });
+
+        $('#dateFrom').datepicker('setDate', new Date())
+        $('#dateTo').datepicker('setDate', new Date())
+        $('#dateFrom').datepicker('setStartDate', (function () {
+            var d = new Date();
+            d.setDate(d.getDate() - 60);
+            return d;
+        })())
+        $('#dateTo').datepicker('setStartDate', (function () {
+            var d = new Date();
+            d.setDate(d.getDate() - 60);
+            return d;
+        })())
+        $('#dateFrom').datepicker('setEndDate', new Date())
+        $('#dateTo').datepicker('setEndDate', new Date())
 
     }
 );

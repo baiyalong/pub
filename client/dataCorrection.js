@@ -43,16 +43,16 @@ Template.dataCorrection.events({
     },
     'click button.search': function (e) {
         e.preventDefault()
-        var tt = $('#tt').val();
+        var date = $('#date').datepicker('getDate');
         var city = parseInt($('#city').val());
         var station = parseInt($('#station').val());
-        if (tt == '' || isNaN(city) || isNaN(station)) {
+        if (isNaN(city) || isNaN(station)) {
             Util.modal('点位数据修正', '输入参数错误！')
             return
         }
         Session.set('condition', {
             type: 'hour',
-            date: new Date(tt),
+            date: date,
             stationCode: station
         })
     },
@@ -97,6 +97,19 @@ Template.dataCorrection.events({
 });
 
 Template.dataCorrection.onRendered(function () {
+        $('#date').datepicker({
+            language: "zh-CN",
+            //autoclose: true
+        });
+        $('#date').datepicker('setDate', new Date())
+        $('#date').datepicker('setStartDate', (function () {
+            var d = new Date();
+            d.setDate(d.getDate() - 60);
+            return d;
+        })())
+        $('#date').datepicker('setEndDate', new Date())
+
+
         var city = parseInt($('#city').val())
         var station = parseInt($('#station').val())
         if (!isNaN(city) && !isNaN(station)) {
