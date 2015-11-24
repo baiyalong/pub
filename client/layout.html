@@ -14,42 +14,18 @@
         <div id="main" class="row-fluid">
             <div class="col-md-2 mainL">
                 <ul class="nav nav-pills nav-stacked navHover">
-                    {{!--
-                    <li role="presentation" class=""><a href="/user">用户管理</a></li>
-                    --}}
-                    {{#if authentication 'admin'}}
-                    <li role="presentation"><a href="/monitorStation">
-                        <div class="layout layout_1"></div>
-                        发布点位管理</a>
+                    {{#each menu}}
+                    <li role="presentation">
+                        <a href={{path}} class="{{active}}">
+                            {{#if iconClass}}
+                            <div class={{iconClass}}></div>
+                            {{else}}
+                            <img src={{imgSrc}} class='imgMargin'/>
+                            {{/if}}
+                            {{name}}
+                        </a>
                     </li>
-                    <li role="presentation"><a href="/dataCorrection">
-                        <div class="layout layout_2"></div>
-                        发布内容手动校核</a></li>
-                    <li role="presentation"><a href="/dataSync">
-                        <div class="layout layout_3"></div>
-                        手动重新数据同步</a></li>
-                    <li role="presentation"><a href="/pollutantLimit">
-                        <div class="layout layout_4"></div>
-                        设定污染物排放限值</a></li>
-                    <li role="presentation"><a href="/emergencyWarning">
-                        <div class="layout layout_5"></div>
-                        紧急污染预告推送</a></li>
-                    <li role="presentation"><a href="/mobileClient">
-                        <div class="layout layout_6"></div>
-                        移动客户端版本管理</a></li>
-                    <li role="presentation"><a href="/terminalStatus">
-                        <div class="layout layout_6"></div>
-                        移动终端状态管理</a></li>
-                    <li role="presentation"><a href="/ipTrustList">
-                        <div class="layout layout_7"></div>
-                        IP地址信任列表</a></li>
-                    <li role="presentation"><a href="/airQualityReview">
-                        <img src="/yubaosh.png" class="imgMargin"/>空气质量预报审核</a></li>
-                    {{/if}}
-                    {{#if authentication 'subAdmin'}}
-                    <li role="presentation"><a href="/airQualityPublish">
-                        <img src="/yubaosh.png" class="imgMargin"/>空气质量预报发布</a></li>
-                    {{/if}}
+                    {{/each}}
                 </ul>
             </div>
             <div class="col-md-10 mainR">

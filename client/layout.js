@@ -11,8 +11,19 @@ Template.layout.helpers({
     authentication: function (role) {
         if (Roles.userIsInRole(Meteor.userId(), role))
             return true;
+    },
+    menu: function () {
+        var arr = menu.filter(function (e) {
+            return !e.hide && Roles.userIsInRole(Meteor.userId(), e.role);
+        });
+        arr.forEach(function (e) {
+            if (e.path == window.location.pathname)
+                e.active = 'active'
+            else
+                e.active = null;
+        });
+        return arr;
     }
-
 });
 
 Template.layout.events({
