@@ -164,6 +164,7 @@ BLL.mobile = {
                         SO2: rand(),
                         NO2: rand(),
                         CO: rand(),
+                        timestamp: moment(new Date()).format('YYYY年MM月DD日')
                     }
                 })
                 break;
@@ -183,6 +184,7 @@ BLL.mobile = {
                         SO2: rand(),
                         NO2: rand(),
                         CO: rand(),
+                        timestamp: moment(new Date()).format('YYYY年MM月DD日')
                     }
                 })
                 break;
@@ -202,6 +204,7 @@ BLL.mobile = {
                             SO2: rand(),
                             NO2: rand(),
                             CO: rand(),
+                            timestamp: moment(new Date()).format('YYYY年MM月DD日 HH时mm分ss秒')
                         }
                     }
                 )

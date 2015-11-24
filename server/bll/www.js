@@ -3,6 +3,42 @@
  */
 
 BLL.www = {
+    area: function () {
+        return Area.find({}, {sort: {code: 1}, fields: {_id: 0}}).fetch()
+    },
+    airQualityForcast: function () {
+        var collection = Area.find({$and: [{code: {$mod: [100, 0]}}, {code: {$not: {$mod: [10000, 0]}}}]}, {
+            sort: {code: 1},
+            fields: {_id: 0}
+        }).map(function (e) {
+            return {
+                code: e.code,
+                name: e.name,
+                primaryPollutant: 'PM2.5',
+                airQualityLevel: '一级',
+                airQualityClass: '优',
+                airQualityValue: Math.round(Math.random() * 500),
+                visibility: '一般'
+            }
+        });
+
+        function laterDate(d) {
+            var date = new Date();
+            date.setDate(date.getDate() + d);
+            return moment(date).format('MM月DD日');
+        }
+
+        return [{
+            date: laterDate(1),
+            value: collection
+        }, {
+            date: laterDate(2),
+            value: collection
+        }, {
+            date: laterDate(3),
+            value: collection
+        }]
+    },
     cityAreaQuality: function () {
         var rand = function () {
             return Math.floor(Math.random() * 500);

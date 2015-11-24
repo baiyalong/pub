@@ -2,7 +2,7 @@
  * Created by bai on 2015/8/21.
  */
 
-//ÄÚÃÉ»·±£¹ÙÍø½Ó¿Ú
+//ï¿½ï¿½ï¿½É»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½
 
 
 Api.addRoute('cityAreaQuality/', {
@@ -22,5 +22,18 @@ Api.addRoute('cityMonitorStation/', {
 Api.addRoute('cityDetail/:id', {
     get: function () {
         return BLL.www.cityDetail(this.urlParams.id);
+    }
+})
+
+
+Api.addRoute('area', {
+    get: function () {
+        return BLL.www.area();
+    }
+})
+
+Api.addRoute('airQualityForcast',{
+    get:function(){
+        return BLL.www.airQualityForcast();
     }
 })
