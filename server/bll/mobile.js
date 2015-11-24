@@ -164,7 +164,10 @@ BLL.mobile = {
                         SO2: rand(),
                         NO2: rand(),
                         CO: rand(),
-                        timestamp: moment(new Date()).format('YYYY年MM月DD日')
+                        timestamp: moment(new Date()).format('YYYY年MM月DD日'),
+                        airQualityLevel: '重度污染',
+                        primaryPollutant: 'PM2.5',
+                        healthAdvice: '避免剧烈运动，减少出门'
                     }
                 })
                 break;
