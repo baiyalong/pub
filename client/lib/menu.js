@@ -6,10 +6,10 @@
 menu = [
     {
         path: '/user',
-        name: '用户管理',
+        name: '用户权限管理',
         iconClass: 'layout layout_1',
         role: 'admin',
-        hide: true
+        //hide: true
     }, {
         path: '/monitorStation',
         name: '发布点位管理',
