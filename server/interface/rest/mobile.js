@@ -48,9 +48,9 @@ Api.addRoute('pollutantLimit/', {
     }
 })
 
-Api.addRoute('rank/', {
+Api.addRoute('rank/:day', {
     get: function () {
-        return BLL.mobile.rank();
+        return BLL.mobile.rank(this.urlParams.day);
     }
 })
 

@@ -2,6 +2,7 @@
  * Created by bai on 2015/9/6.
  */
 BLL.mobile = {
+
     cityBasic: function (id) {
         var code = parseInt(id)
         if (code < 10000) {
@@ -15,7 +16,10 @@ BLL.mobile = {
             }
         }, {fields: {code: 1, _id: 0}}).map(function (e) {
             return e.code
+        }).filter(function (e) {
+            return e % 100 == 1;
         })
+
         return {
             cityId: city.code,
             cityName: city.name,
@@ -30,15 +34,36 @@ BLL.mobile = {
         var num = function () {
             return Math.floor(Math.random() * 500);
         }
-        return {
+        var healthyAdrr = function (aqi) {
+            var l = 0;
+            switch (aqi) {
+                case aqi < 100:
+                    l = 0;
+                    break;
+                case aqi > 100 && aqi < 150:
+                    l = 1;
+                    break;
+                case aqi > 150 && aqi < 200:
+                    l = 2;
+                    break;
+                case aqi > 200:
+                    l = 3;
+                    break;
+                default:
+                    l = 0;
+            }
+            return [l, l, l, l]
+        }
+        var aqi = num();
+        var res = {
             areaId: area.code,
             areaName: area.name,
             weather: 0,// Math.floor(Math.random() * 100) % 26,
             windDirection: 0,
             windPower: 0,
             temperature: '30℃',
-            aqi: num(),
-            aqiLevel: 0,
+            aqi: aqi,
+            //aqiLevel: 0,
             pollutantLevel: [
                 {type: 100, name: 'SO₂', value: num() + 'μg/m³'},
                 {type: 103, name: 'CO', value: num() + 'μg/m³'},
@@ -47,7 +72,7 @@ BLL.mobile = {
                 {type: 104, name: 'PM10', value: num() + 'μg/m³'},
                 {type: 105, name: 'PM2.5', value: num() + 'μg/m³'},
             ],
-            healthyAdviceList: [1, 1, 0, 0],
+            healthyAdviceList: healthyAdrr(aqi),
             aqPridictionList: [
                 ['8月18日', '晴30-25℃', '优/良', 'PM2.5'],
                 ['8月19日', '晴30-25℃', '优/良', 'PM10'],
@@ -61,7 +86,25 @@ BLL.mobile = {
                 {date: '周六', status: 0, temperature: '20-30℃'},
             ]
         }
-    },
+
+        if (code % 100 == 0 && code % 1000 != 0) {
+            var real = CityDailyAudit.findOne({CITYCODE: code}, {sort: {MONITORTIME: -1}});
+            if (real) {
+                res.aqi = parseInt(real.AQI);
+                res.healthyAdviceList = healthyAdrr(parseInt(real.AQI))
+                res.pollutantLevel = [
+                    {type: 100, name: 'SO₂', value: parseInt(real.SO2) + 'μg/m³'},
+                    {type: 103, name: 'CO', value: parseFloat(real.CO) + 'μg/m³'},
+                    {type: 101, name: 'NO₂', value: parseInt(real.NO2) + 'μg/m³'},
+                    {type: 102, name: 'O₃', value: parseInt(real.O3_1H) + 'μg/m³'},
+                    {type: 104, name: 'PM10', value: parseInt(real.PM10) + 'μg/m³'},
+                    {type: 105, name: 'PM2.5', value: parseInt(real.PM2_5) + 'μg/m³'},
+                ]
+            }
+        }
+        return res;
+    }
+    ,
     cityHistory: function (param) {
         return {
             areaId: parseInt(param.areaId),
@@ -99,7 +142,8 @@ BLL.mobile = {
                 return arr.reverse();
             })(param.timeInterval)
         }
-    },
+    }
+    ,
     stationMonitor: function (id) {
         var num = function () {
             return Math.floor(Math.random() * 500)
@@ -125,7 +169,8 @@ BLL.mobile = {
                 })
             })(parseInt(id))
         }
-    },
+    }
+    ,
     getLatestVersion: function (deviceType) {
         var app = MobileApp.findOne({deviceType: deviceType}, {sort: {timestamp: -1}})
         return {
@@ -142,7 +187,8 @@ BLL.mobile = {
             })(app),
             description: app.description || ''
         }
-    },
+    }
+    ,
     map: function (level) {
         var res = [];
         var rand = function () {
@@ -217,7 +263,8 @@ BLL.mobile = {
             }
         }
         return res;
-    },
+    }
+    ,
     pollutantLimit: function () {
         var arr = Pollutant.find({$and: [{pollutantCode: {$gte: 90}}, {pollutantCode: {$lte: 105}}]}, {sort: {pollutantCode: 1}}).fetch();
         var fun = function (code) {
@@ -234,12 +281,15 @@ BLL.mobile = {
             NO2: fun(101),
             CO: fun(103)
         }
-    },
-    rank: function () {
+    }
+    ,
+    rank: function (day) {
         var rand = function () {
             return Math.floor(Math.random() * 500)
         }
-        return Area.find({code: {$not: {$mod: [100, 0]}}}).fetch().map(function (e) {
+        var res = Area.find({code: {$not: {$mod: [100, 0]}}}).fetch().filter(function (e) {
+            return e % 100 == 1;
+        }).map(function (e) {
             return {
                 cityCode: Math.floor(e.code / 100) * 100,
                 cityName: Area.findOne({code: Math.floor(e.code / 100) * 100}).name,
@@ -256,7 +306,17 @@ BLL.mobile = {
         }).sort(function (a, b) {
             return a.aqi - b.aqi;
         })
-    },
+        switch (parseInt(day)) {
+            case 30:
+                break;
+            case 60:
+                break;
+            default:
+
+        }
+        return res;
+    }
+    ,
     terminalStatus: function (req) {
         //console.log(req)
         return Terminal.upsert({ID: req.ID}, {$set: req});
