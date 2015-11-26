@@ -88,7 +88,7 @@ BLL.mobile = {
         }
 
         if (code % 100 == 0 && code % 1000 != 0) {
-            var real = CityDailyAudit.findOne({CITYCODE: code}, {sort: {MONITORTIME: -1}});
+            var real = CityDailyAudit.findOne({CITYCODE: code.toString()}, {sort: {MONITORTIME: -1}});
             if (real) {
                 res.aqi = parseInt(real.AQI);
                 res.healthyAdviceList = healthyAdrr(parseInt(real.AQI))
@@ -288,7 +288,7 @@ BLL.mobile = {
             return Math.floor(Math.random() * 500)
         }
         var res = Area.find({code: {$not: {$mod: [100, 0]}}}).fetch().filter(function (e) {
-            return e % 100 == 1;
+            return true
         }).map(function (e) {
             return {
                 cityCode: Math.floor(e.code / 100) * 100,

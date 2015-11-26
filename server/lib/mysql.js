@@ -18,3 +18,4 @@ CityDailyAudit = mysql.meteorCollection("AIR_CITYDAY_AQI_APP", "CityDailyAudit")
 
 StationHourlyRaw = mysql.meteorCollection("T_ENV_AUTOMONI_AIRDATA_HOUR_S", "StationHourlyRaw");
 StationHourlyAudit = mysql.meteorCollection("T_ENV_AUTOMONI_AIRDATA_HOUR", "StationHourlyAudit");
+
