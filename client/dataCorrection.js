@@ -10,18 +10,23 @@ Template.dataCorrection.helpers({
         return Station.find()
     },
     dataList: function () {
-        var m = MonitorData.find().fetch();
-        m.forEach(function (e) {
-            e.moment = moment(e.timestamp).format('YYYY-MM-DD HH:mm');
-            var station = Station.findOne({UniqueCode: e.stationCode});
-            e.cityName = station.Area;
-            e.countyName = station.countyName ? station.countyName : station.Area;
-            e.stationName = station.PositionName;
-            e.pollutant.sort(function (a, b) {
-                return a.code - b.code
-            })
-        })
-        return m;
+        //var m = MonitorData.find().fetch();
+        //m.forEach(function (e) {
+        //    e.moment = moment(e.timestamp).format('YYYY-MM-DD HH:mm');
+        //    var station = Station.findOne({UniqueCode: e.stationCode});
+        //    e.cityName = station.Area;
+        //    e.countyName = station.countyName ? station.countyName : station.Area;
+        //    e.stationName = station.PositionName;
+        //    e.pollutant.sort(function (a, b) {
+        //        return a.code - b.code
+        //    })
+        //})
+        //return m;
+        var date = $('#date').datepicker('getDate');
+        var station = parseInt($('#station').val());
+        var res = Meteor.call('stationHourlyCorrection', {date: date, station: station});
+        console.log(res);
+        return res;
     }
 });
 
@@ -53,32 +58,31 @@ Template.dataCorrection.events({
             Util.modal('点位数据修正', '输入参数错误！')
             return
         }
-        Session.set('condition', {
-            type: 'hour',
+        Session.set('dataCorrectionCondition', {
             date: date,
-            stationCode: station
+            station: station
         })
     },
     'click button.save': function () {
-        var arr = [];
-        $('input[type=number]').each(function () {
-            var value = parseInt($(this).val());
-            if (!isNaN(value) && value != $(this).attr('history')) {
-                var id = $(this).parent().parent().attr('id');
-                var code = parseInt($(this).attr('code'));
-                arr.push({id: id, code: code, value: value})
-            }
-        })
-        if (arr.length == 0)return;
-        Meteor.call('dataCorrection', arr, function (err) {
-            if (err)Util.modal('点位数据修正', err)
-            else {
-                Util.modal('点位数据修正', '更新成功！')
-                $('input[type=number]').each(function () {
-                    $(this).val($(this).attr('history'))
-                })
-            }
-        })
+        //var arr = [];
+        //$('input[type=number]').each(function () {
+        //    var value = parseInt($(this).val());
+        //    if (!isNaN(value) && value != $(this).attr('history')) {
+        //        var id = $(this).parent().parent().attr('id');
+        //        var code = parseInt($(this).attr('code'));
+        //        arr.push({id: id, code: code, value: value})
+        //    }
+        //})
+        //if (arr.length == 0)return;
+        //Meteor.call('dataCorrection', arr, function (err) {
+        //    if (err)Util.modal('点位数据修正', err)
+        //    else {
+        //        Util.modal('点位数据修正', '更新成功！')
+        //        $('input[type=number]').each(function () {
+        //            $(this).val($(this).attr('history'))
+        //        })
+        //    }
+        //})
 
     },
     'click button.cancel': function () {
@@ -134,13 +138,13 @@ Template.dataCorrection.onRendered(function () {
 );
 
 Template.dataCorrection.onCreated(function () {
-        Session.set('condition', {
-            type: 'hour',
-            date: new Date(),
-            stationCode: Station.findOne({}, {fields: {UniqueCode: 1}, sort: {UniqueCode: 1}}).UniqueCode
-        })
-        this.autorun(function () {
-            Meteor.subscribe('monitorData', Session.get('condition'))
-        })
+        //Session.set('condition', {
+        //    date: new Date(),
+        //    station: Station.findOne({}, {fields: {UniqueCode: 1}, sort: {UniqueCode: 1}}).UniqueCode
+        //})
+        //this.autorun(function () {
+        //    Meteor.subscribe('dataCorrection', Session.get('dataCorrectionCondition'));
+        //    //Session.set('dataCorrectionCondition', null)
+        //})
     }
 );

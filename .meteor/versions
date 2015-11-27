@@ -81,6 +81,7 @@ mongo-id@1.0.1
 mongo-livedata@1.0.9
 mrt:moment@2.8.1
 mrt:moment-timezone@0.2.1
+natestrauser:x-editable-bootstrap@1.5.2_4
 nimble:restivus@0.8.4
 nodets:mysql@2.8.3
 npm-bcrypt@0.7.8_2
