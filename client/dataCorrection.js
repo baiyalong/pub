@@ -17,6 +17,9 @@ Template.dataCorrection.helpers({
             e.cityName = station.Area;
             e.countyName = station.countyName ? station.countyName : station.Area;
             e.stationName = station.PositionName;
+            e.pollutant.sort(function (a, b) {
+                return a.code - b.code
+            })
         })
         return m;
     }

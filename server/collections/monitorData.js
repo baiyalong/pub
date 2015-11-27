@@ -25,6 +25,7 @@ MonitorData.attachSchema(new SimpleSchema({
     },
     'pollutant.$.value': {
         type: Number,
+        decimal: true,
         min: 0
     },
     AQI: {

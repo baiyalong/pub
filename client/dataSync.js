@@ -9,9 +9,14 @@ Template.dataSync.events({
         e.preventDefault()
         var dateFrom = $('#dateFrom').datepicker('getDate')
         var dateTo = $('#dateTo').datepicker('getDate')
-
-        Meteor.call('dataSync', dateFrom, dateTo, function () {
-            Util.modal('数据重新同步', '同步成功！')
+        //Util.modal('数据重新同步', '任务已提交给后台处理！')
+        Meteor.call('dataSync', dateFrom, dateTo, function (err) {
+            if (err) {
+                Util.modal('数据重新同步', err.message)
+                console.log(err)
+            }
+            else
+                Util.modal('数据重新同步', '同步成功！')
         });
     },
 

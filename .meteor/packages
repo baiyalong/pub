@@ -41,3 +41,4 @@ ostrio:meteor-root
 nodets:mysql
 rajit:bootstrap3-datepicker
 rajit:bootstrap3-datepicker-zh-cn
+percolate:synced-cron

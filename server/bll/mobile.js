@@ -210,7 +210,7 @@ BLL.mobile = {
                         SO2: rand(),
                         NO2: rand(),
                         CO: rand(),
-                        timestamp: moment(new Date()).format('YYYY年MM月DD日'),
+                        timestamp: moment(new Date()).format('YYYY-MM-DD'),
                         airQualityLevel: '重度污染',
                         primaryPollutant: 'PM2.5',
                         healthAdvice: '避免剧烈运动，减少出门'
@@ -233,7 +233,7 @@ BLL.mobile = {
                         SO2: rand(),
                         NO2: rand(),
                         CO: rand(),
-                        timestamp: moment(new Date()).format('YYYY年MM月DD日')
+                        timestamp: moment(new Date()).format('YYYY-MM-DD')
                     }
                 })
                 break;
@@ -253,7 +253,7 @@ BLL.mobile = {
                             SO2: rand(),
                             NO2: rand(),
                             CO: rand(),
-                            timestamp: moment(new Date()).format('YYYY年MM月DD日 HH时mm分ss秒')
+                            timestamp: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
                         }
                     }
                 )
@@ -319,6 +319,7 @@ BLL.mobile = {
     ,
     terminalStatus: function (req) {
         //console.log(req)
-        return Terminal.upsert({ID: req.ID}, {$set: req});
+        if (req && req.ID)
+            return Terminal.upsert({ID: req.ID}, {$set: req});
     }
 }

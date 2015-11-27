@@ -44,6 +44,7 @@
                         <th>站点名称</th>
                         <th>所在城市</th>
                         <th>所在旗县</th>
+                        <th>AQI</th>
                         <th>PM2.5</th>
                         <th>PM10</th>
                         <th>O3</th>
@@ -60,23 +61,26 @@
                         <td>{{stationName}}</td>
                         <td>{{cityName}}</td>
                         <td>{{countyName}}</td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[5].value}}"
-                                   value="{{pollutant.[5].value}}" code="105">
-                        </td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[4].value}}"
-                                   value="{{pollutant.[4].value}}" code="104">
-                        </td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[2].value}}"
-                                   value="{{pollutant.[2].value}}" code="102">
-                        </td>
                         <td><input class="form-control input-sm" type="text" history="{{pollutant.[0].value}}"
-                                   value="{{pollutant.[0].value}}" code="100">
+                                   value="{{pollutant.[0].value}}" code="90">
                         </td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[1].value}}"
-                                   value="{{pollutant.[1].value}}" code="101">
+                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[6].value}}"
+                                   value="{{pollutant.[6].value}}" code="105">
+                        </td>
+                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[5].value}}"
+                                   value="{{pollutant.[5].value}}" code="104">
                         </td>
                         <td><input class="form-control input-sm" type="text" history="{{pollutant.[3].value}}"
-                                   value="{{pollutant.[3].value}}" code="103">
+                                   value="{{pollutant.[3].value}}" code="102">
+                        </td>
+                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[1].value}}"
+                                   value="{{pollutant.[1].value}}" code="100">
+                        </td>
+                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[2].value}}"
+                                   value="{{pollutant.[2].value}}" code="101">
+                        </td>
+                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[4].value}}"
+                                   value="{{pollutant.[4].value}}" code="103">
                         </td>
                     </tr>
                     {{/each}}

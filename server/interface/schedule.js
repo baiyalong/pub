@@ -1,8 +1,8 @@
-/**
- * Created by bai on 2015/8/20.
- */
-//��ʱ����
-
+///**
+// * Created by bai on 2015/8/20.
+// */
+////��ʱ����
+//
 //
 //for(var s in scheduleJobs){
 //  SyncedCron.add({
@@ -13,4 +13,4 @@
 //}
 //
 //
-////SyncedCron.start();
+//SyncedCron.start();

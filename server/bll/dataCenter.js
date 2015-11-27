@@ -4,6 +4,10 @@
 
 Meteor.methods({
     dataSync: function (t1, t2) {
-        return true;
+       //remove correction
+
     }
 })
+
+
+
