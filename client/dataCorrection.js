@@ -10,23 +10,28 @@ Template.dataCorrection.helpers({
         return Station.find()
     },
     dataList: function () {
-        //var m = MonitorData.find().fetch();
-        //m.forEach(function (e) {
-        //    e.moment = moment(e.timestamp).format('YYYY-MM-DD HH:mm');
-        //    var station = Station.findOne({UniqueCode: e.stationCode});
-        //    e.cityName = station.Area;
-        //    e.countyName = station.countyName ? station.countyName : station.Area;
-        //    e.stationName = station.PositionName;
-        //    e.pollutant.sort(function (a, b) {
-        //        return a.code - b.code
-        //    })
-        //})
-        //return m;
-        var date = $('#date').datepicker('getDate');
-        var station = parseInt($('#station').val());
-        var res = Meteor.call('stationHourlyCorrection', {date: date, station: station});
-        console.log(res);
-        return res;
+        var list = [];
+        StationHourlyRaw.find().forEach(function (e) {
+            var correction = StationHourlyCorrection.findOne({$and: [{stationCode: parseInt(e.POINTCODE)}, {monitorTime: e.MONITORTIME}]});
+            var index = list.findIndex(function (ee) {
+                return ee.monitorTime.getTime() == e.MONITORTIME.getTime()
+            })
+            if (index == -1) {
+                var line = {
+                    stationCode: parseInt(e.POINTCODE),
+                    monitorTime: e.MONITORTIME
+                };
+                line[e.CODEPOLLUTE] = correction ? correction.value : parseFloat(e.AVERVALUE)
+                list.push(line)
+            } else {
+                list[index][e.CODEPOLLUTE] = correction ? correction.value : parseFloat(e.AVERVALUE)
+            }
+        })
+        console.log(list,StationHourlyRaw.find().fetch())
+        return list;
+    },
+    moment: function (t) {
+        return moment(t).format('HH:mm:ss');
     }
 });
 
@@ -58,30 +63,15 @@ Template.dataCorrection.events({
             Util.modal('点位数据修正', '输入参数错误！')
             return
         }
-        Session.set('dataCorrectionCondition', {
-            date: date,
-            station: station
-        })
-    },
-    'click button.save': function () {
-        //var arr = [];
-        //$('input[type=number]').each(function () {
-        //    var value = parseInt($(this).val());
-        //    if (!isNaN(value) && value != $(this).attr('history')) {
-        //        var id = $(this).parent().parent().attr('id');
-        //        var code = parseInt($(this).attr('code'));
-        //        arr.push({id: id, code: code, value: value})
-        //    }
-        //})
-        //if (arr.length == 0)return;
-        //Meteor.call('dataCorrection', arr, function (err) {
-        //    if (err)Util.modal('点位数据修正', err)
-        //    else {
-        //        Util.modal('点位数据修正', '更新成功！')
-        //        $('input[type=number]').each(function () {
-        //            $(this).val($(this).attr('history'))
-        //        })
-        //    }
+
+        Router.go('/dataCorrection/' + station + '/' + date.getTime())
+        //$('.editableCorrection').editable('destroy')
+        //Meteor.call('stationHourlyCorrection', {date: date, station: station}, function (err, res) {
+        //    if (err)
+        //        Util.modal('点位数据修正', err.message)
+        //    else
+        //        Session.set('dataCorrectionList', res)
+        //    editableCorrection()
         //})
 
     },
@@ -104,11 +94,13 @@ Template.dataCorrection.events({
 });
 
 Template.dataCorrection.onRendered(function () {
+
         $('#date').datepicker({
             language: "zh-CN",
             //autoclose: true
         });
-        $('#date').datepicker('setDate', new Date())
+        //$('#date').datepicker('setDate', new Date())
+        $('#date').datepicker('setDate', new Date(Number(this.data.date)));
         $('#date').datepicker('setStartDate', (function () {
             var d = new Date();
             d.setDate(d.getDate() - 60);
@@ -134,17 +126,56 @@ Template.dataCorrection.onRendered(function () {
                 }
             })
         }
+        //
+        //var station = this.data.station;
+        //var date = this.data.date;
+
+        //Meteor.call('stationHourlyCorrection', this.data, function (err, res) {
+        //    if (err)
+        //        Util.modal('点位数据修正', err.message)
+        //    else
+        //        Session.set('dataCorrectionList', res)
+        //    editableCorrection();
+        //})
+
+
+        $('#city').val(Math.floor(Number(this.data.station) / 1000))
+        $('#station').val(Number(this.data.station))
+
+        editableCorrection()
     }
 );
 
 Template.dataCorrection.onCreated(function () {
-        //Session.set('condition', {
-        //    date: new Date(),
-        //    station: Station.findOne({}, {fields: {UniqueCode: 1}, sort: {UniqueCode: 1}}).UniqueCode
-        //})
-        //this.autorun(function () {
-        //    Meteor.subscribe('dataCorrection', Session.get('dataCorrectionCondition'));
-        //    //Session.set('dataCorrectionCondition', null)
-        //})
+
     }
 );
+
+function editableCorrection() {
+    $('.editableCorrection').editable({
+        //success: function (response, newValue) {
+        //    console.log(response, newValue)
+        //},
+        url: function (params) {
+            var value = params.value;
+            var stationCode = this.parentElement.parentElement.getAttribute('stationCode');
+            var monitorTime = this.parentElement.parentElement.getAttribute('monitorTime');
+
+            var d = new $.Deferred;
+            //async saving data in js model\
+            d.resolve()
+            return d.promise();
+        },
+        emptytext: '',
+        showbuttons: false,
+        mode: 'inline',
+        validate: function (value) {
+            if ($.trim(value) == '') {
+                return '输入不能为空！';
+            }
+            if (isNaN(Number(value)) || parseInt(value) < 0) {
+                return '输入参数错误！'
+            }
+        }
+    })
+}

@@ -82,18 +82,18 @@
     empty-cells: hide;
     border-collapse: collapse;
     margin: 0;
-    input {
-      width: 40px;
-      max-width: 40px;
-      overflow: auto;
-    }
+    //input {
+    //  width: 40px;
+    //  max-width: 40px;
+    //  overflow: auto;
+    //}
     th, td {
       text-align: center;
     }
-    input {
-      text-align: right;
-      padding: 5px;
-    }
+    //input {
+    //  text-align: right;
+    //  padding: 5px;
+    //}
   }
 
   .list thead {
@@ -126,12 +126,12 @@
     vertical-align: middle;
     //padding-left: 20px;
   }
-  .button {
-    .col-md-1 {
-      margin: 20px 20px 20px 290px;
-    }
-    .col-md-2 {
-      margin: 20px 0;
-    }
-  }
+  //.button {
+  //  .col-md-1 {
+  //    margin: 20px 20px 20px 290px;
+  //  }
+  //  .col-md-2 {
+  //    margin: 20px 0;
+  //  }
+  //}
 }

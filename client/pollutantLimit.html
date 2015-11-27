@@ -23,22 +23,13 @@
                         <th>限值</th>
                         {{#each limitList}}
                         <td>
-                            <input class="form-control input-sm" type="text" history="{{limit}}" value="{{limit}}" min="0"
-                                   code="{{pollutantCode}}"
-                                   id="{{_id}}"/>
+                            <a href="#" class="editableLimit" code="{{pollutantCode}}"
+                               id="{{_id}}">{{limit}}</a>
                         </td>
                         {{/each}}
                     </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="row-fluid button">
-            <div class="col-md-1">
-                <button class="btn btn-success btn-sm cancel">取消修改</button>
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-default btn-sm save">确认修改</button>
             </div>
         </div>
     </div>

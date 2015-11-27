@@ -50,7 +50,20 @@ Station.allow({
     }
 })
 
-Meteor.publish('station', function () {
+Meteor.publish('station', function (city) {
+    if (city && !isNaN(Number(city)))
+        return Station.find({$and: [{UniqueCode: {$gte: Number(city) * 1000}}, {UniqueCode: {$lt: (Number(city) + 1) * 1000}}]}, {
+            sort: {UniqueCode: 1},
+            fields: {
+                UniqueCode: 1,
+                PositionName: 1,
+                Area: 1,
+                enableStatus: 1,
+                publishStatus: 1,
+                countyCode: 1,
+                countyName: 1
+            }
+        });
     return Station.find({}, {
         sort: {UniqueCode: 1},
         fields: {

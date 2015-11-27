@@ -22,30 +22,30 @@ Template.pollutantLimit.helpers({
 });
 
 Template.pollutantLimit.events({
-    'click .save': function () {
-        var limit = limitArr
-        var arr = []
-        limit.forEach(function (e) {
-            var value = parseInt($('input[code="' + e + '"]').val().trim());
-            if (isNaN(value)) return;
-            var id = $('input[code="' + e + '"]').attr('id');
-            arr.push({id: id, limit: value})
-        })
-        Meteor.call('limitUpdate', arr, function (err) {
-            if (err)Util.modal('污染物排放发布限值', err)
-            else {
-                Util.modal('污染物排放发布限值', '修改成功！')
-                $('input[type="number"]').each(function () {
-                    $(this).val($(this).attr('history'))
-                })
-            }
-        })
-    },
-    'click .cancel': function () {
-        $('input[type="number"]').each(function () {
-            $(this).val($(this).attr('history'))
-        })
-    },
+    //'click .save': function () {
+    //    var limit = limitArr
+    //    var arr = []
+    //    limit.forEach(function (e) {
+    //        var value = parseInt($('input[code="' + e + '"]').val().trim());
+    //        if (isNaN(value)) return;
+    //        var id = $('input[code="' + e + '"]').attr('id');
+    //        arr.push({id: id, limit: value})
+    //    })
+    //    Meteor.call('limitUpdate', arr, function (err) {
+    //        if (err)Util.modal('污染物排放发布限值', err)
+    //        else {
+    //            Util.modal('污染物排放发布限值', '修改成功！')
+    //            $('input[type="number"]').each(function () {
+    //                $(this).val($(this).attr('history'))
+    //            })
+    //        }
+    //    })
+    //},
+    //'click .cancel': function () {
+    //    $('input[type="number"]').each(function () {
+    //        $(this).val($(this).attr('history'))
+    //    })
+    //},
     'mouseenter tbody>tr': function () {
         $('tbody>tr').css({
             'border': '2px solid #186E37',
@@ -56,11 +56,44 @@ Template.pollutantLimit.events({
         $('tbody>tr').css({
             'border': '1px dashed #D8D8D8',
         })
+    },
+    '.editableLimit change': function () {
+        console.log(this)
     }
 });
 
 Template.pollutantLimit.onRendered(function () {
 
+        $('.editableLimit').editable({
+            //success: function (response, newValue) {
+            //    console.log(response, newValue)
+            //},
+            url: function (params) {
+                //console.log(params)
+
+                var d = new $.Deferred;
+                //async saving data in js model\
+                Meteor.call('limitUpdate', params.name, params.value, function (err, res) {
+                    if (err) {
+                        d.reject(err.message)
+                    }
+                    else {
+                        d.resolve()
+                    }
+                })
+                return d.promise();
+            },
+            showbuttons: false,
+            mode: 'inline',
+            validate: function (value) {
+                if ($.trim(value) == '') {
+                    return '输入不能为空！';
+                }
+                if (isNaN(Number(value)) || parseInt(value) < 0) {
+                    return '输入参数错误！'
+                }
+            }
+        })
     }
 );
 

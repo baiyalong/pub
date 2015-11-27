@@ -24,14 +24,8 @@ Template.monitorStation.helpers({
 Template.monitorStation.events({
     'change select.cityList': function () {
         var city = parseInt($('select.cityList').val())
-        $('tbody tr').each(function () {
-            var position = parseInt($(this).children().first().text())
-            if (position > city * 1000 && position < (city + 1) * 1000) {
-                $(this).show()
-            } else {
-                $(this).hide()
-            }
-        })
+        Router.go('/monitorStation/' + city);
+
     },
     'change select.countyList': function () {
         var id = this._id;
@@ -67,21 +61,14 @@ Template.monitorStation.events({
 });
 
 Template.monitorStation.onRendered(function () {
-        var city = parseInt($('select.cityList').val())
-        var tr = $('tbody tr').length
-        if (!isNaN(city) && tr != 0) {
-            $('tbody tr').each(function () {
-                var position = parseInt($(this).children().first().text())
-                if (position > city * 1000 && position < (city + 1) * 1000) {
-                    $(this).show()
-                } else {
-                    $(this).hide()
-                }
-            })
-        }
+        $('select.cityList').val(this.data)
+        //console.log('onRendered')
+
     }
 );
 
 Template.monitorStation.onCreated(function () {
+        //console.log('onCreated')
+
     }
 );

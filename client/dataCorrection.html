@@ -40,60 +40,46 @@
                     <thead>
                     <tr>
                         <th>采集时间</th>
-                        <th>唯一编号</th>
-                        <th>站点名称</th>
-                        <th>所在城市</th>
-                        <th>所在旗县</th>
-                        <th>AQI</th>
-                        <th>PM2.5</th>
-                        <th>PM10</th>
-                        <th>O3</th>
                         <th>SO2</th>
                         <th>NO2</th>
+                        <th>O3</th>
                         <th>CO</th>
+                        <th>PM10</th>
+                        <th>PM2.5</th>
+                        <th>NOx</th>
+                        <th>NO</th>
+                        <th>风速</th>
+                        <th>风向</th>
+                        <th>气压</th>
+                        <th>气温</th>
+                        <th>湿度</th>
+                        <th>能见度</th>
+                        <th>AQI</th>
                     </tr>
                     </thead>
                     <tbody>
                     {{#each dataList}}
-                    <tr id="{{_id}}">
-                        <td>{{moment}}</td>
-                        <td>{{stationCode}}</td>
-                        <td>{{stationName}}</td>
-                        <td>{{cityName}}</td>
-                        <td>{{countyName}}</td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[0].value}}"
-                                   value="{{pollutant.[0].value}}" code="90">
-                        </td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[6].value}}"
-                                   value="{{pollutant.[6].value}}" code="105">
-                        </td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[5].value}}"
-                                   value="{{pollutant.[5].value}}" code="104">
-                        </td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[3].value}}"
-                                   value="{{pollutant.[3].value}}" code="102">
-                        </td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[1].value}}"
-                                   value="{{pollutant.[1].value}}" code="100">
-                        </td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[2].value}}"
-                                   value="{{pollutant.[2].value}}" code="101">
-                        </td>
-                        <td><input class="form-control input-sm" type="text" history="{{pollutant.[4].value}}"
-                                   value="{{pollutant.[4].value}}" code="103">
-                        </td>
+                    <tr stationCode="{{stationCode}}" monitorTime="{{monitorTime}}">
+                        <td>{{moment monitorTime}}</td>
+                        <td><a class="editableCorrection">{{[100]}}</a></td>
+                        <td><a class="editableCorrection">{{[101]}}</a></td>
+                        <td><a class="editableCorrection">{{[102]}}</a></td>
+                        <td><a class="editableCorrection">{{[103]}}</a></td>
+                        <td><a class="editableCorrection">{{[104]}}</a></td>
+                        <td><a class="editableCorrection">{{[105]}}</a></td>
+                        <td><a class="editableCorrection">{{[106]}}</a></td>
+                        <td><a class="editableCorrection">{{[107]}}</a></td>
+                        <td><a class="editableCorrection">{{[108]}}</a></td>
+                        <td><a class="editableCorrection">{{[109]}}</a></td>
+                        <td><a class="editableCorrection">{{[110]}}</a></td>
+                        <td><a class="editableCorrection">{{[111]}}</a></td>
+                        <td><a class="editableCorrection">{{[112]}}</a></td>
+                        <td><a class="editableCorrection">{{[118]}}</a></td>
+                        <td><a class="editableCorrection">{{AQI}}</a></td>
                     </tr>
                     {{/each}}
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="row-fluid button">
-            <div class="col-md-1">
-                <button class="btn btn-success btn-sm cancel">取消修正</button>
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-default btn-sm save">提交修正</button>
             </div>
         </div>
     </div>

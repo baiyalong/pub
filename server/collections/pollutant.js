@@ -40,11 +40,8 @@ Meteor.publish('limit', function () {
 })
 
 Meteor.methods({
-    limitUpdate:function(arr){
-        arr.forEach(function(e){
-            if(e.limit!=undefined){
-                Pollutant.update({_id: e.id},{$set:{limit: e.limit}})
-            }
-        })
+    limitUpdate: function (id, value) {
+        if (id && value && !isNaN(Number(value)))
+            Pollutant.update({_id: id}, {$set: {limit: value}})
     }
 })
