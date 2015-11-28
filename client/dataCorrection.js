@@ -10,25 +10,9 @@ Template.dataCorrection.helpers({
         return Station.find()
     },
     dataList: function () {
-        var list = [];
-        StationHourlyRaw.find().forEach(function (e) {
-            var correction = StationHourlyCorrection.findOne({$and: [{stationCode: parseInt(e.POINTCODE)}, {monitorTime: e.MONITORTIME}]});
-            var index = list.findIndex(function (ee) {
-                return ee.monitorTime.getTime() == e.MONITORTIME.getTime()
-            })
-            if (index == -1) {
-                var line = {
-                    stationCode: parseInt(e.POINTCODE),
-                    monitorTime: e.MONITORTIME
-                };
-                line[e.CODEPOLLUTE] = correction ? correction.value : parseFloat(e.AVERVALUE)
-                list.push(line)
-            } else {
-                list[index][e.CODEPOLLUTE] = correction ? correction.value : parseFloat(e.AVERVALUE)
-            }
-        })
-        console.log(list,StationHourlyRaw.find().fetch())
-        return list;
+
+        //console.log(list, StationHourlyRaw.find().fetch())
+        return Session.get('dataCorrectionList');
     },
     moment: function (t) {
         return moment(t).format('HH:mm:ss');
@@ -65,14 +49,6 @@ Template.dataCorrection.events({
         }
 
         Router.go('/dataCorrection/' + station + '/' + date.getTime())
-        //$('.editableCorrection').editable('destroy')
-        //Meteor.call('stationHourlyCorrection', {date: date, station: station}, function (err, res) {
-        //    if (err)
-        //        Util.modal('点位数据修正', err.message)
-        //    else
-        //        Session.set('dataCorrectionList', res)
-        //    editableCorrection()
-        //})
 
     },
     'click button.cancel': function () {
@@ -109,6 +85,7 @@ Template.dataCorrection.onRendered(function () {
         $('#date').datepicker('setEndDate', new Date())
 
 
+        $('#city').val(Math.floor(Number(this.data.station) / 1000))
         var city = parseInt($('#city').val())
         var station = parseInt($('#station').val())
         if (!isNaN(city) && !isNaN(station)) {
@@ -126,56 +103,71 @@ Template.dataCorrection.onRendered(function () {
                 }
             })
         }
-        //
-        //var station = this.data.station;
-        //var date = this.data.date;
-
-        //Meteor.call('stationHourlyCorrection', this.data, function (err, res) {
-        //    if (err)
-        //        Util.modal('点位数据修正', err.message)
-        //    else
-        //        Session.set('dataCorrectionList', res)
-        //    editableCorrection();
-        //})
-
-
-        $('#city').val(Math.floor(Number(this.data.station) / 1000))
         $('#station').val(Number(this.data.station))
 
-        editableCorrection()
+
+        // editableCorrection()
+        $('.editableCorrection').editable({
+            //success: function (response, newValue) {
+            //    console.log(response, newValue)
+            //},
+            url: function (params) {
+                var pollutant = this.getAttribute('pollutant');
+                var value = params.value;
+                var stationCode = this.parentElement.parentElement.getAttribute('stationCode');
+                var monitorTime = this.parentElement.parentElement.getAttribute('monitorTime');
+                //console.log(stationCode, monitorTime, pollutant, value, this, params)
+                var d = new $.Deferred;
+                //async saving data in js model\
+                Meteor.call('stationHourlyCorrectionUpdate', stationCode, monitorTime, pollutant, value, function (err, res) {
+                    if (err)
+                        d.reject(err.message)
+                    else
+                        d.resolve()
+                })
+                return d.promise();
+            },
+            emptytext: '',
+            showbuttons: false,
+            mode: 'inline',
+            validate: function (value) {
+                if ($.trim(value) == '') {
+                    return '输入不能为空！';
+                }
+                if (isNaN(Number(value))) {
+                    return '输入参数错误！'
+                }
+            }
+        })
     }
 );
 
 Template.dataCorrection.onCreated(function () {
 
+        var list = [];
+        StationHourlyRaw.find().forEach(function (e) {
+            var t1 = new Date(e.MONITORTIME)
+            var t2 = new Date(t1);
+            t2.setMinutes(t2.getMinutes() + 1)
+            var correction = StationHourlyCorrection.findOne({
+                    $and: [{stationCode: Number(e.POINTCODE)}, {monitorTime: {$gte: t1}}, {monitorTime: {$lt: t2}}]
+                }) || {};
+            var index = list.findIndex(function (ee) {
+                return ee.monitorTime.getTime() == e.MONITORTIME.getTime()
+            })
+            if (index == -1) {
+                var line = {
+                    stationCode: Number(e.POINTCODE),
+                    monitorTime: e.MONITORTIME
+                };
+                line[e.CODEPOLLUTE] = correction[e.CODEPOLLUTE] || Number(e.AVERVALUE)
+                list.push(line)
+            } else {
+                list[index][e.CODEPOLLUTE] = correction[e.CODEPOLLUTE] || Number(e.AVERVALUE)
+            }
+        })
+
+        Session.set('dataCorrectionList', list)
     }
 );
 
-function editableCorrection() {
-    $('.editableCorrection').editable({
-        //success: function (response, newValue) {
-        //    console.log(response, newValue)
-        //},
-        url: function (params) {
-            var value = params.value;
-            var stationCode = this.parentElement.parentElement.getAttribute('stationCode');
-            var monitorTime = this.parentElement.parentElement.getAttribute('monitorTime');
-
-            var d = new $.Deferred;
-            //async saving data in js model\
-            d.resolve()
-            return d.promise();
-        },
-        emptytext: '',
-        showbuttons: false,
-        mode: 'inline',
-        validate: function (value) {
-            if ($.trim(value) == '') {
-                return '输入不能为空！';
-            }
-            if (isNaN(Number(value)) || parseInt(value) < 0) {
-                return '输入参数错误！'
-            }
-        }
-    })
-}

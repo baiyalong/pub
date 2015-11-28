@@ -7,7 +7,23 @@
 
 
 StationHourlyCorrection.attachSchema(new SimpleSchema({
-    "value": {type: Number, decimal: true, min: 0},
+    "100": {type: Number, decimal: true, optional: true},
+    "101": {type: Number, decimal: true, optional: true},
+    "102": {type: Number, decimal: true, optional: true},
+    "103": {type: Number, decimal: true, optional: true},
+    "104": {type: Number, decimal: true, optional: true},
+    "105": {type: Number, decimal: true, optional: true},
+    "106": {type: Number, decimal: true, optional: true},
+    "107": {type: Number, decimal: true, optional: true},
+    "108": {type: Number, decimal: true, optional: true},
+    "109": {type: Number, decimal: true, optional: true},
+    "110": {type: Number, decimal: true, optional: true},
+    "111": {type: Number, decimal: true, optional: true},
+    "112": {type: Number, decimal: true, optional: true},
+    "118": {type: Number, decimal: true, optional: true},
+    "AQI": {type: Number, decimal: true, optional: true},
+    //"pollutant": {type: String},
+    //"value": {type: Number, decimal: true,},
     "monitorTime": {type: Date},
     "stationCode": {type: Number},
     "timestamp": {
@@ -33,24 +49,46 @@ StationHourlyCorrection.allow({
 
 
 Meteor.publish('stationHourlyCorrection', function (station, date) {
-    //console.log(station, date)
-    function tz(d) {
-        var d = new Date(d);
-        d.setHours(0);
-        d.setMinutes(0);
-        d.setSeconds(0);
-        return d;
-    }
 
-    function nd(d) {
-        var d = new Date(d);
-        d.setDate(d.getDate() + 1)
-        return d;
-    }
+    if (station && date && !isNaN(Number(station) && !isNaN(Number(date)))) {
 
-    if (station && date && !isNaN(Number(station) && !isNaN(new Date(date))))
-        return StationHourlyCorrection.find({$and: [{stationCode: Number(station)}, {monitorTime: {$gte: tz(date)}}, {monitorTime: {$lt: nd(tz(date))}}]}, {
+        var s = Number(station);
+        var d1 = new Date(Number(date));
+        d1.setHours(0);
+        d1.setMinutes(0);
+        d1.setSeconds(0);
+        var d2 = new Date(d1);
+        d2.setDate(d2.getDate() + 1);
+
+        var res = StationHourlyCorrection.find({$and: [{stationCode: s}, {monitorTime: {$gte: d1}}, {monitorTime: {$lt: d2}}]}, {
                 sort: {monitorTime: 1}
             }
         )
+
+        //console.log('stationHourlyCorrection', station, date, s, d1, d2, res)
+        return res;
+    }
+
+})
+
+Meteor.methods({
+    stationHourlyCorrectionUpdate: function (stationCode, monitorTime, pollutant, value) {
+
+        var update = {
+            stationCode: Number(stationCode),
+            monitorTime: monitorTime,
+        }
+        update[pollutant] = Number(value);
+        var t1 = new Date(monitorTime);
+        var t2 = new Date(t1);
+        t2.setMinutes(t2.getMinutes() + 1)
+        var correction = StationHourlyCorrection.findOne({
+            $and: [{stationCode: Number(stationCode)}, {monitorTime: {$gte: t1}}, {monitorTime: {$lt: t2}}]
+        });
+
+        if (correction)
+            return StationHourlyCorrection.update(correction._id, {$set: update})
+        else
+            return StationHourlyCorrection.insert(update)
+    }
 })

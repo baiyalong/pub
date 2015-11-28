@@ -22,30 +22,7 @@ Template.pollutantLimit.helpers({
 });
 
 Template.pollutantLimit.events({
-    //'click .save': function () {
-    //    var limit = limitArr
-    //    var arr = []
-    //    limit.forEach(function (e) {
-    //        var value = parseInt($('input[code="' + e + '"]').val().trim());
-    //        if (isNaN(value)) return;
-    //        var id = $('input[code="' + e + '"]').attr('id');
-    //        arr.push({id: id, limit: value})
-    //    })
-    //    Meteor.call('limitUpdate', arr, function (err) {
-    //        if (err)Util.modal('污染物排放发布限值', err)
-    //        else {
-    //            Util.modal('污染物排放发布限值', '修改成功！')
-    //            $('input[type="number"]').each(function () {
-    //                $(this).val($(this).attr('history'))
-    //            })
-    //        }
-    //    })
-    //},
-    //'click .cancel': function () {
-    //    $('input[type="number"]').each(function () {
-    //        $(this).val($(this).attr('history'))
-    //    })
-    //},
+
     'mouseenter tbody>tr': function () {
         $('tbody>tr').css({
             'border': '2px solid #186E37',
