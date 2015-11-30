@@ -16,7 +16,18 @@ Template.dataCorrection.helpers({
     },
     moment: function (t) {
         return moment(t).format('HH:mm:ss');
-    }
+    },
+    stationInfo: function () {
+        var date = moment(new Date(Number(this.date))).format('YYYY年MM月DD日');
+        var stationCode = Number(this.station);
+        var station = Station.findOne({UniqueCode: stationCode})
+        return {
+            station: station.PositionName,
+            city: station.Area,
+            county: station.countyName,
+            date: date
+        }
+    },
 });
 
 Template.dataCorrection.events({

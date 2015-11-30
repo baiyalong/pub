@@ -32,6 +32,12 @@
                     </div>
                     <button class="btn btn-success search btn-sm">搜索</button>
                 </form>
+                {{#with stationInfo}}
+                <p class="stationInfo"><span>{{station}}</span>&nbsp;&nbsp;
+                    （&nbsp;<span>{{city}}</span>&nbsp;/&nbsp;<span>{{county}}</span>&nbsp;）
+                    &nbsp;&nbsp;<span>{{date}}</span>&nbsp;&nbsp;监测数据
+                </p>
+                {{/with}}
             </div>
         </div>
         <div class="row-fluid list">
