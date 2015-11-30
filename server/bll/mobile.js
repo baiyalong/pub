@@ -318,8 +318,8 @@ BLL.mobile = {
     }
     ,
     terminalStatus: function (req) {
-        //console.log(req)
-        if (req && req.ID && req.OS)
+        //console.log('req,', req)
+        if (req && req.ID && req.ID != '(null)' && req.OS)
             return Terminal.upsert({ID: req.ID}, {$set: req});
     }
 }
