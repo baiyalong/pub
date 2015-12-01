@@ -15,10 +15,11 @@ Meteor.methods({
         t1 = tz(t1);
         t2 = tz(t2);
         t2.setDate(t2.getDate() + 1);
+        t1.setMinutes(t1.getMinutes() - 1)
         console.log('dataSync', t1, t2)
         //remove correction
 
-        return StationHourlyCorrection.remove({$and: [{monitorTime: {$gte: t1}}, {monitorTime: {$lt: t2}}]})
+        return StationHourlyCorrection.remove({$and: [{monitorTime: {$gt: t1}}, {monitorTime: {$lt: t2}}]})
     },
     //'stationHourlyCorrection': function (condition) {
     //
@@ -80,7 +81,8 @@ Meteor.publish('stationHourlyRaw', function (station, date) {
         d1.setSeconds(0);
         var d2 = new Date(d1);
         d2.setDate(d2.getDate() + 1);
-        var res = StationHourlyRaw.find({$and: [{POINTCODE: s}, {MONITORTIME: {$gte: d1}}, {MONITORTIME: {$lt: d2}}]}, {
+        d1.setMinutes(d1.getMinutes() - 1)
+        var res = StationHourlyRaw.find({$and: [{POINTCODE: s}, {MONITORTIME: {$gt: d1}}, {MONITORTIME: {$lt: d2}}]}, {
             sort: {MONITORTIME: 1},
             fields: {
                 POINTCODE: 1,

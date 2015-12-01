@@ -13,8 +13,15 @@ Template.layout.helpers({
             return true;
     },
     menu: function () {
+        var city = Area.find({$and: [{code: {$mod: [100, 0]}}, {code: {$not: {$mod: [10000, 0]}}}]}, {sort: {code: 1}})
+            .map(function (e) {
+                return e.code.toString()
+            })
         var arr = menu.filter(function (e) {
-            return !e.hide && Roles.userIsInRole(Meteor.userId(), e.role);
+            if (e.role == 'publish')
+                return !e.hide && Roles.userIsInRole(Meteor.userId(), city);
+            else
+                return !e.hide && Roles.userIsInRole(Meteor.userId(), e.role);
         });
         arr.forEach(function (e) {
             if (e.path == window.location.pathname)
@@ -24,7 +31,8 @@ Template.layout.helpers({
         });
         return arr;
     }
-});
+})
+;
 
 Template.layout.events({
 

@@ -82,8 +82,9 @@ Meteor.methods({
         var t1 = new Date(monitorTime);
         var t2 = new Date(t1);
         t2.setMinutes(t2.getMinutes() + 1)
+        t1.setMinutes(t1.getMinutes() - 1)
         var correction = StationHourlyCorrection.findOne({
-            $and: [{stationCode: Number(stationCode)}, {monitorTime: {$gte: t1}}, {monitorTime: {$lt: t2}}]
+            $and: [{stationCode: Number(stationCode)}, {monitorTime: {$gt: t1}}, {monitorTime: {$lt: t2}}]
         });
 
         if (correction)

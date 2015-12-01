@@ -160,8 +160,9 @@ Template.dataCorrection.onCreated(function () {
             var t1 = new Date(e.MONITORTIME)
             var t2 = new Date(t1);
             t2.setMinutes(t2.getMinutes() + 1)
+            t1.setMinutes(t1.getMinutes() - 1)
             var correction = StationHourlyCorrection.findOne({
-                    $and: [{stationCode: Number(e.POINTCODE)}, {monitorTime: {$gte: t1}}, {monitorTime: {$lt: t2}}]
+                    $and: [{stationCode: Number(e.POINTCODE)}, {monitorTime: {$gt: t1}}, {monitorTime: {$lt: t2}}]
                 }) || {};
             var index = list.findIndex(function (ee) {
                 return ee.monitorTime.getTime() == e.MONITORTIME.getTime()

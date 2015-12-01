@@ -11,11 +11,11 @@
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="date">发布时间</label>
-                        <input type="date" class="form-control input-sm" id="date" placeholder="2015/08/03">
+                        <input type="text" class="form-control input-sm" id="date">
                     </div>
                     <div class="form-group">
                         <label for="city">城市</label>
-                        <select class="form-control input-sm" id="city">
+                        <select class="form-control input-sm" id="city" disabled="disabled">
                             {{#each cityList}}
                             <option value="{{code}}">{{name}}</option>
                             {{/each}}

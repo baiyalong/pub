@@ -46,9 +46,7 @@ Template.airQualityPublish.events({
             return;
         }
         var airQuality = {
-            date: (function (d) {
-                if (d == '')return new Date(); else return new Date(d)
-            })($('#date').val()),
+            date: $('#date').datepicker('getDate'),
             cityCode: parseInt($('#city').val()),
             cityName: $('#city').find("option:selected").text(),
             countyCode: parseInt($('#county').val()),
@@ -171,7 +169,21 @@ Template.airQualityPublish.events({
 
 Template.airQualityPublish.onRendered(function () {
         Session.set('_id', '')
-        $('#date').val(moment(new Date()).format('YYYY-MM-DD'));
+
+        $('#date').datepicker({
+            language: "zh-CN",
+            //autoclose: true
+        });
+        //$('#date').datepicker('setDate', new Date())
+        $('#date').datepicker('setDate', new Date());
+        $('#date').datepicker('setStartDate', new Date())
+        //$('#date').datepicker('setEndDate', new Date())
+
+        var role = Roles.getRolesForUser(Meteor.userId())
+        if (role && role[0])
+            $('#city').val(role[0])
+
+
         var city = parseInt($('#city').val())
         var county = parseInt($('#county').val())
         if (!isNaN(city) && !isNaN(county)) {

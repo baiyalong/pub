@@ -54,11 +54,11 @@ menu = [
         path: '/airQualityReview',
         name: '空气质量预报审核',
         imgSrc: '/yubaosh.png',
-        role: 'admin'
+        role: ['admin', 'audit']
     }, {
         path: '/airQualityPublish',
         name: '空气质量预报发布',
         imgSrc: '/yubaosh.png',
-        role: 'subAdmin'
+        role: 'publish'
     },
 ]

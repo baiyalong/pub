@@ -3,11 +3,113 @@
  */
 
 Template.user.helpers({
-
+    'readonly': function () {
+        if (Session.get('title') == '修改用户')
+            return 'readonly'
+    },
+    'title': function () {
+        return Session.get('title')
+    },
+    'err': function () {
+        return Session.get('err')
+    },
+    'userList': function () {
+        return Meteor.users.find()
+    },
+    'rolesList': function () {
+        var res = [
+            {name: '自治区管理员', value: 'admin'},
+            {name: '自治区预报审核员', value: 'audit'}
+        ]
+        Area.find().forEach(function (e) {
+            res.push({
+                name: '盟市预报发布员 / ' + e.name,
+                value: e.code.toString()
+            })
+        });
+        return res;
+    },
+    'roleName': function (r) {
+        if (!r)return;
+        var role = r[0];
+        var roles = [
+            {name: '自治区管理员', value: 'admin'},
+            {name: '自治区预报审核员', value: 'audit'}
+        ]
+        Area.find().forEach(function (e) {
+            roles.push({
+                name: '盟市预报发布员 / ' + e.name,
+                value: e.code.toString()
+            })
+        });
+        var res = roles.find(function (e) {
+            return e.value == role
+        });
+        return res ? res.name : role;
+    }
 });
 
 Template.user.events({
+    'click .add': function (e, t) {
+        Session.set('title', '添加用户');
+        Session.set('err', null);
+        t.$('#username').val('')
+        t.$('#password').val('')
+        t.$('#userModal').modal();
+    },
+    'click .edit': function (e, t) {
+        Session.set('title', '修改用户');
+        Session.set('err', null);
+        t.$('#username').val(this.username)
+        t.$('#password').val('')
+        t.$('#userModal').modal();
+    },
+    'click .remove': function (e, t) {
+        if (confirm('确认要删除该用户吗？'))
+            Meteor.call('removeUser', this._id)
+    },
+    'click .save': function (e, t) {
+        Session.set('err', null);
+        var username = t.$('#username').val().trim()
+        var password = t.$('#password').val();
+        var role = t.$('#role').val()
 
+        if (username == '')Session.set('err', '用户名不能为空！')
+        else if (password == '')Session.set('err', '密码不能为空！')
+
+        else if (Session.get('title') == '添加用户') {
+            if (Meteor.users.findOne({username: username}))Session.set('err', '用户名已被占用！')
+            else {
+                Meteor.call('addUser', username, password, role, function (err, res) {
+                    if (err)
+                        Session.set('err', err.message)
+                    else {
+                        Session.set('err', null)
+                        t.$('#userModal').modal('hide');
+                        t.$('#username').val('')
+                        t.$('#password').val('')
+                        Util.modal('添加用户', '添加成功！')
+                    }
+                })
+            }
+        }
+        else if (Session.get('title') == '修改用户') {
+            Meteor.call('updateUser', username, password, role, function (err, res) {
+                if (err)
+                    Session.set('err', err.message)
+                else {
+                    Session.set('err', null)
+                    t.$('#userModal').modal('hide');
+                    t.$('#username').val('')
+                    t.$('#password').val('')
+                    Util.modal('修改用户', '修改成功！')
+                }
+            })
+        }
+
+
+        //console.log(username, password, role)
+    },
 
     'mouseenter tbody>tr': function () {
         $('#' + this._id).css({
