@@ -43,3 +43,6 @@ rajit:bootstrap3-datepicker
 rajit:bootstrap3-datepicker-zh-cn
 percolate:synced-cron
 natestrauser:x-editable-bootstrap
+jparker:crypto-hmac
+jparker:crypto-base64
+jparker:crypto-sha1
