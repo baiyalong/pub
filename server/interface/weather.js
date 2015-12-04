@@ -14,7 +14,9 @@ weather = {
         var key = weather.key(baseUrl + weather.appid);
         var url = baseUrl + weather.appid.substring(0, 6) + '&key=' + key;
         HTTP.call('GET', url, function (err, res) {
-            if (res.content != 'data error')
+          if(err||res==null)
+            console.log(err)
+          else  if (res.content != 'data error')
                 Weather.insert({
                     areaid: areaid,
                     type: type,
