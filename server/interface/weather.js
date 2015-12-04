@@ -29,6 +29,6 @@ weather = {
 
 //
 //weather.getData([101010100], weather.type[0], new Date());
-weather.getData([101010100|101020100|101030100], weather.type[1], new Date());
+weather.getData([101010100,101020100,101030100], weather.type[1], new Date());
 //weather.getData([101010100], weather.type[2], new Date());
 //weather.getData([101010100], weather.type[3], new Date());
