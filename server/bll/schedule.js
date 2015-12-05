@@ -7,7 +7,7 @@
 scheduleJobs.weather = {
     schedule: function(parser) {
       //return parser.text('at 2:00 am');
-      return parser.text('every 8 h');
+      return parser.text('every 1 h');
     },
     job: function() {
       weather.job();

@@ -39,31 +39,34 @@ BLL.www = {
             value: collection
         }]
     },
-    cityAreaQuality: function () {
+    cityAreaQuality: function (id) {
+        id = parseInt(id);
         var rand = function () {
             return Math.floor(Math.random() * 500);
         }
+        var current = CityDailyRaw.findOne({CITYCODE:id},{sort:{MONITORTIME:-1}})
         return {
             currentCity: {
-                code: 150100,
-                name: '呼和浩特市',
-                aqi: rand(),
-                level: '优'
+                code: id,
+                name: current.AREA,
+                aqi: current.AQI,
+                level: current.TYPENAME
             },
             cityList: (function () {
                 return Area.find({$and: [{code: {$mod: [100, 0]}}, {code: {$not: {$mod: [10000, 0]}}}]}, {
                     sort: {code: 1},
                     fields: {_id: 0}
                 }).map(function (e) {
+                    var current = CityDailyRaw.findOne({CITYCODE:e.code},{sort:{MONITORTIME:-1}})
                     return {
                         code: e.code,
                         name: e.name,
-                        AQI: rand(),
-                        'PM2.5': rand(),
-                        PM10: rand(),
-                        O3: rand(),
-                        level: '优',
-                        primaryPollutant: 'PM2.5'
+                        AQI: current.AQI,
+                        'PM2.5': current.PM25,
+                        PM10: current.PM10,
+                        O3: current.O31H,
+                        level: current.TYPENAME,
+                        primaryPollutant: current.PRIMARYPOLLUTANT
                     }
                 });
             })()
@@ -74,12 +77,13 @@ BLL.www = {
             sort: {UniqueCode: 1},
             fields: {UniqueCode: 1, PositionName: 1, Longitude: 1, Latitude: 1}
         }).map(function (e) {
+            var data = StationDailyRaw.findOne({UNIQUECODE:e.UniqueCode},{sort:{MONITORTIME:-1}});
             return {
                 code: e.UniqueCode,
                 name: e.PositionName,
                 longitude: e.Longitude,
                 latitude: e.Latitude,
-                AQI: Math.floor(Math.random() * 500)
+                AQI: data.AQI
             }
         })
     },
@@ -87,22 +91,23 @@ BLL.www = {
         id = parseInt(id)
         var city = Area.findOne({code: id})
         var pollutant = ['AQI', 'PM2.5', 'PM10', 'O3', 'CO', 'SO2', 'NO2'];
+        var data = CityDailyRaw.findOne({CITYCODE:id},{sort:{MONITORTIME:-1}})
         return {
             cityCode: city.code,
             cityName: city.name,
             airQualityRealTime: {
-                time: '2015年11月18日  14时',
-                aqi: Math.floor(Math.random() * 500),
-                level: '优',
+                time:(function(){return moment(new Date()).format('YYYY年MM月DD日 HH时')})(),
+                aqi: data.AQI,
+                level: data.TYPENAME,
                 list: [1, 0, 1, 0, 0]
             },
             airQualityForecast: [
                 {
-                    time: '11日下午',
+                    time: '今天晚上',
                     airQuality: '优到良',
                     primaryPollutant: 'PM2.5'
                 }, {
-                    time: '12日早晨',
+                    time: '明天白天',
                     airQuality: '优到良',
                     primaryPollutant: 'PM2.5'
                 }

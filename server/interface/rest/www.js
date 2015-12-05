@@ -11,6 +11,12 @@ Api.addRoute('cityAreaQuality/', {
     }
 })
 
+Api.addRoute('cityAreaQuality/:id', {
+    get: function () {
+        return BLL.www.cityAreaQuality(this.urlParams.id);
+    }
+})
+
 
 Api.addRoute('cityMonitorStation/', {
     get: function () {
